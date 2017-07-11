@@ -1,6 +1,8 @@
 import {Injectable} from "@angular/core";
 import {MagicEngine} from "./magic.engine";
 import {FormControl, FormGroup} from "@angular/forms";
+import {ControlsMetadata, Records} from "../controls.metadata.model";
+import {PropType} from "../ui/propType";
 
 let counter = 0;
 
@@ -9,7 +11,10 @@ export class TaskMagicService {
 
    _taskId      : string;
     props: { [id: string]: { [id: string]: string; } };
+    _records : Records;
+    controlsMetadata_: ControlsMetadata = new ControlsMetadata();
 
+   get ControlsMetadata(){ return this.controlsMetadata_; }
    get taskId(){ return this._taskId; }
    set taskId(value){
       debugger;
@@ -63,4 +68,7 @@ export class TaskMagicService {
       this.magic.registerShowMessageBox(this.taskId, cb);
    }
 
+   getProperty(controlId:string,prop:PropType) {
+     return this.controlsMetadata_.getProperty(controlId, prop);
+   }
 }
