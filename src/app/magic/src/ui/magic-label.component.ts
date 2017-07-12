@@ -16,8 +16,6 @@ export class MagicLabelComponent{
    }
 
    get text(){
-     if (this.task.props != null)
-        return this.task.props[this.controlId][PropType.Text];
-     return "aaa";
+     return this.task.getProperty(this.controlId,PropType.Text );
    }
 }
