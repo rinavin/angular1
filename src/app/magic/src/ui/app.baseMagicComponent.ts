@@ -67,6 +67,21 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     this.task.registerShowMessageBox(msg => {
       alert(msg);
     });
+
+    this.task.registerRefreshTableUI(data => {
+      alert(data);
+          // this.list = JSON.parse(data);
+          // self.ref.detectChanges();
+          // alert(this.list);
+          // self.id = obj[1].Value;
+          // self.name = obj[3].Value;
+          // (<FormControl>this.user.controls['id'])
+          //   .setValue(obj[1].Value, { onlySelf: true });
+          // (<FormControl>this.user.controls['name'])
+          //   .setValue(obj[3].Value, { onlySelf: true });
+          // self.ref.detectChanges();
+       }
+    );
     this.task.registerRefreshUI(data => {
         //TODO: move this code to taskservice
         this.task.controlsMetadata_.fromJson(data);
@@ -76,19 +91,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
       }
     );
-    // this.task.registerRefreshTableUI(data => {
-    //       // this.list = JSON.parse(data);
-    //       // self.ref.detectChanges();
-    //       // alert(this.list);
-    //       // self.id = obj[1].Value;
-    //       // self.name = obj[3].Value;
-    //       // (<FormControl>this.user.controls['id'])
-    //       //   .setValue(obj[1].Value, { onlySelf: true });
-    //       // (<FormControl>this.user.controls['name'])
-    //       //   .setValue(obj[3].Value, { onlySelf: true });
-    //       // self.ref.detectChanges();
-    //    }
-    // );
+
 
     // this.task.startMagic();
 

@@ -11,11 +11,10 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class MagicEngine{
    magic = window['magic1'];
-   //magic = window.magic1;
+
 
    startMagic() {
       // alert('function 4 called');
-      // func = cb;
       this.magic.start();
    }
 
@@ -38,8 +37,8 @@ export class MagicEngine{
       this.magic.registerRefreshUI(taskId, cb);
    }
 
-   registerRefreshTableUI(cb) {
-      this.magic.registerRefreshTableUI(cb);
+   registerRefreshTableUI(taskId, cb) {
+      this.magic.registerRefreshTableUI(taskId, cb);
    }
 
    registerShowMessageBox(taskId, cb) {

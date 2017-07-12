@@ -17,6 +17,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
              type="text"
              magic="id"
              formControlName="id">
+           <m-label controlId="text1"></m-label>
             <!--<input
                class="jasmine-alert"
                [ngClass]="GetClass('idlabel')"
@@ -52,9 +53,7 @@ export class Demo1Component extends BaseTaskMagicComponent {
             return this.record;
       }
 
-      GetProperty(controlId: string, propertyType: number): string {
-           return this.props['idlabel'][propertyType];
-      }
+
 
 
 
