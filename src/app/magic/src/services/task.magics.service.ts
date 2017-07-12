@@ -10,9 +10,9 @@ let counter = 0;
 export class TaskMagicService {
 
    _taskId      : string;
-    props: { [id: string]: { [id: string]: string; } };
-    _records : Records;
+
     controlsMetadata_: ControlsMetadata = new ControlsMetadata();
+    selectedRow : number = 0;
 
    get ControlsMetadata(){ return this.controlsMetadata_; }
    get taskId(){ return this._taskId; }
@@ -22,7 +22,7 @@ export class TaskMagicService {
    }
 
 
-   selectedRow : number;
+
    // row         : FormGroup;
    rows        : FormGroup[] = [];
 
@@ -52,6 +52,7 @@ export class TaskMagicService {
       this.magic.insertEvent(this.taskId, eventName, controlIdx, lineidx);
    }
 
+
    registerGetValueCallback( cb) {
       this.magic.registerGetValueCallback(this.taskId, cb);
    }
@@ -61,7 +62,7 @@ export class TaskMagicService {
    }
 
    registerRefreshTableUI(cb) {
-      this.magic.registerRefreshTableUI(cb);
+      this.magic.registerRefreshTableUI(this.taskId, cb);
    }
 
    registerShowMessageBox(cb) {
