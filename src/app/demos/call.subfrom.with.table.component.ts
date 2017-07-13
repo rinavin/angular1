@@ -9,7 +9,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
    providers: [TaskMagicService],
   //language=Angular2HTML
   template: `
-      <h3>Demo 2 - TaskId: {{taskId}}</h3>
+      <h3>Call Table Test {{taskId}}</h3>
       <form novalidate [formGroup]="user">
          <label>
             <span>Id:</span>

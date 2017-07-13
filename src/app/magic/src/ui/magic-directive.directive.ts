@@ -9,7 +9,7 @@ export class MagicDirectiveDirective implements OnInit{
 
 
    @Input('magic') id: string;
-   @Input() rowId: number = 0;
+   @Input() rowId: string;
    @Input() events: any[] = [];
 
    get task(){ return this._task; }
@@ -47,9 +47,9 @@ export class MagicDirectiveDirective implements OnInit{
       // }
    }
    ngDoCheck(){
-      if(this.rowId != 0){
-         console.log(`DoCheck => magic-task-id: ${this.task.taskId}, property:${this.id}`);
-      }
+      // if(this.rowId != 0){
+      //    console.log(`DoCheck => magic-task-id: ${this.task.taskId}, property:${this.id}`);
+      // }
    }
 
 }

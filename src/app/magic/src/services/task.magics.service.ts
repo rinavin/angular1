@@ -49,7 +49,7 @@ export class TaskMagicService {
     }
 
 
-   insertEvent( eventName:string, controlIdx:string, lineidx:number){
+   insertEvent( eventName:string, controlIdx:string, lineidx:string){
       this.magic.insertEvent(this.taskId, eventName, controlIdx, lineidx);
    }
 
