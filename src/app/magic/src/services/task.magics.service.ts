@@ -11,10 +11,11 @@ export class TaskMagicService {
 
    _taskId      : string;
 
-    controlsMetadata_: ControlsMetadata = new ControlsMetadata();
+    ScreenControlsData: ControlsMetadata = new ControlsMetadata();
+    Records: Records = new Records();
     selectedRow : number = 0;
 
-   get ControlsMetadata(){ return this.controlsMetadata_; }
+   get ControlsMetadata(){ return this.ScreenControlsData; }
    get taskId(){ return this._taskId; }
    set taskId(value){
       debugger;
@@ -70,6 +71,11 @@ export class TaskMagicService {
    }
 
    getProperty(controlId:string,prop:PropType) {
-     return this.controlsMetadata_.getProperty(controlId, prop);
+     return this.ScreenControlsData.getProperty(controlId, prop);
+   }
+
+   getRecords()
+   {
+     return this.Records.data;
    }
 }

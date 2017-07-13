@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
 import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
+import {ControlsMetadata} from "../controls.metadata.model";
 
 @Component({
    selector: 'task-magic',
@@ -70,6 +71,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
     this.task.registerRefreshTableUI(data => {
       alert(data);
+      this.task.Records.fromJson(data);
           // this.list = JSON.parse(data);
           // self.ref.detectChanges();
           // alert(this.list);
@@ -84,9 +86,9 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     );
     this.task.registerRefreshUI(data => {
         //TODO: move this code to taskservice
-        this.task.controlsMetadata_.fromJson(data);
+        this.task.ScreenControlsData.fromJson(data);
         // console.dir(obj.ControlsValues);
-        this.record.patchValue(this.task.controlsMetadata_.Values());
+        this.record.patchValue(this.task.ScreenControlsData.Values);
         this.ref.detectChanges();
 
       }
@@ -96,6 +98,11 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     // this.task.startMagic();
 
 
+  }
+
+  getRecords() :ControlsMetadata[]
+  {
+    return this.task.Records.list;
   }
 
 

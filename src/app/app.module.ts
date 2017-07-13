@@ -1,3 +1,4 @@
+///<reference path="demos/table.test.component.ts"/>
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule}         from '@angular/forms';
@@ -9,12 +10,14 @@ import {AppComponent} from './app.component';
 import {Demo1Component} from "./demos/demo1.component";
 import {InnerComponent} from "./demos/inner.component";
 import {Demo2Component} from "./demos/demo2.component";
+import {TableTestComponent} from "./demos/table.test.component";
 
 @NgModule({
    declarations: [
       AppComponent,
       Demo1Component,
       Demo2Component,
+      TableTestComponent,
        //MagicDirectiveDirective,
       InnerComponent
    ],
