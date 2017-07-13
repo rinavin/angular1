@@ -15,6 +15,7 @@ export class ControlsMetadata {
   // dictionary of controls with there properties
   private ControlsProperties: Map<string, ControlMetadata> = new Map();
 
+  rowId: string;
   get Values(){
     return this.values;
   }
@@ -36,8 +37,9 @@ export class ControlsMetadata {
        for (let property in props[controlName])
          controlMetaData[property] = props[controlName][property];
      }
-     for (let controlName in obj.ControlsValues)
+     for (let controlName in obj.ControlsValues) {
        this.values[controlName] = obj.ControlsValues[controlName];
+     }
    }
 
   getProperty(controlId: string, prop: PropType) {
@@ -53,18 +55,21 @@ export class Records {
 
    update(obj) {
      console.dir(obj);
-     for (let rowId in obj) {
-       if (this.data[rowId] == null) {
+     if (obj.fullRefresh) {
+       this.data = new Map();
+       this.list = new Array<ControlsMetadata>();
+     }
+     for (let rowId in obj.rows) {
+       if (this.data[rowId] == null)
          this.data[rowId] = new ControlsMetadata();
-         let controlsData: ControlsMetadata = this.data[rowId];
-         controlsData.update(obj[rowId]);
-       }
-       //this.list = new ControlsMetadata[this.data.keys.length];
-       for (var key in this.data) {
-         this.list[key] = this.data[key];
-         // Use `key` and `value`
-       }
-
+       let controlsData: ControlsMetadata = this.data[rowId];
+       controlsData.update(obj.rows[rowId]);
+       controlsData.rowId = rowId;
+     }
+     //this.list = new ControlsMetadata[this.data.keys.length];
+     for (var key in this.data) {
+       this.list[key] = this.data[key];
+       // Use `key` and `value`
      }
      console.dir(this.list);
    }

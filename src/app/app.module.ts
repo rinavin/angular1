@@ -11,6 +11,7 @@ import {Demo1Component} from "./demos/demo1.component";
 import {InnerComponent} from "./demos/inner.component";
 import {Demo2Component} from "./demos/demo2.component";
 import {TableTestComponent} from "./demos/table.test.component";
+import {CallSubformwithTableComponent} from "./demos/call.subfrom.with.table.component";
 
 @NgModule({
    declarations: [
@@ -18,6 +19,7 @@ import {TableTestComponent} from "./demos/table.test.component";
       Demo1Component,
       Demo2Component,
       TableTestComponent,
+     CallSubformwithTableComponent,
        //MagicDirectiveDirective,
       InnerComponent
    ],

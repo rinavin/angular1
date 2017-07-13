@@ -57,7 +57,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
   ngOnInit() {
     this.task.taskId = this.task.getTaskId(this.parentId, this.subformName);
-    alert(this.taskId);
+
 
 
     this.task.registerGetValueCallback((controlKey: string) => {
@@ -70,19 +70,19 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     });
 
     this.task.registerRefreshTableUI(data => {
-      alert(data);
-      this.task.Records.fromJson(data);
-          // this.list = JSON.parse(data);
-          // self.ref.detectChanges();
-          // alert(this.list);
-          // self.id = obj[1].Value;
-          // self.name = obj[3].Value;
-          // (<FormControl>this.user.controls['id'])
-          //   .setValue(obj[1].Value, { onlySelf: true });
-          // (<FormControl>this.user.controls['name'])
-          //   .setValue(obj[3].Value, { onlySelf: true });
-          // self.ref.detectChanges();
-       }
+        //alert(data);
+        this.task.Records.fromJson(data);
+        // this.list = JSON.parse(data);
+        // self.ref.detectChanges();
+        // alert(this.list);
+        // self.id = obj[1].Value;
+        // self.name = obj[3].Value;
+        // (<FormControl>this.user.controls['id'])
+        //   .setValue(obj[1].Value, { onlySelf: true });
+        // (<FormControl>this.user.controls['name'])
+        //   .setValue(obj[3].Value, { onlySelf: true });
+        this.ref.detectChanges();
+      }
     );
     this.task.registerRefreshUI(data => {
         //TODO: move this code to taskservice

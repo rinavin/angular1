@@ -51,8 +51,10 @@ import {ControlsMetadata} from "../magic/src/controls.metadata.model";
     <ul >
       <li *ngFor="let o of task.Records.list" > 
     <span >
+      <span  > RowId = {{o.rowId}}</span>
       <span  >{{o.values['id']}}</span>
       <span  >{{o.values['name']}}</span>
+       
     </span>
 
       </li>
