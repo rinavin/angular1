@@ -10,7 +10,7 @@ declare var myExtObject: any;
    selector: 'app-root',
    template: `
 
-      <callSubfomwithTable></callSubfomwithTable>
+      <tabletest></tabletest>
       <!--<div>-->
       <!--<form novalidate [formGroup]="user">-->
       <!--<label>-->

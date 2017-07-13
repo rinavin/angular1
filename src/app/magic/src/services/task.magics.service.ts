@@ -22,8 +22,6 @@ export class TaskMagicService {
       this._taskId = value;
    }
 
-
-
    // row         : FormGroup;
    rows        : FormGroup[] = [];
 
@@ -37,6 +35,7 @@ export class TaskMagicService {
       this.rows.push(new FormGroup({
          name: new FormControl(''),
          id: new FormControl(''),
+          seeId: new FormControl(''),
       }))
    }
 

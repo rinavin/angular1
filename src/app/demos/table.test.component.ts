@@ -21,44 +21,22 @@ import {ControlsMetadata} from "../magic/src/controls.metadata.model";
         
         <input
           type="text"
-          magic="id"
-          formControlName="id">
-        
-        <!--<input
-           class="jasmine-alert"
-           [ngClass]="GetClass('idlabel')"
-           
-           style="border:1px solid red;"
-           [ngStyle]="GetStyle('idlabel')"
-           
-           tooltip="idlabel"
-           type="text"
-           magic="id"
-           formControlName="id"
-           >-->
+          magic="seeId"
+          formControlName="seeId">
       </label>
       <br>
-      <label>
-        <span>Name:</span>
-        <input
-          type="text"
-          magic="name"
-          formControlName="name"
-        >
-      </label>
-      
     </form>
     <ul >
       <li *ngFor="let o of task.Records.list" > 
     <span >
-      <span  >{{o.values['id']}}</span>
-      <span  >{{o.values['name']}}</span>
+      <span  magic="id" [rowId]="o.rowId">{{o.values['id']}}</span>
+      <span  magic="name" [rowId]="o.rowId">{{o.values['name']}}</span>
       <button magic="clickme" [rowId]="o.rowId"> ClickMe</button>
        
     </span>
 
       </li>
-      <button magic="refresh" >Next</button>
+      <button magic="refresh" >View Refresh</button>
       
     </ul>
     </div>
