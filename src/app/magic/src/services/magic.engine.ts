@@ -45,4 +45,8 @@ export class MagicEngine{
       this.magic.registerShowMessageBox(taskId, cb);
    }
 
+   registerOpenFormCallback(cb) {
+      this.magic.registerOpenFormCallback(cb);
+   }
+
 }
