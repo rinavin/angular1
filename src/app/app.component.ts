@@ -3,8 +3,11 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MagicEngine} from "./magic/src/services/magic.engine";
 //import {BaseTaskMagicComponent} from './magic/src/ui/app.baseMagicComponent';
-import {Demo1Component} from "./demos/demo1.component";
 import { ViewContainerRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import {Demo1Component} from "./demos/demo1.component";
+import {Demo2Component} from "./demos/demo2.component";
+import {Demo2WithNgContainerComponent} from "./demos/demo2WithNgContainer.component";
+import {Demo2WithNgDynamicComponent} from "./demos/demo2WithNgDynamic.component";
 
 declare var myExtObject: any;
 @Component({
@@ -76,6 +79,13 @@ constructor(protected magic: MagicEngine,
   private InjectComponent(formName:string) {
     if (formName === 'Demo1') {
       const factory = this.componentFactoryResolver.resolveComponentFactory(Demo1Component);
+      const ref = this.viewContainerRef.createComponent(factory);
+      ref.changeDetectorRef.detectChanges();
+    }
+    else if (formName === 'Demo2') {
+      //const factory = this.componentFactoryResolver.resolveComponentFactory(Demo2Component);
+      const factory = this.componentFactoryResolver.resolveComponentFactory(Demo2WithNgContainerComponent);
+      //const factory = this.componentFactoryResolver.resolveComponentFactory(Demo2WithNgDynamicComponent);
       const ref = this.viewContainerRef.createComponent(factory);
       ref.changeDetectorRef.detectChanges();
     }

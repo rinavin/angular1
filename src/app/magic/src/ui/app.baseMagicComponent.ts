@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
 import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
+import {isUndefined} from "util";
 
 @Component({
    selector: 'task-magic',
@@ -12,6 +13,7 @@ import {PropType} from "./propType";
 export abstract class BaseTaskMagicComponent implements OnInit {
   @Input() subformName: string;
   @Input() parentId: string;
+  @Input() myTaskId: string;
 
   get controlProperties(): any {
     return this._controlProperties;
@@ -55,7 +57,12 @@ export abstract class BaseTaskMagicComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.task.taskId = this.task.getTaskId(this.parentId, this.subformName);
+    if (isUndefined(this.myTaskId)) {
+      this.task.taskId = this.task.getTaskId(this.parentId, this.subformName);
+    }
+     else{
+       this.task.taskId = this.myTaskId;
+    }
     alert(this.taskId);
 
 

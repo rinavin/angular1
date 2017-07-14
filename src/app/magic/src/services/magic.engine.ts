@@ -49,4 +49,8 @@ export class MagicEngine{
       this.magic.registerOpenFormCallback(cb);
    }
 
+  registerOpenSubformCallback(taskId, cb) {
+    this.magic.registerOpenSubformCallback(taskId, cb);
+  }
+
 }

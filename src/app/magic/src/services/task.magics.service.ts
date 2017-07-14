@@ -69,6 +69,10 @@ export class TaskMagicService {
       this.magic.registerShowMessageBox(this.taskId, cb);
    }
 
+  registerOpenSubformCallback(cb) {
+    this.magic.registerOpenSubformCallback(this.taskId, cb);
+  }
+
    getProperty(controlId:string,prop:PropType) {
      return this.controlsMetadata_.getProperty(controlId, prop);
    }
