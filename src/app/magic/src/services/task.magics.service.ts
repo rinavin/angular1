@@ -26,18 +26,21 @@ export class TaskMagicService {
    rows        : FormGroup[] = [];
 
    constructor(protected magic: MagicEngine) {
-      this.buildRecords();
-      console.log(`task constructor: ${counter++}`);
+     console.log(`task constructor: ${counter++}`);
    }
 
+  buildRecords(names)
+  {
+    const group: FormGroup = new FormGroup({});//  this.rows[0];
 
-   buildRecords(){
-      this.rows.push(new FormGroup({
-         name: new FormControl(''),
-         id: new FormControl(''),
-          seeId: new FormControl(''),
-      }))
-   }
+    for (const key in names) {
+       group.addControl(names[key], new FormControl('')); // instead of this.obj[key]
+      }
+      console.dir(group);
+    this.rows.push(group);
+  }
+
+
 
    startMagic() {
       this.magic.startMagic();

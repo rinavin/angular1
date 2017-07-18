@@ -56,8 +56,11 @@ export abstract class BaseTaskMagicComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.task.taskId = this.task.getTaskId(this.parentId, this.subformName);
-
+    var obj = JSON.parse(this.task.getTaskId(this.parentId, this.subformName));
+    console.dir(obj);
+    this.task.taskId = obj.TaskId;
+    this.task.buildRecords(obj.Names);
+    //this.task.buildRecords1();
 
 
     this.task.registerGetValueCallback((controlKey: string) => {
@@ -68,6 +71,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     this.task.registerShowMessageBox(msg => {
       alert(msg);
     });
+
 
     this.task.registerRefreshTableUI(data => {
         //alert(data);
@@ -86,8 +90,8 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     );
     this.task.registerRefreshUI(data => {
         //TODO: move this code to taskservice
-        this.task.ScreenControlsData.fromJson(data);
-        // console.dir(obj.ControlsValues);
+      this.task.ScreenControlsData.fromJson(data);
+         // console.dir(obj.ControlsValues);
         this.record.patchValue(this.task.ScreenControlsData.Values);
         this.ref.detectChanges();
 
