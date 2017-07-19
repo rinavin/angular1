@@ -14,6 +14,7 @@ import {TableTestComponent} from "./demos/table.test.component";
 import {CallSubformwithTableComponent} from "./demos/call.subfrom.with.table.component";
 import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component"
 import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
+import {RunmeComponent} from "./POS/runme.comonent";
 
 
 @NgModule({
@@ -26,7 +27,9 @@ import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
       CallSubformwithTableComponent,
       DemoImageControlComponent,
        //MagicDirectiveDirective,
-      InnerComponent
+      InnerComponent,
+     RunmeComponent
+
    ],
    imports: [
       BrowserModule,

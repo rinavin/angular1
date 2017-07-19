@@ -10,7 +10,8 @@ declare var myExtObject: any;
    selector: 'app-root',
    template: `
 
-      <enable-visible></enable-visible>
+     <!--<button [ngStyle]="{width: '400px'}">asa</button>-->
+      <runme></runme>
       <!--<div>-->
       <!--<form novalidate [formGroup]="user">-->
       <!--<label>-->

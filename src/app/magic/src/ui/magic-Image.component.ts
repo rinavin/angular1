@@ -5,10 +5,7 @@ import {PropType} from "./propType";
 @Component({
   selector : 'm-image',
   template:`
-    <span [magic]="controlId">
-    <img [src]="ImageFileName"/>
-    </span>
-    
+    <img [src]="ImageFileName" [magic]="controlId"/>
   `})
 
 export class MagicImageComponent{
@@ -19,6 +16,6 @@ export class MagicImageComponent{
   }
 
   get ImageFileName(){
-    return this.task.getValue(this.controlId);
+    return '/assets/images/' +  this.task.getValue(this.controlId);
   }
 }
