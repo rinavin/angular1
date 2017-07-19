@@ -80,4 +80,8 @@ export class TaskMagicService {
    {
      return this.Records.data;
    }
+
+  getValue(controlId:string) {
+    return this.ScreenControlsData.getValue(controlId);
+  }
 }
