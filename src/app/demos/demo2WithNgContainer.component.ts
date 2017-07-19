@@ -4,6 +4,7 @@ import {FormGroup} from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
 import {Called1Component} from "./called1.component";
 import {Called2Component} from "./called2.component";
+import {ComponentsList} from "../components";
 
 @Component({
    selector: 'Demo2WithNgContainerComponent',
@@ -37,15 +38,15 @@ import {Called2Component} from "./called2.component";
       </form>
       
       <div style="border: 3px solid black;margin: 15px">
-        <ng-container *ngComponentOutlet="mysubform1"></ng-container>
+        <ng-container *ngComponentOutlet="subForms.mysubform1"></ng-container>
       </div>
       
    `
 })
 export class  Demo2WithNgContainerComponent extends BaseTaskMagicComponent implements OnInit{
-   subform1Name: string = "mysubform1";
 
-  mysubform1: Component;
+
+  subForms:any = {}
 
    get user(): FormGroup{
       return this.record;
@@ -54,21 +55,11 @@ export class  Demo2WithNgContainerComponent extends BaseTaskMagicComponent imple
    ngOnInit(){
      super.ngOnInit();
 
+
+
      this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string) => {
        console.log('registerOpenSubformCallback', subformControlName, taskId);
-
-       //eval('this.' + subformControlName + '= formName];');
-       if (subformControlName === 'mysubform1'){
-         if (formName === 'called1') {
-           this.mysubform1 = Called1Component;
-         }
-         else if (formName === 'called2') {
-           this.mysubform1 = Called2Component;
-         }
-         //*** This is not compiling !!! ***
-         //this.mysubform1.inputs = {myTaskId: taskId};
-         this.ref.detectChanges();
-       }
+       this.subForms[subformControlName] = ComponentsList.compHash[formName];
      });
    }
 }

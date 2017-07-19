@@ -23,12 +23,10 @@ const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxCompone
 @NgModule({
    declarations:decs,
    exports: decs,
-  entryComponents: [
+   entryComponents: [
     Demo1Component, Demo2Component,
     Demo2WithNgContainerComponent, Demo2WithNgDynamicComponent,
-    Called1Component, Called2Component, TableTestComponent],
-
-
+    Called1Component, Called2Component, TableTestComponent]
 })
 export class MagicModule{
    static forRoot(){
