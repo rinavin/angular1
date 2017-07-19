@@ -12,16 +12,24 @@ import {InnerComponent} from "./demos/inner.component";
 import {Demo2Component} from "./demos/demo2.component";
 import {TableTestComponent} from "./demos/table.test.component";
 import {CallSubformwithTableComponent} from "./demos/call.subfrom.with.table.component";
+import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component"
+import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
+import {RunmeComponent} from "./POS/runme.comonent";
+
 
 @NgModule({
    declarations: [
       AppComponent,
       Demo1Component,
       Demo2Component,
+     EnableVisibleTestComponent,
       TableTestComponent,
-     CallSubformwithTableComponent,
+      CallSubformwithTableComponent,
+      DemoImageControlComponent,
        //MagicDirectiveDirective,
-      InnerComponent
+      InnerComponent,
+     RunmeComponent
+
    ],
    imports: [
       BrowserModule,

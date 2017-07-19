@@ -7,8 +7,11 @@ import {TaskMagicService} from "./src/services/task.magics.service";
 import {MagicDirectiveDirective} from "./src/ui/magic-directive.directive";
 import {MagicLabelComponent} from "./src/ui/magic-label.component";
 import {MagicCheckboxComponent} from "./src/ui/magic-checkbox.component";
+import {MagicEditComponent} from "./src/ui/magic-edit.component";
+import {MagicImageComponent} from "./src/ui/magic-Image.component"
 
-const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent];
+const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
+
 
 @NgModule({
    declarations:decs,
