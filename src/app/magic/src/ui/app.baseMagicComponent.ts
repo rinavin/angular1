@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
 import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
+import {isUndefined} from "util";
 import {ControlsMetadata} from "../controls.metadata.model";
 
 @Component({
@@ -13,6 +14,9 @@ import {ControlsMetadata} from "../controls.metadata.model";
 export abstract class BaseTaskMagicComponent implements OnInit {
   @Input() subformName: string;
   @Input() parentId: string;
+  @Input() myTaskId: string;
+  @Input() taskDescription: string;
+
 
   get controlProperties(): any {
     return this._controlProperties;
@@ -56,11 +60,23 @@ export abstract class BaseTaskMagicComponent implements OnInit {
   }
 
   ngOnInit() {
-    var obj = JSON.parse(this.task.getTaskId(this.parentId, this.subformName));
-    console.dir(obj);
-    this.task.taskId = obj.TaskId;
-    this.task.buildRecords(obj.Names);
-    //this.task.buildRecords1();
+
+    if (isUndefined(this.myTaskId)) {
+      var obj = JSON.parse(this.task.getTaskId(this.parentId, this.subformName));
+      console.dir(obj);
+      this.task.taskId = obj.TaskId;
+      this.task.buildRecords(obj.Names);
+
+
+    }
+     else{
+
+      this.task.taskId = this.myTaskId;
+      var obj = JSON.parse(this.taskDescription);
+      this.task.buildRecords(obj);
+
+    }
+
 
 
     this.task.registerGetValueCallback((controlKey: string) => {

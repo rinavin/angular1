@@ -40,6 +40,14 @@ export class TaskMagicService {
     this.rows.push(group);
   }
 
+  buildRecordsTemp(){
+    this.rows.push(new FormGroup({
+      name: new FormControl(''),
+      id: new FormControl(''),
+      seeId: new FormControl(''),
+    }))
+  }
+
 
 
    startMagic() {
@@ -71,6 +79,10 @@ export class TaskMagicService {
    registerShowMessageBox(cb) {
       this.magic.registerShowMessageBox(this.taskId, cb);
    }
+
+  registerOpenSubformCallback(cb) {
+    this.magic.registerOpenSubformCallback(this.taskId, cb);
+  }
 
    getProperty(controlId:string,prop:PropType) {
      return this.ScreenControlsData.getProperty(controlId, prop);

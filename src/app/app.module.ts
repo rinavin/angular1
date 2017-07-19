@@ -10,6 +10,11 @@ import {AppComponent} from './app.component';
 import {Demo1Component} from "./demos/demo1.component";
 import {InnerComponent} from "./demos/inner.component";
 import {Demo2Component} from "./demos/demo2.component";
+import { Demo2WithNgContainerComponent } from './demos/demo2WithNgContainer.component';
+import { Demo2WithNgDynamicComponent } from './demos/demo2WithNgDynamic.component';
+import { Called1Component } from './demos/called1.component';
+import { Called2Component } from './demos/called2.component';
+import {DynamicModule} from "ng-dynamic-component";
 import {TableTestComponent} from "./demos/table.test.component";
 import {CallSubformwithTableComponent} from "./demos/call.subfrom.with.table.component";
 import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component"
@@ -22,13 +27,17 @@ import {RunmeComponent} from "./POS/runme.comonent";
       AppComponent,
       Demo1Component,
       Demo2Component,
-     EnableVisibleTestComponent,
+      EnableVisibleTestComponent,
       TableTestComponent,
       CallSubformwithTableComponent,
       DemoImageControlComponent,
-       //MagicDirectiveDirective,
       InnerComponent,
-     RunmeComponent
+       Demo2WithNgContainerComponent,
+       Demo2WithNgDynamicComponent,
+       Called1Component,
+       Called2Component,
+       InnerComponent,
+       RunmeComponent
 
    ],
    imports: [
@@ -37,6 +46,8 @@ import {RunmeComponent} from "./POS/runme.comonent";
       HttpModule,
       JsonpModule,
       ReactiveFormsModule,
+
+      DynamicModule.withComponents([Called1Component, Called2Component]),
 
       MagicModule.forRoot()
    ],

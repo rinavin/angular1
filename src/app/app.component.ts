@@ -3,72 +3,42 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MagicEngine} from "./magic/src/services/magic.engine";
 //import {BaseTaskMagicComponent} from './magic/src/ui/app.baseMagicComponent';
-
+import { ViewContainerRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import {Demo1Component} from "./demos/demo1.component";
+import {Demo2Component} from "./demos/demo2.component";
+import {Demo2WithNgContainerComponent} from "./demos/demo2WithNgContainer.component";
+import {Demo2WithNgDynamicComponent} from "./demos/demo2WithNgDynamic.component";
+import {TableTestComponent} from "./demos/table.test.component";
 
 declare var myExtObject: any;
 @Component({
    selector: 'app-root',
    template: `
 
-     <!--<button [ngStyle]="{width: '400px'}">asa</button>-->
-      <runme></runme>
-      <!--<div>-->
-      <!--<form novalidate [formGroup]="user">-->
-      <!--<label>-->
-      <!--<span>Id:</span>-->
-      <!--<input-->
-      <!--type="text"-->
-      <!--formControlName="id"-->
-      <!--on-focus="focusFunction(1)">-->
-      <!--</label>-->
-      <!--<br>-->
-      <!--<label>-->
-      <!--<span>Name:</span>-->
-      <!--<input-->
-      <!--type="text"-->
-      <!--formControlName="name"-->
-      <!--on-focus="focusFunction(3)">-->
-      <!--</label>-->
-      <!--</form>-->
-      <!--<ul class="heroes">-->
-
-      <!--<li *ngFor="let o of list">-->
-      <!--<span class="hero-element">-->
-      <!--<span class="badge">{{o.controls[0].Value}}</span>-->
-      <!--<span class="badge">{{o.controls[1].Value}}</span>-->
-      <!--<span class="badge">{{o.Line}}</span>-->
-
-      <!--<button class="delete-button"-->
-      <!--magic="6"-->
-      <!--[rowId]="o.Line">-->
-      <!--Show -->
-      <!--</button>-->
-
-      <!--</span>-->
-      <!--</li>-->
-
-      <!--</ul>-->
-      <!--<div>-->
-      <!--<div style="display: in-line">-->
-      <!--&lt;!&ndash;<m-button id=4>&ndash;&gt;-->
-      <!--<button-->
-      <!--magic="2"-->
-
-      <!--class="btn btn-default"-->
-      <!--(click)="buttonClick(4, 0)">-->
-      <!--Next-->
-      <!--</button>-->
-      <!--<button class="btn btn-default" (click)="buttonClick(5, 0)">Previous</button>-->
-      <!--</div>-->
-
-      <!--<br>-->
-      <!--</div>-->
-      <!--</div>-->
+      <!--<demo1></demo1>-->
+   
    `})
 export class AppComponent {//extends BaseTaskMagicComponent implements OnInit {
-constructor(protected magic: MagicEngine) {
+constructor(protected magic: MagicEngine,
+            private componentFactoryResolver: ComponentFactoryResolver,
+            private viewContainerRef: ViewContainerRef) {
+    this.initializeMagic();
      magic.startMagic();
    }
+   components: { [x: string]: any} = {
+    ["demo1"]: Demo1Component,
+    ["demo2"]: Demo2WithNgDynamicComponent,
+     ["table"]:TableTestComponent
+};
+
+  private InjectComponent(formName:string) {
+    alert(formName);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(this.components[formName]);
+    const ref = this.viewContainerRef.createComponent(factory);
+    ref.changeDetectorRef.detectChanges();
+
+  }
+
 //    id: string;
 //    name: string;
 //    user: FormGroup;
@@ -98,7 +68,12 @@ constructor(protected magic: MagicEngine) {
    initializeMagic() {
 
       var self = this;
-      //myExtObject.registerGetValueCallback(this.GetValueCallback());
+
+     this.magic.registerOpenFormCallback(formName => {
+       this.InjectComponent(formName);
+     });
+
+     //myExtObject.registerGetValueCallback(this.GetValueCallback());
       // name => {
       //   return (<FormControl>this.user.controls[name]).value;
       // });

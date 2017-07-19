@@ -39,10 +39,12 @@ import {Called2Component} from "./called2.component";
       <div style="border: 3px solid black;margin: 15px">
         <ng-container *ngComponentOutlet="mysubform1"></ng-container>
       </div>
+      
    `
 })
 export class  Demo2WithNgContainerComponent extends BaseTaskMagicComponent implements OnInit{
    subform1Name: string = "mysubform1";
+
   mysubform1: Component;
 
    get user(): FormGroup{
@@ -54,6 +56,8 @@ export class  Demo2WithNgContainerComponent extends BaseTaskMagicComponent imple
 
      this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string) => {
        console.log('registerOpenSubformCallback', subformControlName, taskId);
+
+       //eval('this.' + subformControlName + '= formName];');
        if (subformControlName === 'mysubform1'){
          if (formName === 'called1') {
            this.mysubform1 = Called1Component;
