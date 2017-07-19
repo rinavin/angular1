@@ -52,6 +52,11 @@ export class ControlsMetadata {
   }
 
 
+  getValue(controlName: string){
+    return this.values[controlName];
+  }
+
+
 }
 
 export class Records {

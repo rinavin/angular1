@@ -8,13 +8,14 @@ import {MagicDirectiveDirective} from "./src/ui/magic-directive.directive";
 import {MagicLabelComponent} from "./src/ui/magic-label.component";
 import {MagicCheckboxComponent} from "./src/ui/magic-checkbox.component";
 import {MagicEditComponent} from "./src/ui/magic-edit.component";
+import {MagicImageComponent} from "./src/ui/magic-Image.component"
 
-const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent, MagicEditComponent];
+const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
 
 
 @NgModule({
-  declarations:decs,
-  exports: decs
+   declarations:decs,
+   exports: decs
 })
 export class MagicModule{
    static forRoot(){
