@@ -10,7 +10,7 @@ declare var myExtObject: any;
    selector: 'app-root',
    template: `
 
-      <demo1></demo1>
+      <enable-visible></enable-visible>
       <!--<div>-->
       <!--<form novalidate [formGroup]="user">-->
       <!--<label>-->
