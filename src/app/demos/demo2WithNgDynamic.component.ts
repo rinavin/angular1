@@ -4,6 +4,7 @@ import {FormGroup} from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
 import {Called1Component} from "./called1.component";
 import {Called2Component} from "./called2.component";
+import {ComponentsList} from "../components";
 // import {DynamicModule} from "ng-dynamic-component"
 
 @Component({
@@ -45,7 +46,7 @@ import {Called2Component} from "./called2.component";
    `
 })
 export class  Demo2WithNgDynamicComponent extends BaseTaskMagicComponent implements OnInit{
-   subform1Name: string = "mysubform1";
+  // subform1Name: string = "mysubform1";
   mysubform1: Component;
   parameters: any;
 
@@ -57,13 +58,8 @@ export class  Demo2WithNgDynamicComponent extends BaseTaskMagicComponent impleme
      super.ngOnInit();
      this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription:string) => {
        console.log('registerOpenSubformCallback', subformControlName, taskId);
-       if (subformControlName === 'mysubform1'){
-         if (formName === 'called1') {
-           this.mysubform1 = Called1Component;
-         }
-         else if (formName === 'called2') {
-           this.mysubform1 = Called2Component;
-         }
+       if (subformControlName === 'mysubform1') {
+         this.mysubform1 = ComponentsList.compHash[formName];
          this.parameters = {myTaskId: taskId, taskDescription: taskDescription};
          this.ref.detectChanges();
        }

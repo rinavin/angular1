@@ -16,6 +16,7 @@ import {Called1Component} from "../demos/called1.component";
 import {Demo2WithNgContainerComponent} from "../demos/demo2WithNgContainer.component";
 import {Demo2WithNgDynamicComponent} from "../demos/demo2WithNgDynamic.component";
 import {TableTestComponent} from "../demos/table.test.component";
+import {RunmeComponent} from "../POS/runme.comonent";
 
 const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
 
@@ -26,7 +27,7 @@ const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxCompone
    entryComponents: [
     Demo1Component, Demo2Component,
     Demo2WithNgContainerComponent, Demo2WithNgDynamicComponent,
-    Called1Component, Called2Component, TableTestComponent]
+    Called1Component, Called2Component, TableTestComponent, RunmeComponent]
 })
 export class MagicModule{
    static forRoot(){
