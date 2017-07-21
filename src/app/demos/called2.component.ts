@@ -15,6 +15,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
           type="text"
           magic="id"
           formControlName="id"
+          focusedControl={{focusedControl}}
         >
       </label>
       <br>

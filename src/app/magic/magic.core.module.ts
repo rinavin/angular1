@@ -5,6 +5,7 @@ import {NgModule} from "@angular/core";
 import {MagicEngine} from "./src/services/magic.engine";
 import {TaskMagicService} from "./src/services/task.magics.service";
 import {MagicDirectiveDirective} from "./src/ui/magic-directive.directive";
+import {FocusDirectiveDirective} from "./src/ui/focus-directive.directive";
 import {MagicLabelComponent} from "./src/ui/magic-label.component";
 import {MagicCheckboxComponent} from "./src/ui/magic-checkbox.component";
 import {MagicEditComponent} from "./src/ui/magic-edit.component";
@@ -17,7 +18,7 @@ import {Demo2WithNgContainerComponent} from "../demos/demo2WithNgContainer.compo
 import {Demo2WithNgDynamicComponent} from "../demos/demo2WithNgDynamic.component";
 import {TableTestComponent} from "../demos/table.test.component";
 
-const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
+const decs = [FocusDirectiveDirective, MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
 
 
 @NgModule({

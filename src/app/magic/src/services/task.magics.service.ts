@@ -84,7 +84,11 @@ export class TaskMagicService {
     this.magic.registerOpenSubformCallback(this.taskId, cb);
   }
 
-   getProperty(controlId:string,prop:PropType) {
+  registerSetFocusCallback(cb) {
+    this.magic.registerSetFocusCallback(this.taskId, cb);
+  }
+
+  getProperty(controlId:string,prop:PropType) {
      return this.ScreenControlsData.getProperty(controlId, prop);
    }
 

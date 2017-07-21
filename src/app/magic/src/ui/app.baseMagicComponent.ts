@@ -17,6 +17,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
   @Input() myTaskId: string;
   @Input() taskDescription: string;
 
+  public focusedControl: string;
 
   get controlProperties(): any {
     return this._controlProperties;
@@ -114,6 +115,21 @@ export abstract class BaseTaskMagicComponent implements OnInit {
       }
     );
 
+    this.task.registerSetFocusCallback((controlId:string) => {
+
+      //Option #1: Using window
+      //Pre-requisite: Assign "id" attribute to each magic element
+      //window.document.getElementById(controlId).focus();
+
+      //Option #2: Using FormControl
+      //var formControl = this.record.get(controlId);
+      //Get ElementRef from formControl and focus on it.
+
+      //Option #3: using Directive
+      //Pre-requisite: Assign "focusedControl" directive to each magic element
+      this.focusedControl = controlId;
+      this.ref.detectChanges();
+      });
 
     // this.task.startMagic();
 

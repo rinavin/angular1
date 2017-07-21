@@ -53,4 +53,7 @@ export class MagicEngine{
     this.magic.registerOpenSubformCallback(taskId, cb);
   }
 
+  registerSetFocusCallback(taskId, cb) {
+    this.magic.registerSetFocusCallback(taskId, cb);
+  }
 }

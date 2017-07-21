@@ -16,6 +16,7 @@ import {ComponentsList} from "../components";
                type="text"
                magic="id"
                formControlName="id"
+               focusedControl={{focusedControl}}
             >
          </label>
          <br>
