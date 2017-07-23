@@ -76,10 +76,6 @@ export class TaskMagicService {
       this.magic.registerRefreshTableUI(this.taskId, cb);
    }
 
-   registerShowMessageBox(cb) {
-      this.magic.registerShowMessageBox(this.taskId, cb);
-   }
-
   registerOpenSubformCallback(cb) {
     this.magic.registerOpenSubformCallback(this.taskId, cb);
   }
