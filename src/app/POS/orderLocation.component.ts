@@ -14,20 +14,40 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   providers: [TaskMagicService],
   template: `
     <form novalidate [formGroup]="user">
-       OrderLocation
-      <!--<m-image controlId="logo"></m-image>-->
+      
       <m-label controlId="selectlocation"></m-label>
-      <!--<button magic="logoff">log off</button>-->
       <ul >
-        <li *ngFor="let o of task.Records.list" > 
-    <span >
-       <a href="" magic="Index1">{{o.values['Index1']}}</a>
-      <!--<span  magic="id" [rowId]="o.rowId">{{o.values['id']}}</span>-->
+        <li *ngFor="let o of task.Records.list" >
+          <div style="width: 100%; display: table;">
+            <div style="display: table-row">
+              <div style="width: 600px; display: table-cell;"> Left 
+              <span>
+                 <a href="" magic="Index1">{{o.values['Index1']}}</a>
+                <br>
+                <span>
+                  Delivery Hours
+                </span>
+      
+         <!--<span  magic="id" [rowId]="o.rowId">{{o.values['id']}}</span>-->
    
-    </span>
-
+               </span>
+            </div>
+            <div style="display: table-cell;">
+              <span>
+                 <a href="" magic="Index1">{{o.values['Index2']}}</a>
+                <br>
+                <span>
+                  Delivery Hours
+                </span>
+               
+   
+               </span>
+            </div>
+            </div>
+          </div>
+         
         </li>
-        <button magic="refresh" >View Refresh</button>
+       
 
       </ul>
 
