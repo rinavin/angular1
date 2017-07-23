@@ -14,6 +14,11 @@ export class TaskMagicService {
     ScreenControlsData: ControlsMetadata = new ControlsMetadata();
     Records: Records = new Records();
     selectedRow : number = 0;
+    protected template: { [id: string]: string; };
+    settemplate(value : any){
+      this.template = value;
+    }
+
 
    get ControlsMetadata(){ return this.ScreenControlsData; }
    get taskId(){ return this._taskId; }
@@ -29,28 +34,36 @@ export class TaskMagicService {
      console.log(`task constructor: ${counter++}`);
    }
 
-  buildRecords(names)
+  buildRecords()
   {
     const group: FormGroup = new FormGroup({});//  this.rows[0];
-
-    for (const key in names) {
-       group.addControl(names[key], new FormControl('')); // instead of this.obj[key]
+    for (const key in this.template) {
+      console.log(key);
+      console.log(this.template[key]);
+       if (this.template[key] == '0')
+       group.addControl(key, new FormControl('')); // instead of this.obj[key]
       }
       console.dir(group);
     this.rows.push(group);
   }
 
-  buildRecordsTemp(){
-    this.rows.push(new FormGroup({
-      name: new FormControl(''),
-      id: new FormControl(''),
-      seeId: new FormControl(''),
-    }))
+  buildTableRecords()
+  {
+    const group: FormGroup = new FormGroup({});//  this.rows[0];
+    for (const key in this.template) {
+      console.log(key);
+      console.log(this.template[key]);
+      if (this.template[key] == '1')
+        group.addControl(key, new FormControl('')); // instead of this.obj[key]
+    }
+    console.dir(group);
+    this.rows.push(group);
   }
 
 
 
-   startMagic() {
+
+  startMagic() {
       this.magic.startMagic();
    }
 
