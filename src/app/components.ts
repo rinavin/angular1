@@ -7,6 +7,8 @@ import {TableTestComponent} from "./demos/table.test.component";
 import {Called1Component} from "./demos/called1.component";
 import {Called2Component} from "./demos/called2.component";
 import {RunmeComponent} from "./POS/runme.comonent";
+import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component";
+
 export class ComponentsList {
 
    static  compHash: { [x: string]: any } = {
@@ -16,6 +18,7 @@ export class ComponentsList {
       ["called1"]: Called1Component,
      ["called2"]: Called2Component,
      ["runme"]: RunmeComponent,
+     ["Rich Client - aa"]:EnableVisibleTestComponent
   };
 
   // getComponents()

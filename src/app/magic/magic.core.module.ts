@@ -7,7 +7,6 @@ import {TaskMagicService} from "./src/services/task.magics.service";
 import {MagicDirectiveDirective} from "./src/ui/magic-directive.directive";
 import {MagicLabelComponent} from "./src/ui/magic-label.component";
 import {MagicCheckboxComponent} from "./src/ui/magic-checkbox.component";
-import {MagicEditComponent} from "./src/ui/magic-edit.component";
 import {MagicImageComponent} from "./src/ui/magic-Image.component"
 import {Demo1Component} from "./../demos/demo1.component";
 import {Demo2Component} from "../demos/demo2.component";
@@ -17,8 +16,9 @@ import {Demo2WithNgContainerComponent} from "../demos/demo2WithNgContainer.compo
 import {Demo2WithNgDynamicComponent} from "../demos/demo2WithNgDynamic.component";
 import {TableTestComponent} from "../demos/table.test.component";
 import {RunmeComponent} from "../POS/runme.comonent";
+import {EnableVisibleTestComponent} from "../demos/enable-visible.test.component";
 
-const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
+const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent];
 
 
 @NgModule({
@@ -27,7 +27,7 @@ const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxCompone
    entryComponents: [
     Demo1Component, Demo2Component,
     Demo2WithNgContainerComponent, Demo2WithNgDynamicComponent,
-    Called1Component, Called2Component, TableTestComponent, RunmeComponent]
+    Called1Component, Called2Component, TableTestComponent, RunmeComponent, EnableVisibleTestComponent]
 })
 export class MagicModule{
    static forRoot(){

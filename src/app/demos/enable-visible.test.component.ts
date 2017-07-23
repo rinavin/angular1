@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { BaseTaskMagicComponent } from "../magic/src/ui/app.baseMagicComponent";
 import { FormGroup } from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
+import {PropType} from "../magic/src/ui/propType";
 
 
 @Component({
@@ -21,15 +22,23 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
       <br>
       <label>
         <span>Name:</span>
-        <m-edit controlId="name"></m-edit>
-
-
+        <input 
+          type="text"
+          magic="name"
+          formControlName="name"
+         [attr.disabled]="!(enabled('name')) ? true : null"
+        >
+        
       </label>
       <button magic="nextb" >Next</button>
       <button magic="prevb" >Prev</button>
     </form>
   `
 })
+
+//[disabled]="!(enabled(controlId)) ? true : null"
+//readonly="readonly"
+//style = "border:none"
 
 
 export class EnableVisibleTestComponent extends BaseTaskMagicComponent {
@@ -40,6 +49,11 @@ export class EnableVisibleTestComponent extends BaseTaskMagicComponent {
   get user(): FormGroup {
     return this.record;
   }
+
+  enabled(controlId: string) {
+    return this.task.getProperty(controlId,PropType.Enable) == 1;
+  }
+
 
 
 }
