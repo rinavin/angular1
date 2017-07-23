@@ -45,8 +45,8 @@ constructor(protected magic: MagicEngine,
    }
 }
 
-export interface User {
-   id: string;
-   name: string;
-
-}
+// export interface User {
+//    id: string;
+//    name: string;
+//
+// }

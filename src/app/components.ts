@@ -8,6 +8,7 @@ import {Called1Component} from "./demos/called1.component";
 import {Called2Component} from "./demos/called2.component";
 import {RunmeComponent} from "./POS/runme.comonent";
 import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component";
+import {OrderLocation} from "app/POS/orderLocation.component";
 
 export class ComponentsList {
 
@@ -18,7 +19,8 @@ export class ComponentsList {
       ["called1"]: Called1Component,
      ["called2"]: Called2Component,
      ["runme"]: RunmeComponent,
-     ["Rich Client - aa"]:EnableVisibleTestComponent
+     ["Rich Client - aa"]:EnableVisibleTestComponent,
+     ["OrderLocation"]:OrderLocation
   };
 
   // getComponents()
