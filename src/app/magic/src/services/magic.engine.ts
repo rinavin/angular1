@@ -41,8 +41,8 @@ export class MagicEngine{
       this.magic.registerRefreshTableUI(taskId, cb);
    }
 
-   registerShowMessageBox(taskId, cb) {
-      this.magic.registerShowMessageBox(taskId, cb);
+   registerShowMessageBox(cb) {
+      this.magic.registerShowMessageBox( cb);
    }
 
    registerOpenFormCallback(cb) {

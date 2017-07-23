@@ -84,9 +84,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
       return this.record.get(controlKey).value;
     });
 
-    this.task.registerShowMessageBox(msg => {
-      alert(msg);
-    });
+
 
 
     this.task.registerRefreshTableUI(data => {

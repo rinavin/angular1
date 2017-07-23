@@ -42,6 +42,10 @@ constructor(protected magic: MagicEngine,
      this.magic.registerOpenFormCallback(formName => {
        this.InjectComponent(formName);
      });
+
+     this.magic.registerShowMessageBox(msg => {
+       alert(msg);
+     });
    }
 }
 
