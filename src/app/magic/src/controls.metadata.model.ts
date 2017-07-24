@@ -64,7 +64,7 @@ export class Records {
   list:ControlsMetadata[]=[] ;
 
   update(obj) {
-    console.dir(obj);
+
     if (obj.fullRefresh) {
       this.data = new Map();
       this.list = new Array<ControlsMetadata>();
@@ -80,7 +80,7 @@ export class Records {
       this.list[key] = this.data[key];
       // Use `key` and `value`
     }
-    console.dir(this.list);
+
   }
   fromJson(data: string) {
     var obj = JSON.parse(data);

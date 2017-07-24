@@ -21,22 +21,22 @@ export class MagicDirectiveDirective implements OnInit{
    ) {}
 
    ngOnInit(): void {
-      console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
+
       let htmlElement:HTMLElement = this.element.nativeElement;
 
-      console.log('this.element.nativeElement', this.element.nativeElement);
+
 
       htmlElement.addEventListener('focus',(event)=>{
-         console.log(`magicDrv focus taskId: ${this.task.taskId}`);
+
          this.task.insertEvent('focus', this.id, this.rowId);
       });
 
 
       htmlElement.addEventListener('click',(event)=>{
-         console.log(`magicDrv click taskId: ${this.task.taskId}`);
+
          this.task.insertEvent('click', this.id, this.rowId);
       });
-      console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
+      //console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
       //if (htmlElement instanceof  HTMLInputElement  ){
       //   (<HTMLInputElement >htmlElement).property
 

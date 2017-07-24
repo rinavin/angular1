@@ -38,12 +38,11 @@ export class TaskMagicService {
   {
     const group: FormGroup = new FormGroup({});//  this.rows[0];
     for (const key in this.template) {
-      console.log(key);
-      console.log(this.template[key]);
+
        if (this.template[key] == '0')
        group.addControl(key, new FormControl('')); // instead of this.obj[key]
       }
-      console.dir(group);
+
     this.rows.push(group);
   }
 
@@ -51,12 +50,11 @@ export class TaskMagicService {
   {
     const group: FormGroup = new FormGroup({});//  this.rows[0];
     for (const key in this.template) {
-      console.log(key);
-      console.log(this.template[key]);
+
       if (this.template[key] == '1')
         group.addControl(key, new FormControl('')); // instead of this.obj[key]
     }
-    console.dir(group);
+
     this.rows.push(group);
   }
 
