@@ -9,6 +9,7 @@ import {Called2Component} from "./demos/called2.component";
 import {RunmeComponent} from "./POS/runme.comonent";
 import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component";
 import {OrderLocation} from "app/POS/orderLocation.component";
+import {SelectDateAndTime} from "./POS/selectDateandTime.component";
 
 export class ComponentsList {
 
@@ -20,7 +21,8 @@ export class ComponentsList {
      ["called2"]: Called2Component,
      ["runme"]: RunmeComponent,
      ["Rich Client - aa"]:EnableVisibleTestComponent,
-     ["OrderLocation"]:OrderLocation
+     ["OrderLocation"]:OrderLocation,
+     ["ResidentPickupDateTime"]:SelectDateAndTime,
   };
 
   // getComponents()

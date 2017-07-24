@@ -22,10 +22,14 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
             <div style="display: table-row">
               <div style="width: 600px; display: table-cell;"> Left 
               <span>
-                 <a href="" magic="Index1">{{o.values['Index1']}}</a>
+                 <a href="#" magic="Index1">{{o.values['Index1']}}</a>
                 <br>
                 <span>
                   Delivery Hours
+                  <br>
+                  <span magic="STORE1OpenTime">{{o.values['STORE1OpenTime']}}-</span>
+                  <span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span> 
+
                 </span>
       
          <!--<span  magic="id" [rowId]="o.rowId">{{o.values['id']}}</span>-->
@@ -34,10 +38,14 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
             </div>
             <div style="display: table-cell;">
               <span>
-                 <a href="" magic="Index1">{{o.values['Index2']}}</a>
+                 <a href="" magic="Index2">{{o.values['Index2']}}</a>
+                
                 <br>
                 <span>
                   Delivery Hours
+                  <br>
+                  <span magic="STORE1OpenTime">{{o.values['STORE2OpenTime']}}-</span>
+                  <span magic="STORE2OpenTime">{{o.values['STORE2CloseTime']}}</span> 
                 </span>
                
    

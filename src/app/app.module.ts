@@ -21,6 +21,7 @@ import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component"
 import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
 import {RunmeComponent} from "./POS/runme.comonent";
 import {OrderLocation} from "./POS/orderLocation.component";
+import {SelectDateAndTime} from "./POS/selectDateandTime.component";
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {OrderLocation} from "./POS/orderLocation.component";
        Called2Component,
        InnerComponent,
        RunmeComponent,
-       OrderLocation
+       OrderLocation,
+       SelectDateAndTime
 
    ],
    imports: [
@@ -49,7 +51,7 @@ import {OrderLocation} from "./POS/orderLocation.component";
       JsonpModule,
       ReactiveFormsModule,
 
-      DynamicModule.withComponents([Called1Component, Called2Component, OrderLocation]),
+      DynamicModule.withComponents([Called1Component, Called2Component, OrderLocation, SelectDateAndTime]),
 
       MagicModule.forRoot()
    ],
