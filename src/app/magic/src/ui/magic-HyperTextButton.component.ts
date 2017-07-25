@@ -1,7 +1,6 @@
 import {Component, OnInit, ChangeDetectorRef, Input, Injectable} from '@angular/core';
 
 import {TaskMagicService} from "../services/task.magics.service";
-import {PropType} from "./propType";
 import {MagicControlBase} from "./magic-control-base.component";
 
 @Component({
@@ -12,10 +11,6 @@ import {MagicControlBase} from "./magic-control-base.component";
 })
 
 export class MagicHyperTextButtonComponent extends MagicControlBase{
-
-  @Input() controlId:string;
-
-  formatRet: string;
 
   constructor(protected task  : TaskMagicService){
     super(task)

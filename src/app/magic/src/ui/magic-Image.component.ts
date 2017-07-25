@@ -1,6 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {TaskMagicService} from "../services/task.magics.service";
-import {PropType} from "./propType";
+import {MagicControlBase} from "./magic-control-base.component";
 
 @Component({
   selector : 'm-image',
@@ -8,11 +8,10 @@ import {PropType} from "./propType";
     <img [src]="ImageFileName" [magic]="controlId"/>
   `})
 
-export class MagicImageComponent{
+export class MagicImageComponent extends MagicControlBase{
 
-  @Input() controlId:string;
-
-  constructor(private task : TaskMagicService){
+  constructor(protected task : TaskMagicService){
+    super(task)
   }
 
   get ImageFileName(){
