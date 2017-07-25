@@ -4,9 +4,9 @@
 /**
  * Created by rinav on 7/23/2017.
  */
-import {Component} from "@angular/core";
+import {ApplicationRef, ChangeDetectorRef, Component} from "@angular/core";
 import {BaseTaskMagicComponent} from "../magic/src/ui/app.baseMagicComponent";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
 
 /**
@@ -17,8 +17,19 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   providers: [TaskMagicService],
   template: `
     <form novalidate [formGroup]="user">
-      SelectDateAndTime
-      <!--<m-image controlId="selectlocation"></m-image>-->
+      SelectDateAndTime<br>
+      <m-image controlId="Delivery"></m-image>
+      <m-image controlId="ToGo"></m-image>
+      
+      date: <input type="date" magic="vDate" formControlName="vDate"/><br>
+
+     <!-- date: <input type="text" formControlName="vDate"/><br>-->
+
+      <input type="time" magic="vMinute" formControlName="vMinute"/><br>
+      {{counter}}
+      <pre>
+        {{ user.value | json }}
+      </pre>
 
 
     </form>
@@ -30,5 +41,23 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
   get user(): FormGroup {
     return this.record;
   }
+
+  constructor(
+    ref: ChangeDetectorRef,
+    task: TaskMagicService,
+    public app:ApplicationRef){
+    super(ref,task);
+    // setInterval(()=>{
+    //   this.counter++;
+    //   app.tick();
+    // },1000);
+  }
+
+  counter = 0;
+
+/*  user = new FormGroup({
+    vDate : new FormControl(),
+    vMinute : new FormControl()
+  })*/
 }
 
