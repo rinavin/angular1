@@ -23,6 +23,7 @@ import {RunmeComponent} from "./POS/runme.comonent";
 import {OrderLocation} from "./POS/orderLocation.component";
 import {SelectDateAndTime} from "./POS/selectDateandTime.component";
 import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.component";
+import {DemoHyperTextButtonControlComponent} from "app/demos/DemoHyperTextButtonControl.component";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.co
     RunmeComponent,
     OrderLocation,
     SelectDateAndTime,
-    DemoImageButtonControlComponent
+    DemoImageButtonControlComponent,
+    DemoHyperTextButtonControlComponent
   ],
   imports: [
     BrowserModule,

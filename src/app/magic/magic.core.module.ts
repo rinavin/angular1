@@ -19,17 +19,22 @@ import {RunmeComponent} from "../POS/runme.comonent";
 import {EnableVisibleTestComponent} from "../demos/enable-visible.test.component";
 import {OrderLocation} from "../POS/orderLocation.component";
 import {SelectDateAndTime} from "../POS/selectDateandTime.component";
-import {DemoImageButtonControlComponent} from "../demos/DemoImageButtonControl.component";
 import {DemoImageControlComponent} from "../demos/DemoImageControl.component";
-import {MagicImageButtonComponent} from "./src/ui/magic-ImageButton.component";
+
 import {CommonModule} from "@angular/common";
+import {DemoImageButtonControlComponent} from "../demos/DemoImageButtonControl.component";
+import {MagicImageButtonComponent} from "./src/ui/magic-ImageButton.component";
+
+import {MagicHyperTextButtonComponent} from "app/magic/src/ui/magic-HyperTextButton.component";
+import {DemoHyperTextButtonControlComponent} from "../demos/DemoHyperTextButtonControl.component";
 
 const decs = [
   MagicDirectiveDirective,
   MagicLabelComponent,
   MagicCheckboxComponent,
   MagicImageComponent,
-  MagicImageButtonComponent
+  MagicImageButtonComponent,
+  MagicHyperTextButtonComponent
 ];
 
 @NgModule({
@@ -51,7 +56,8 @@ const decs = [
     SelectDateAndTime,
     EnableVisibleTestComponent,
     DemoImageButtonControlComponent,
-    DemoImageControlComponent
+    DemoImageControlComponent,
+    DemoHyperTextButtonControlComponent
   ]
 })
 export class MagicModule{
