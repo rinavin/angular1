@@ -20,16 +20,25 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
       SelectDateAndTime<br>
       <m-image controlId="Delivery"></m-image>
       <m-image controlId="ToGo"></m-image>
+      <br>
+      <m-label controlId="SelectaDate:"></m-label>
+      <m-label controlId="Selectatime:"></m-label>
+      <br>
+      <input type="text" magic="vDate" formControlName="vDate"/>  
+      <input type="text" magic="vHour" formControlName="vHour"/> :
+      <input type="text" magic="vMinute" formControlName="vMinute"/>
+      <br>
+      debug:{{task.getValue('vDate')}}
+      <button magic="Continue">Continue</button>
       
-      date: <input type="date" magic="vDate" formControlName="vDate"/><br>
 
      <!-- date: <input type="text" formControlName="vDate"/><br>-->
 
-      <input type="time" magic="vMinute" formControlName="vMinute"/><br>
-      {{counter}}
-      <pre>
-        {{ user.value | json }}
-      </pre>
+      <!--<input type="time" magic="vMinute" formControlName="vMinute"/><br>-->
+      <!--{{counter}}-->
+      <!--<pre>-->
+        <!--{{ user.value | json }}-->
+      <!--</pre>-->
 
 
     </form>
