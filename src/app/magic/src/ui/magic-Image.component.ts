@@ -16,6 +16,6 @@ export class MagicImageComponent{
   }
 
   get ImageFileName(){
-    return '/assets/images/' +  this.task.getValue(this.controlId);
+    return this.task.getValue(this.controlId);
   }
 }

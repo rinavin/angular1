@@ -19,18 +19,40 @@ import {RunmeComponent} from "../POS/runme.comonent";
 import {EnableVisibleTestComponent} from "../demos/enable-visible.test.component";
 import {OrderLocation} from "../POS/orderLocation.component";
 import {SelectDateAndTime} from "../POS/selectDateandTime.component";
+import {DemoImageButtonControlComponent} from "../demos/DemoImageButtonControl.component";
+import {DemoImageControlComponent} from "../demos/DemoImageControl.component";
+import {MagicImageButtonComponent} from "./src/ui/magic-ImageButton.component";
+import {CommonModule} from "@angular/common";
 
-const decs = [MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent];
-
+const decs = [
+  MagicDirectiveDirective,
+  MagicLabelComponent,
+  MagicCheckboxComponent,
+  MagicImageComponent,
+  MagicImageButtonComponent
+];
 
 @NgModule({
-   declarations:decs,
-   exports: decs,
-   entryComponents: [
-    Demo1Component, Demo2Component,
-    Demo2WithNgContainerComponent, Demo2WithNgDynamicComponent,
-    Called1Component, Called2Component, TableTestComponent, RunmeComponent, EnableVisibleTestComponent,
-     OrderLocation, SelectDateAndTime]
+  declarations:decs,
+  exports: decs,
+  imports:[
+    CommonModule
+  ],
+  entryComponents: [
+    Demo1Component,
+    Demo2Component,
+    Demo2WithNgContainerComponent,
+    Demo2WithNgDynamicComponent,
+    Called1Component,
+    Called2Component,
+    TableTestComponent,
+    RunmeComponent,
+    OrderLocation,
+    SelectDateAndTime,
+    EnableVisibleTestComponent,
+    DemoImageButtonControlComponent,
+    DemoImageControlComponent
+  ]
 })
 export class MagicModule{
    static forRoot(){

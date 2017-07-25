@@ -21,4 +21,13 @@ export class MagicControlBase{
   get visible() {
     return this.task.getProperty(this.controlId,PropType.Visible) == 1;
   }
+
+  get getFormat()
+  {
+    return  this.task.getProperty(this.controlId, PropType.Format);
+  }
+
+  GetValue(){
+    return this.task.getValue(this.controlId);
+  }
 }

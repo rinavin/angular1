@@ -10,6 +10,8 @@ import {RunmeComponent} from "./POS/runme.comonent";
 import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component";
 import {OrderLocation} from "app/POS/orderLocation.component";
 import {SelectDateAndTime} from "./POS/selectDateandTime.component";
+import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
+import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.component";
 
 export class ComponentsList {
 
@@ -23,6 +25,8 @@ export class ComponentsList {
      ["Rich Client - aa"]:EnableVisibleTestComponent,
      ["OrderLocation"]:OrderLocation,
      ["ResidentPickupDateTime"]:SelectDateAndTime,
+     ["DemoImageControlForm"]: DemoImageControlComponent,
+     ["DemoImageButtonControlForm"]: DemoImageButtonControlComponent
   };
 
   // getComponents()
