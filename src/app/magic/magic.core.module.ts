@@ -20,6 +20,7 @@ import {EnableVisibleTestComponent} from "../demos/enable-visible.test.component
 import {OrderLocation} from "../POS/orderLocation.component";
 import {SelectDateAndTime} from "../POS/selectDateandTime.component";
 import {DemoImageControlComponent} from "../demos/DemoImageControl.component";
+import {MainOnlineScreenComponent} from "../POS/mainOnlineScreen.component";
 
 import {CommonModule} from "@angular/common";
 import {DemoImageButtonControlComponent} from "../demos/DemoImageButtonControl.component";
@@ -27,6 +28,7 @@ import {MagicImageButtonComponent} from "./src/ui/magic-ImageButton.component";
 
 import {MagicHyperTextButtonComponent} from "app/magic/src/ui/magic-HyperTextButton.component";
 import {DemoHyperTextButtonControlComponent} from "../demos/DemoHyperTextButtonControl.component";
+import {ShoppingCartComponent} from "../POS/shoppingCart.component";
 
 const decs = [
   MagicDirectiveDirective,
@@ -57,7 +59,9 @@ const decs = [
     EnableVisibleTestComponent,
     DemoImageButtonControlComponent,
     DemoImageControlComponent,
-    DemoHyperTextButtonControlComponent
+    DemoHyperTextButtonControlComponent,
+    MainOnlineScreenComponent,
+    ShoppingCartComponent
   ]
 })
 export class MagicModule{

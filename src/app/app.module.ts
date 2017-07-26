@@ -10,10 +10,10 @@ import {AppComponent} from './app.component';
 import {Demo1Component} from "./demos/demo1.component";
 import {InnerComponent} from "./demos/inner.component";
 import {Demo2Component} from "./demos/demo2.component";
-import {Demo2WithNgContainerComponent} from './demos/demo2WithNgContainer.component';
-import {Demo2WithNgDynamicComponent} from './demos/demo2WithNgDynamic.component';
-import {Called1Component} from './demos/called1.component';
-import {Called2Component} from './demos/called2.component';
+import { Demo2WithNgContainerComponent } from './demos/demo2WithNgContainer.component';
+import { Demo2WithNgDynamicComponent } from './demos/demo2WithNgDynamic.component';
+import { Called1Component } from './demos/called1.component';
+import { Called2Component } from './demos/called2.component';
 import {DynamicModule} from "ng-dynamic-component";
 import {TableTestComponent} from "./demos/table.test.component";
 import {CallSubformwithTableComponent} from "./demos/call.subfrom.with.table.component";
@@ -24,35 +24,38 @@ import {OrderLocation} from "./POS/orderLocation.component";
 import {SelectDateAndTime} from "./POS/selectDateandTime.component";
 import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.component";
 import {DemoHyperTextButtonControlComponent} from "app/demos/DemoHyperTextButtonControl.component";
+import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
+import {ShoppingCartComponent} from "./POS/shoppingCart.component";
 
 
 @NgModule({
-  declarations: [
-    // Add the components name that can be execute
-    AppComponent,
-    Demo1Component,
-    Demo2Component,
-    EnableVisibleTestComponent,
-    TableTestComponent,
-    CallSubformwithTableComponent,
-    DemoImageControlComponent,
-    InnerComponent,
-    Demo2WithNgContainerComponent,
-    Demo2WithNgDynamicComponent,
-    Called1Component,
-    Called2Component,
-    RunmeComponent,
-    OrderLocation,
-    SelectDateAndTime,
-    DemoImageButtonControlComponent,
-    DemoHyperTextButtonControlComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    JsonpModule,
-    ReactiveFormsModule,
+   declarations: [
+      AppComponent,
+      Demo1Component,
+      Demo2Component,
+      EnableVisibleTestComponent,
+      TableTestComponent,
+      CallSubformwithTableComponent,
+      DemoImageControlComponent,
+      InnerComponent,
+       Demo2WithNgContainerComponent,
+       Demo2WithNgDynamicComponent,
+       Called1Component,
+       Called2Component,
+       RunmeComponent,
+       OrderLocation,
+       SelectDateAndTime,
+     DemoImageButtonControlComponent,
+     DemoHyperTextButtonControlComponent,
+     MainOnlineScreenComponent,
+     ShoppingCartComponent
+   ],
+   imports: [
+      BrowserModule,
+      FormsModule,
+      HttpModule,
+      JsonpModule,
+      ReactiveFormsModule,
 
     // Add the subform components
     DynamicModule.withComponents(
@@ -60,7 +63,8 @@ import {DemoHyperTextButtonControlComponent} from "app/demos/DemoHyperTextButton
         Called1Component,
         Called2Component,
         OrderLocation,
-        SelectDateAndTime
+        SelectDateAndTime,
+        ShoppingCartComponent
       ]),
 
     MagicModule.forRoot()

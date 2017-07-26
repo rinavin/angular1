@@ -13,6 +13,8 @@ import {SelectDateAndTime} from "./POS/selectDateandTime.component";
 import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
 import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.component";
 import {DemoHyperTextButtonControlComponent} from "./demos/DemoHyperTextButtonControl.component";
+import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
+import {ShoppingCartComponent} from "./POS/shoppingCart.component";
 
 export class ComponentsList {
 
@@ -28,7 +30,9 @@ export class ComponentsList {
      ["ResidentPickupDateTime"]:SelectDateAndTime,
      ["DemoImageControlForm"]: DemoImageControlComponent,
      ["DemoImageButtonControlForm"]: DemoImageButtonControlComponent,
-     ["DemoHyperTextButtonControlForm"]: DemoHyperTextButtonControlComponent
+     ["DemoHyperTextButtonControlForm"]: DemoHyperTextButtonControlComponent,
+     ["3_Main Online Screen"]: MainOnlineScreenComponent,
+     ["ShoppingCart"]: ShoppingCartComponent
   };
 
   // getComponents()
