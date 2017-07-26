@@ -42,11 +42,15 @@ constructor(protected magic: MagicEngine,
      this.magic.registerOpenFormCallback(formName => {
        this.InjectComponent(formName);
      });
+
+     this.magic.registerShowMessageBox(msg => {
+       alert(msg);
+     });
    }
 }
 
-export interface User {
-   id: string;
-   name: string;
-
-}
+// export interface User {
+//    id: string;
+//    name: string;
+//
+// }

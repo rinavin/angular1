@@ -17,6 +17,10 @@ import {Called1Component} from "../demos/called1.component";
 import {Demo2WithNgContainerComponent} from "../demos/demo2WithNgContainer.component";
 import {Demo2WithNgDynamicComponent} from "../demos/demo2WithNgDynamic.component";
 import {TableTestComponent} from "../demos/table.test.component";
+import {RunmeComponent} from "../POS/runme.comonent";
+import {EnableVisibleTestComponent} from "../demos/enable-visible.test.component";
+import {OrderLocation} from "../POS/orderLocation.component";
+import {SelectDateAndTime} from "../POS/selectDateandTime.component";
 
 const decs = [FocusDirectiveDirective, MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
 
@@ -27,7 +31,8 @@ const decs = [FocusDirectiveDirective, MagicDirectiveDirective, MagicLabelCompon
    entryComponents: [
     Demo1Component, Demo2Component,
     Demo2WithNgContainerComponent, Demo2WithNgDynamicComponent,
-    Called1Component, Called2Component, TableTestComponent]
+    Called1Component, Called2Component, TableTestComponent, RunmeComponent, EnableVisibleTestComponent,
+     OrderLocation, SelectDateAndTime]
 })
 export class MagicModule{
    static forRoot(){

@@ -20,6 +20,8 @@ import {CallSubformwithTableComponent} from "./demos/call.subfrom.with.table.com
 import {EnableVisibleTestComponent} from "./demos/enable-visible.test.component"
 import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
 import {RunmeComponent} from "./POS/runme.comonent";
+import {OrderLocation} from "./POS/orderLocation.component";
+import {SelectDateAndTime} from "./POS/selectDateandTime.component";
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import {RunmeComponent} from "./POS/runme.comonent";
        Called1Component,
        Called2Component,
        InnerComponent,
-       RunmeComponent
+       RunmeComponent,
+       OrderLocation,
+       SelectDateAndTime
 
    ],
    imports: [
@@ -47,7 +51,7 @@ import {RunmeComponent} from "./POS/runme.comonent";
       JsonpModule,
       ReactiveFormsModule,
 
-      DynamicModule.withComponents([Called1Component, Called2Component]),
+      DynamicModule.withComponents([Called1Component, Called2Component, OrderLocation, SelectDateAndTime]),
 
       MagicModule.forRoot()
    ],

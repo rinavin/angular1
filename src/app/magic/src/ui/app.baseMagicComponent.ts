@@ -35,6 +35,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
   //persons: { [id: string]: string; };
   protected props: { [id: string]: { [id: string]: string; } };
 
+
   /*get rowId(){
    return this.task.rowId;
    }*/
@@ -61,33 +62,26 @@ export abstract class BaseTaskMagicComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    let obj : any;
     if (isUndefined(this.myTaskId)) {
-      var obj = JSON.parse(this.task.getTaskId(this.parentId, this.subformName));
-      console.dir(obj);
+      obj = JSON.parse(this.task.getTaskId(this.parentId, this.subformName));
       this.task.taskId = obj.TaskId;
-      this.task.buildRecords(obj.Names);
-
-
+      this.task.settemplate(obj.Names);
     }
-     else{
-
+    else {
       this.task.taskId = this.myTaskId;
-      var obj = JSON.parse(this.taskDescription);
-      this.task.buildRecords(obj);
-
+      obj = JSON.parse(this.taskDescription);
+      this.task.settemplate(obj);
     }
 
-
+    this.task.buildRecords();
 
     this.task.registerGetValueCallback((controlKey: string) => {
-      console.log('registerGetValueCallback', controlKey);
+
       return this.record.get(controlKey).value;
     });
 
-    this.task.registerShowMessageBox(msg => {
-      alert(msg);
-    });
+
 
 
     this.task.registerRefreshTableUI(data => {
