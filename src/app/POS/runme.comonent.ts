@@ -15,7 +15,7 @@ import {ComponentsList} from "../components";
       <m-image controlId="logo"></m-image>
       <m-label controlId="welcome"></m-label>
       <button magic="logoff">log off</button>
-      <div style="border: 3px solid black;margin: 15px">
+      <div>
         <ndc-dynamic [ndcDynamicComponent]="MainCanvas"
                      [ndcDynamicInputs]="parameters">
         </ndc-dynamic>

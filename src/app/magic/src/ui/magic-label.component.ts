@@ -10,5 +10,4 @@ import {MagicControlBase} from "./magic-control-base.component";
 `})
 export class MagicLabelComponent extends MagicControlBase{
 
-   @Input() controlId:string;
 }
