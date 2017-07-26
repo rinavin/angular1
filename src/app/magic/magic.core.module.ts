@@ -8,7 +8,6 @@ import {MagicDirectiveDirective} from "./src/ui/magic-directive.directive";
 import {FocusDirectiveDirective} from "./src/ui/focus-directive.directive";
 import {MagicLabelComponent} from "./src/ui/magic-label.component";
 import {MagicCheckboxComponent} from "./src/ui/magic-checkbox.component";
-import {MagicEditComponent} from "./src/ui/magic-edit.component";
 import {MagicImageComponent} from "./src/ui/magic-Image.component"
 import {Demo1Component} from "./../demos/demo1.component";
 import {Demo2Component} from "../demos/demo2.component";
@@ -22,7 +21,7 @@ import {EnableVisibleTestComponent} from "../demos/enable-visible.test.component
 import {OrderLocation} from "../POS/orderLocation.component";
 import {SelectDateAndTime} from "../POS/selectDateandTime.component";
 
-const decs = [FocusDirectiveDirective, MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent, MagicEditComponent];
+const decs = [FocusDirectiveDirective, MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent];
 
 
 @NgModule({
