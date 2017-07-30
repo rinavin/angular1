@@ -77,7 +77,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
     this.task.registerGetValueCallback((controlKey: string) => {
 
-      return this.record.get(controlKey).value;
+      return this.record.controls[controlKey].value;
     });
 
 
