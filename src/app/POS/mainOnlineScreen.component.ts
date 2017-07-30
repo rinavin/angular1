@@ -33,9 +33,6 @@ import {ComponentsList} from "../components";
           </li>
         </ul>
       <hr>
-        <m-image controlId="buttonUp"></m-image>
-        <br>
-        <m-image controlId="buttonDown"></m-image>
       </form>
       <ndc-dynamic [ndcDynamicComponent]="SubTree"
                     [ndcDynamicInputs]="parameters">
