@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
 import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
-import {isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from "util";
 import {ControlsMetadata} from "../controls.metadata.model";
 
 @Component({
@@ -75,12 +75,10 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
     this.task.buildRecords();
 
-    this.task.registerGetValueCallback((controlKey: string) => {
-
-      return this.record.controls[controlKey].value;
+    this.task.registerGetValueCallback((controlKey: string, rowId: string) => {
+      if (this.record.contains(controlKey))
+        return this.record.get(controlKey).value;
     });
-
-
 
 
     this.task.registerRefreshTableUI(data => {
