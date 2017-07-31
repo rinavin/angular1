@@ -26,6 +26,8 @@ import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.co
 import {DemoHyperTextButtonControlComponent} from "app/demos/DemoHyperTextButtonControl.component";
 import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
 import {ShoppingCartComponent} from "./POS/shoppingCart.component";
+import {CalendarModule} from 'primeng/components/calendar/calendar';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -56,6 +58,9 @@ import {ShoppingCartComponent} from "./POS/shoppingCart.component";
       HttpModule,
       JsonpModule,
       ReactiveFormsModule,
+
+     CalendarModule,
+     BrowserAnimationsModule,
 
     // Add the subform components
     DynamicModule.withComponents(

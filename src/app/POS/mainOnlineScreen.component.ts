@@ -10,9 +10,14 @@ import {ComponentsList} from "../components";
   providers: [TaskMagicService],
   template:`
     <div>
-      <form novalidate [formGroup]="user">
-        <m-image controlId="restaurant_name_banner"></m-image>
-        <br>
+      <m-image controlId="restaurant_name_banner"></m-image>
+      <hr>
+      <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+          <div style="width: 600px; display: table-cell;"> 
+          <form novalidate [formGroup]="user">
+  
+              <br>
         <input
           type="text"
           magic="pi_Store_Description_0001"
@@ -32,13 +37,18 @@ import {ComponentsList} from "../components";
             <span magic="Price wo/ Tax" [rowId]="o.rowId">{{o.values['Price wo/ Tax']}}</span>
           </li>
         </ul>
-      <hr>
+     
       </form>
-      <ndc-dynamic [ndcDynamicComponent]="SubTree"
-                    [ndcDynamicInputs]="parameters">
-      </ndc-dynamic>
-      <br>
-      <br>
+          </div>
+          <div style="display: table-cell;">
+              <ndc-dynamic [ndcDynamicComponent]="SubTree"
+                            [ndcDynamicInputs]="parameters">
+              </ndc-dynamic>
+              <br>
+              <br>
+          </div>
+        </div>
+    </div>
     </div>
   `
 })

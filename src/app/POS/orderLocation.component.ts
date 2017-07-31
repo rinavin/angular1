@@ -10,27 +10,21 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
  * Created by rinav on 7/19/2017.
  */
 @Component({
-  selector: 'orderLocation',
+  selector: 'order-location',
   providers: [TaskMagicService],
   template: `
     <form novalidate [formGroup]="user">
-      
+
       <m-label controlId="selectlocation"></m-label>
-      <ul >
-        <li *ngFor="let o of task.Records.list" >
+      <ul>
+        <li *ngFor="let o of task.Records.list">
           <a href="#" magic="Index1">{{o.values['Index1']}}</a>
-          <br>
-          <span>
-                  Delivery Hours
-                  <br>
-                  <span magic="STORE1OpenTime">{{o.values['STORE1OpenTime']}}-</span>
-                  <span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span> 
-
-                </span>
-          
+          <div>
+            <div>Delivery Hours</div>
+            <span magic="STORE1OpenTime">{{o.values['STORE1OpenTime']}}-</span>
+            <span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span>
+          </div>
         </li>
-       
-
       </ul>
 
     </form>

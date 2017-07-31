@@ -11,16 +11,17 @@ import {ComponentsList} from "../components";
   providers: [TaskMagicService],
   template: `
     <form novalidate [formGroup]="user">
-     
-      <m-image controlId="logo"></m-image>
-      <m-label controlId="welcome"></m-label>
-      <button magic="logoff">log off</button>
+      <nav>
+        <m-image controlId="logo"></m-image>
+        <m-label controlId="welcome"></m-label>
+        <button magic="logoff">log off</button>
+      </nav>
       <div>
         <ndc-dynamic [ndcDynamicComponent]="MainCanvas"
                      [ndcDynamicInputs]="parameters">
         </ndc-dynamic>
       </div>
-      
+
     </form>
   `
 })
@@ -33,9 +34,9 @@ export class RunmeComponent extends BaseTaskMagicComponent {
     return this.record;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     super.ngOnInit();
-    this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription:string) => {
+    this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription: string) => {
       console.log('registerOpenSubformCallback', subformControlName, taskId);
       if (subformControlName === 'MainCanvas') {
         this.MainCanvas = ComponentsList.compHash[formName];
@@ -44,10 +45,6 @@ export class RunmeComponent extends BaseTaskMagicComponent {
       }
     });
   }
-
-
-
-
 
 
 }
