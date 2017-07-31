@@ -26,7 +26,6 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
         >
       </label>
       <m-imageButton controlId="MyImageButton"></m-imageButton>
-      <m-imageButton controlId="MyHyperTextButton"></m-imageButton>
       
       <button magic="nextb">Next</button>
       <button magic="prevb">Prev</button>
