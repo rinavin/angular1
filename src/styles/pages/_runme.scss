@@ -1,0 +1,31 @@
+runme {
+  box-sizing: border-box;
+  display: block;
+
+  nav {
+    @extend .clrfix;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+    margin-bottom: 4px;
+    border-radius: 0;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    > m-image {
+      margin-left: 15px;
+      float: left;
+      padding: 5px 0;
+      > img {
+        max-height: 40px;
+        vertical-align: middle;
+      }
+    }
+
+    > m-label {
+      float: right;
+    }
+
+    > button {
+      float: right;
+    }
+  }
+}

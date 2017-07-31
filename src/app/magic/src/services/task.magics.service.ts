@@ -31,7 +31,7 @@ export class TaskMagicService {
   }
 
   set taskId(value) {
-    debugger;
+    // debugger;
     this._taskId = value;
   }
 

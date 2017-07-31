@@ -11,7 +11,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   selector: 'shopping-cart',
   providers: [TaskMagicService],
   template: `
-    <hr>
+   
     <div>
       <form novalidate [formGroup]="user">
     <m-label controlId="YourOrder"></m-label>
