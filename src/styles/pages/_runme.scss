@@ -20,12 +20,54 @@ runme {
       }
     }
 
-    > m-label {
+    > .dropdown {
       float: right;
+      position: relative;
+      padding: 0 15px;
+
+      > m-label {
+        display: inline-block;
+        //height: 50px;
+        line-height: 50px;
+      }
+
+      > .buttons {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        min-width: 160px;
+        right: 0;
+        padding: 5px 0;
+        margin: 2px 0 0;
+        font-size: 14px;
+        background-color: #fff;
+        transform: translate(0, 100%);
+        border: 1px solid rgba(0, 0, 0, .15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        border-radius: 3px;
+
+        > button {
+          text-align: left;
+          width: 100%;
+          padding: 3px 20px;
+          background: none;
+          border: 0 none;
+          margin: 0;
+
+          &:hover {
+            background-color: #f0f0f0;
+
+          }
+        }
+      }
+
+      &:hover {
+        background-color: #eee;
+        > .buttons {
+          display: block;
+        }
+      }
     }
 
-    > button {
-      float: right;
-    }
   }
 }

@@ -13,8 +13,15 @@ import {ComponentsList} from "../components";
     <form novalidate [formGroup]="user">
       <nav>
         <m-image controlId="logo"></m-image>
-        <m-label controlId="welcome"></m-label>
-        <button magic="logoff">log off</button>
+        <div class="dropdown">
+          <m-label controlId="welcome"></m-label>
+          <i class="fa fa-caret-down"></i>
+          <div class="buttons">
+            <button>Profile</button>
+            <button>Change Password</button>
+            <button magic="logoff">Log off</button>
+          </div>
+        </div>
       </nav>
       <div>
         <ndc-dynamic [ndcDynamicComponent]="MainCanvas"

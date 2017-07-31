@@ -17,22 +17,25 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   providers: [TaskMagicService],
   template: `
     <form novalidate [formGroup]="user">
-      SelectDateAndTime<br>
       <m-image controlId="Delivery"></m-image>
       <m-image controlId="ToGo"></m-image>
-      <br>
-      <m-label controlId="SelectaDate:"></m-label>
-      <m-label controlId="Selectatime:"></m-label>
-      <br>
-      <p-calendar magic="vDate" formControlName="vDate"></p-calendar>
-      <p-calendar magic="vTime" formControlName="vTime" [timeOnly]="true" dateFormat="HH:mm"></p-calendar>
+      <div class="inputs">
+        <m-label controlId="SelectaDate:"></m-label>
+        <p-calendar magic="vDate" formControlName="vDate"></p-calendar>
+
+        <m-label controlId="Selectatime:"></m-label>
+        <p-calendar magic="vTime" formControlName="vTime" [timeOnly]="true" dateFormat="HH:mm"></p-calendar>
+      </div>
+      <div class="buttons">
+        <button magic="Continue">Continue</button>
+      </div>
       <!--<input type="text" magic="vDate" formControlName="vDate"/>  [showSeconds]="true"-->
       <!--<input type="text" magic="vHour" formControlName="vHour"/> :-->
       <!--<input type="text" magic="vMinute" formControlName="vMinute"/>-->
-      <br>
-      debug:{{task.getValue('vDate')}}
-      debug:{{task.getValue('vTime')}}
-      <button magic="Continue">Continue</button>
+      <div>
+        debug:{{task.getValue('vDate')}}
+        debug:{{task.getValue('vTime')}}
+      </div>
 
 
       <!-- date: <input type="text" formControlName="vDate"/><br>-->
@@ -59,22 +62,19 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
               task: TaskMagicService,
               public app: ApplicationRef) {
     super(ref, task);
-    // this.orgValueCallback = this.getvalueCallback;
-    // this.getvalueCallback = (controlKey: string) => {
-    //   let val = this.orgValueCallback(controlKey);
-    //   if (controlKey == 'vDate') {
-    //     let date: Date;
-    //     date = new Date(val);
-    //     // date.toString("HH:mm")
-    //     val = pad(date.getMonth() + 1) + "/" + pad(date.getDate()) + "/" + date.getFullYear();
-    //   }
+    this.orgValueCallback = this.getvalueCallback;
+    this.getvalueCallback = (controlKey: string) => {
+      let val = this.orgValueCallback(controlKey);
+      if (controlKey == 'vTime') {
+        debugger;
+        let date: Date = val;
+        val = `${this.pad(val.getHours())}:${this.pad(val.getMinutes())}`;
+      }
+
+      return val;
+    }
     //
-    //   return val;
-    // }
-    //
-    // function pad(n) {
-    //   return n < 10 ? "0" + n : n;
-    // }
+
 
     // setInterval(()=>{
     //   this.counter++;
@@ -82,7 +82,9 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
     // },1000);
   }
 
-
+  private pad(n) {
+    return n < 10 ? "0" + n : n;
+  }
 
   counter = 0;
 

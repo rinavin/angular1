@@ -17,13 +17,11 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 
       <m-label controlId="selectlocation"></m-label>
       <ul>
-        <li *ngFor="let o of task.Records.list">
-          <a href="#" magic="Index1">{{o.values['Index1']}}</a>
-          <div>
+        <li *ngFor="let o of task.Records.list" magic="Index1">
+            <div>{{o.values['Index1']}}</div>
             <div>Delivery Hours</div>
             <span magic="STORE1OpenTime">{{o.values['STORE1OpenTime']}}-</span>
             <span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span>
-          </div>
         </li>
       </ul>
 
