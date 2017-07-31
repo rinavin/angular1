@@ -23,6 +23,10 @@ export class MagicControlBase{
     return this.task.getProperty(this.controlId,PropType.Visible, this.rowId) == 1;
   }
 
+  get enable() {
+    return this.task.getProperty(this.controlId,PropType.Enable, this.rowId) == 1;
+  }
+
   get getFormat()
   {
     return  this.task.getProperty(this.controlId, PropType.Format, this.rowId);
