@@ -65,7 +65,7 @@ export class Records {
 
   update(obj) {
 
-    if (obj.fullRefresh) {
+    if (obj.fullRefresh && obj.rows.length != this.list.length ) {
       this.data = new Map();
       this.list = new Array<ControlsMetadata>();
     }
