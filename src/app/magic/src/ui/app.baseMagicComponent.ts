@@ -4,12 +4,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
 import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
-import {isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from "util";
 import {ControlsMetadata} from "../controls.metadata.model";
 
 @Component({
-   selector: 'task-magic',
-   providers: [TaskMagicService]
+  selector: 'task-magic',
+  providers: [TaskMagicService]
 })
 export abstract class BaseTaskMagicComponent implements OnInit {
   @Input() subformName: string;
@@ -53,16 +53,22 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     return this.task.taskId;
   }
 
+  protected getvalueCallback = (controlKey: string) => {
+    if (this.record.contains(controlKey)) {
+      return this.record.get(controlKey).value;
+    }
+  }
+
   constructor(protected ref: ChangeDetectorRef,
               protected task: TaskMagicService,
               //protected magic:MagicEngine
 
   ) {
-    debugger;
+    // debugger;
   }
 
   ngOnInit() {
-    let obj : any;
+    let obj: any;
     if (isUndefined(this.myTaskId)) {
       obj = JSON.parse(this.task.getTaskId(this.parentId, this.subformName));
       this.task.taskId = obj.TaskId;
@@ -76,12 +82,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
     this.task.buildRecords();
 
-    this.task.registerGetValueCallback((controlKey: string) => {
-
-      return this.record.get(controlKey).value;
-    });
-
-
+    this.task.registerGetValueCallback(this.getvalueCallback);
 
 
     this.task.registerRefreshTableUI(data => {
@@ -101,8 +102,8 @@ export abstract class BaseTaskMagicComponent implements OnInit {
     );
     this.task.registerRefreshUI(data => {
         //TODO: move this code to taskservice
-      this.task.ScreenControlsData.fromJson(data);
-         // console.dir(obj.ControlsValues);
+        this.task.ScreenControlsData.fromJson(data);
+        // console.dir(obj.ControlsValues);
         this.record.patchValue(this.task.ScreenControlsData.Values);
         this.ref.detectChanges();
 
@@ -130,8 +131,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
   }
 
-  getRecords() :ControlsMetadata[]
-  {
+  getRecords(): ControlsMetadata[] {
     return this.task.Records.list;
   }
 

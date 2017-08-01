@@ -22,6 +22,12 @@ import {DemoImageControlComponent} from "./demos/DemoImageControl.component";
 import {RunmeComponent} from "./POS/runme.comonent";
 import {OrderLocation} from "./POS/orderLocation.component";
 import {SelectDateAndTime} from "./POS/selectDateandTime.component";
+import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.component";
+import {DemoHyperTextButtonControlComponent} from "app/demos/DemoHyperTextButtonControl.component";
+import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
+import {ShoppingCartComponent} from "./POS/shoppingCart.component";
+import {CalendarModule} from 'primeng/components/calendar/calendar';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -38,11 +44,13 @@ import {SelectDateAndTime} from "./POS/selectDateandTime.component";
        Demo2WithNgDynamicComponent,
        Called1Component,
        Called2Component,
-       InnerComponent,
        RunmeComponent,
        OrderLocation,
-       SelectDateAndTime
-
+       SelectDateAndTime,
+     DemoImageButtonControlComponent,
+     DemoHyperTextButtonControlComponent,
+     MainOnlineScreenComponent,
+     ShoppingCartComponent
    ],
    imports: [
       BrowserModule,
@@ -51,21 +59,32 @@ import {SelectDateAndTime} from "./POS/selectDateandTime.component";
       JsonpModule,
       ReactiveFormsModule,
 
-      DynamicModule.withComponents([Called1Component, Called2Component, OrderLocation, SelectDateAndTime]),
+     CalendarModule,
+     BrowserAnimationsModule,
 
-      MagicModule.forRoot()
-   ],
-   exports: [
-      FormsModule,
-      ReactiveFormsModule
-   ],
-   providers: [],
+    // Add the subform components
+    DynamicModule.withComponents(
+      [
+        Called1Component,
+        Called2Component,
+        OrderLocation,
+        SelectDateAndTime,
+        ShoppingCartComponent
+      ]),
 
-   bootstrap: [AppComponent]
+    MagicModule.forRoot()
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+
+  bootstrap: [AppComponent]
 })
 export class AppModule {
-   constructor()
-   {
+  constructor()
+  {
 
-   }
+  }
 }

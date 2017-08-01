@@ -5,4 +5,5 @@ export enum PropType {
   Text = 19,
   Enable = 62,
   Visible = 61,
+  Format = 82,
 }

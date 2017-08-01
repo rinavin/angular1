@@ -20,18 +20,51 @@ import {RunmeComponent} from "../POS/runme.comonent";
 import {EnableVisibleTestComponent} from "../demos/enable-visible.test.component";
 import {OrderLocation} from "../POS/orderLocation.component";
 import {SelectDateAndTime} from "../POS/selectDateandTime.component";
+import {DemoImageControlComponent} from "../demos/DemoImageControl.component";
+import {MainOnlineScreenComponent} from "../POS/mainOnlineScreen.component";
 
-const decs = [FocusDirectiveDirective, MagicDirectiveDirective, MagicLabelComponent, MagicCheckboxComponent , MagicImageComponent];
+import {CommonModule} from "@angular/common";
+import {DemoImageButtonControlComponent} from "../demos/DemoImageButtonControl.component";
+import {MagicImageButtonComponent} from "./src/ui/magic-ImageButton.component";
 
+import {MagicHyperTextButtonComponent} from "app/magic/src/ui/magic-HyperTextButton.component";
+import {DemoHyperTextButtonControlComponent} from "../demos/DemoHyperTextButtonControl.component";
+import {ShoppingCartComponent} from "../POS/shoppingCart.component";
+
+const decs = [
+  FocusDirectiveDirective,
+  MagicDirectiveDirective,
+  MagicLabelComponent,
+  MagicCheckboxComponent,
+  MagicImageComponent,
+  MagicImageButtonComponent,
+  MagicHyperTextButtonComponent
+];
 
 @NgModule({
-   declarations:decs,
-   exports: decs,
-   entryComponents: [
-    Demo1Component, Demo2Component,
-    Demo2WithNgContainerComponent, Demo2WithNgDynamicComponent,
-    Called1Component, Called2Component, TableTestComponent, RunmeComponent, EnableVisibleTestComponent,
-     OrderLocation, SelectDateAndTime]
+  declarations:decs,
+  exports: decs,
+  imports:[
+    CommonModule
+  ],
+  entryComponents: [
+    Demo1Component,
+    Demo2Component,
+    Demo2WithNgContainerComponent,
+    Demo2WithNgDynamicComponent,
+    Called1Component,
+    Called2Component,
+    TableTestComponent,
+    RunmeComponent,
+    OrderLocation,
+    SelectDateAndTime,
+    EnableVisibleTestComponent,
+    DemoImageButtonControlComponent,
+    DemoImageControlComponent,
+    DemoHyperTextButtonControlComponent,
+    MainOnlineScreenComponent,
+    ShoppingCartComponent
+  ]
 })
 export class MagicModule{
    static forRoot(){

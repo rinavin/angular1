@@ -1,0 +1,19 @@
+select-date-time {
+  @extend .page;
+
+  > form {
+
+    > m-image {
+      display: inline-block;
+    }
+
+    > .inputs {
+      display: inline-block;
+    }
+
+    > .buttons {
+      text-align: right;
+    }
+
+  }
+}

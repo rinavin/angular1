@@ -1,26 +1,21 @@
-import {Component, Input} from "@angular/core";
+import {Component} from "@angular/core";
 import {TaskMagicService} from "../services/task.magics.service";
-import {PropType} from "./propType";
+import {MagicControlBase} from "./magic-control-base.component";
 
 @Component({
-   selector : 'm-checkbox',
-   template:`
-     
-     
-     <label >
-       <input [magic]="controlId" type="checkbox"/>
-       {{text}}
-      </label>  
-`})
-export class MagicCheckboxComponent{
+  selector: 'm-checkbox',
+  template: `
+    <label>
+      <input [magic]="controlId" type="checkbox"/>
+      {{text}}
+    </label>
+  `
+})
 
-   @Input() controlId:string;
+export class MagicCheckboxComponent extends MagicControlBase {
 
-   constructor(private task : TaskMagicService){
+  constructor(protected task: TaskMagicService) {
+    super(task);
 
-   }
-
-   get text(){
-     return this.task.getProperty(this.controlId,PropType.Text );
-   }
+  }
 }

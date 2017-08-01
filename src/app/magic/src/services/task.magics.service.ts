@@ -3,51 +3,57 @@ import {MagicEngine} from "./magic.engine";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ControlsMetadata, Records} from "../controls.metadata.model";
 import {PropType} from "../ui/propType";
+import {isNullOrUndefined, isUndefined} from "util";
 
 let counter = 0;
 
 @Injectable()
 export class TaskMagicService {
 
-   _taskId      : string;
+  _taskId: string;
 
-    ScreenControlsData: ControlsMetadata = new ControlsMetadata();
-    Records: Records = new Records();
-    selectedRow : number = 0;
-    protected template: { [id: string]: string; };
-    settemplate(value : any){
-      this.template = value;
-    }
+  ScreenControlsData: ControlsMetadata = new ControlsMetadata();
+  Records: Records = new Records();
+  selectedRow: number = 0;
+  protected template: { [id: string]: string; };
+
+  settemplate(value: any) {
+    this.template = value;
+  }
 
 
-   get ControlsMetadata(){ return this.ScreenControlsData; }
-   get taskId(){ return this._taskId; }
-   set taskId(value){
-      debugger;
-      this._taskId = value;
-   }
+  get ControlsMetadata() {
+    return this.ScreenControlsData;
+  }
 
-   // row         : FormGroup;
-   rows        : FormGroup[] = [];
+  get taskId() {
+    return this._taskId;
+  }
 
-   constructor(protected magic: MagicEngine) {
-     console.log(`task constructor: ${counter++}`);
-   }
+  set taskId(value) {
+    // debugger;
+    this._taskId = value;
+  }
 
-  buildRecords()
-  {
+  // row         : FormGroup;
+  rows: FormGroup[] = [];
+
+  constructor(protected magic: MagicEngine) {
+    console.log(`task constructor: ${counter++}`);
+  }
+
+  buildRecords() {
     const group: FormGroup = new FormGroup({});//  this.rows[0];
     for (const key in this.template) {
 
-       if (this.template[key] == '0')
-       group.addControl(key, new FormControl('')); // instead of this.obj[key]
-      }
+      if (this.template[key] == '0')
+        group.addControl(key, new FormControl('')); // instead of this.obj[key]
+    }
 
     this.rows.push(group);
   }
 
-  buildTableRecords()
-  {
+  buildTableRecords() {
     const group: FormGroup = new FormGroup({});//  this.rows[0];
     for (const key in this.template) {
 
@@ -59,33 +65,31 @@ export class TaskMagicService {
   }
 
 
-
-
   startMagic() {
-      this.magic.startMagic();
-   }
+    this.magic.startMagic();
+  }
 
-    getTaskId(parentId, subformName) : string{
-        return this.magic.getTaskId(parentId, subformName);
-    }
-
-
-   insertEvent( eventName:string, controlIdx:string, lineidx:string){
-      this.magic.insertEvent(this.taskId, eventName, controlIdx, lineidx);
-   }
+  getTaskId(parentId, subformName): string {
+    return this.magic.getTaskId(parentId, subformName);
+  }
 
 
-   registerGetValueCallback( cb) {
-      this.magic.registerGetValueCallback(this.taskId, cb);
-   }
+  insertEvent(eventName: string, controlIdx: string, lineidx: string) {
+    this.magic.insertEvent(this.taskId, eventName, controlIdx, lineidx);
+  }
 
-   registerRefreshUI( cb) {
-      this.magic.registerRefreshUI(this.taskId, cb);
-   }
 
-   registerRefreshTableUI(cb) {
-      this.magic.registerRefreshTableUI(this.taskId, cb);
-   }
+  registerGetValueCallback(cb) {
+    this.magic.registerGetValueCallback(this.taskId, cb);
+  }
+
+  registerRefreshUI(cb) {
+    this.magic.registerRefreshUI(this.taskId, cb);
+  }
+
+  registerRefreshTableUI(cb) {
+    this.magic.registerRefreshTableUI(this.taskId, cb);
+  }
 
   registerOpenSubformCallback(cb) {
     this.magic.registerOpenSubformCallback(this.taskId, cb);
@@ -95,16 +99,23 @@ export class TaskMagicService {
     this.magic.registerSetFocusCallback(this.taskId, cb);
   }
 
-  getProperty(controlId:string,prop:PropType) {
-     return this.ScreenControlsData.getProperty(controlId, prop);
-   }
-
-   getRecords()
-   {
-     return this.Records.data;
-   }
-
-  getValue(controlId:string) {
-    return this.ScreenControlsData.getValue(controlId);
+  getProperty(controlId: string, prop: PropType, rowId?: string) {
+    if (isNullOrUndefined(rowId))
+      return this.ScreenControlsData.getProperty(controlId, prop);
+    else
+      return this.Records.list[rowId].getProperty(controlId, prop);
   }
+
+  getRecords() {
+    return this.Records.data;
+  }
+
+  getValue(controlId: string, rowId?: string) {
+    if (isNullOrUndefined(rowId))
+      return this.ScreenControlsData.getValue(controlId);
+    else
+      return this.Records.list[rowId].getValue(controlId);
+  }
+
 }
+
