@@ -15,7 +15,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   template: `
     <form novalidate [formGroup]="user">
 
-      <m-label controlId="selectlocation"></m-label>
+      <!--<m-label controlId="selectlocation"></m-label>-->
       <ul>
         <li *ngFor="let o of task.Records.list" magic="Index1">
             <div>{{o.values['Index1']}}</div>

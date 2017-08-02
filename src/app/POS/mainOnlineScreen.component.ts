@@ -14,7 +14,7 @@ import {ComponentsList} from "../components";
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <div class="mainbody">
-      <div class="pull-left col-xs-12 col-sm-12 col-md-8 rbord pad0">
+      <div class="pull-left col-xs-12 col-sm-12 col-md-8  pad0">
         <div style="width: 100%; display: table;">
           <div style="display: table-row">
             <div style="width: 600px; display: table-cell;">
@@ -28,7 +28,7 @@ import {ComponentsList} from "../components";
                   readonly
                   style="border: 0px"></h2>
                 <br>
-                <ul class="row" class="col-sm-6" class="bbord tbpad10">
+                <ul  style="list-style: none;" class="row" class="col-sm-6" class="bbord tbpad10">
                   <li *ngFor="let o of task.Records.list">
                     <label ><span magic="descriptionTitle" [rowId]="o.rowId">{{o.values['descriptionTitle']}}</span></label>
                     <br>
@@ -47,13 +47,13 @@ import {ComponentsList} from "../components";
           </div>
         </div>
       </div>
-      <div class="pull-right col-xs-12 col-sm-12 col-md-4 rpad0" style="display: table-cell;">
+      <!--<div class="pull-right col-xs-12 col-sm-12 col-md-4 rpad0" style="display: table-cell;">-->
         <ndc-dynamic [ndcDynamicComponent]="SubTree"
                      [ndcDynamicInputs]="parameters">
         </ndc-dynamic>
         <br>
         <br>
-      </div>
+      <!--</div>-->
     </div>
 
   `
