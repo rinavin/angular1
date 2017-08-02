@@ -16,36 +16,76 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   selector: 'select-date-time',
   providers: [TaskMagicService],
   template: `
+    <link rel="stylesheet" href="https://unpkg.com/neo-assets@1/dist/css/neo.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/neo-assets@1.3.0/dist/css/neo-checkbox-radio.min.css">
+
     <form novalidate [formGroup]="user">
-      <m-image controlId="Delivery"></m-image>
-      <m-image controlId="ToGo"></m-image>
-      <div class="inputs">
-        <m-label controlId="SelectaDate:"></m-label>
-        <p-calendar magic="vDate" formControlName="vDate"></p-calendar>
 
-        <m-label controlId="Selectatime:"></m-label>
-        <p-calendar magic="vTime" formControlName="vTime" [timeOnly]="true" dateFormat="HH:mm"></p-calendar>
-      </div>
-      <div class="buttons">
-        <button magic="Continue">Continue</button>
-      </div>
-      <!--<input type="text" magic="vDate" formControlName="vDate"/>  [showSeconds]="true"-->
-      <!--<input type="text" magic="vHour" formControlName="vHour"/> :-->
-      <!--<input type="text" magic="vMinute" formControlName="vMinute"/>-->
-      <div>
-        debug:{{task.getValue('vDate')}}
-        debug:{{task.getValue('vTime')}}
-      </div>
+      <div class="mainbody">
+        <div class="row">
+          <!--::berore-->
+          <div class="col-sm-4">
+            <m-image controlId="Delivery"></m-image>
+          </div>
+          <div class="vspacer15 visible-xs"></div>
+          <div class="col-sm-4">
+            <m-image controlId="ToGo"></m-image>
+          </div>
+          <div class="vspacer15 visible-xs"></div>
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="col-sm-12 pad0">
+                <label> Selected Date:</label>
+                <!--<h3>-->
+                <!--<m-label controlId="SelectaDate:"></m-label>-->
+                <!--</h3>-->
+                <div class="has-feedback datepicker-control">
+                  <p-calendar magic="vDate" formControlName="vDate"></p-calendar>
+                </div>
+              </div>
+
+              <div class="col-sm-12 tmar20 pad0 ">
+                <!--<h3>-->
+                <!--<m-label controlId="Selectatime:"></m-label>-->
+                <!--</h3>-->
+                <label> Selected Time:</label>
+                <div class="has-feedback datepicker-control">
+                  <p-calendar magic="vTime" formControlName="vTime" [timeOnly]="true" dateFormat="HH:mm"></p-calendar>
+                </div>
+              </div>
+
+              <div class="col-sm-12 tmar20 pad0 ">
+                <button magic="Continue" class="btn btn-primary">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--&lt;!&ndash;::after&ndash;&gt;-->
+        <!--<div class="row fr tmar20">-->
+        <!--<div class="row fr tmar12">  &lt;!&ndash; class = "buttons" &ndash;&gt;-->
+        <!--&lt;!&ndash;<button magic="Continue" class="btn btn-primary">Continue</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" magic="vDate" formControlName="vDate"/>  [showSeconds]="true"&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" magic="vHour" formControlName="vHour"/> :&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" magic="vMinute" formControlName="vMinute"/>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div>-->
+        <!--debug:{{task.getValue('vDate')}}-->
+        <!--debug:{{task.getValue('vTime')}}-->
+        <!--</div>-->
 
 
-      <!-- date: <input type="text" formControlName="vDate"/><br>-->
+        <!-- date: <input type="text" formControlName="vDate"/><br>-->
 
-      <!--<input type="time" magic="vMinute" formControlName="vMinute"/><br>-->
-      <!--{{counter}}-->
-      <!--<pre>-->
-      <!--{{ user.value | json }}-->
-      <!--</pre>-->
+        <!--<input type="time" magic="vMinute" formControlName="vMinute"/><br>-->
+        <!--{{counter}}-->
+        <!--<pre>-->
+        <!--{{ user.value | json }}-->
+        <!--</pre>-->
 
+      </div>  <!--</div  mainBody> -->
 
     </form>
   `
