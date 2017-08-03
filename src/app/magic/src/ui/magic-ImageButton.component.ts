@@ -15,9 +15,8 @@ enum ButtonState
 
 @Component({
   selector: 'm-imageButton',
-  template: `
-    <!--[disabled]="!(enable)"-->
-    <button [ngStyle]="GetStyle()" (mouseenter)="OnMouseEnter()" (mouseleave)="OnMouseLeave()"
+  template: `    
+    <button [disabled]="!(enable)" [ngStyle]="GetStyle()" (mouseenter)="OnMouseEnter()" (mouseleave)="OnMouseLeave()"
             (mouseup)="OnMouseUp()" (mousedown)="OnMouseDown()" (focus)="OnFocus()">
       {{ getFormat }}
     </button>
@@ -107,8 +106,8 @@ export class MagicImageButtonComponent extends MagicControlBase {
       Index = ButtonState.SELECTED;
     else if (this.support6Images && this.tagOnHovering)
       Index = ButtonState.HOTTRACK;
-    // else if (!this.enable)//(!tg.Enabled)
-    //   Index = ButtonState.DISABLE;
+     else if (!this.enable)//(!tg.Enabled)
+       Index = ButtonState.DISABLE;
     // else if (button.Focused)
     //   Index = ButtonState.FOCUS;
     else {
