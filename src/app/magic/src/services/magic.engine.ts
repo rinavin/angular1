@@ -56,4 +56,8 @@ export class MagicEngine{
   registerSetFocusCallback(taskId, cb) {
     this.magic.registerSetFocusCallback(taskId, cb);
   }
+
+  registerCloseFormCallback(taskId, cb) {
+    this.magic.registerCloseFormCallback(taskId, cb);
+  }
 }

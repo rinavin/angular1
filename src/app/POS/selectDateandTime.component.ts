@@ -4,7 +4,7 @@
 /**
  * Created by rinav on 7/23/2017.
  */
-import {ApplicationRef, ChangeDetectorRef, Component} from "@angular/core";
+import {ApplicationRef, ChangeDetectorRef, Component, ElementRef} from "@angular/core";
 import {BaseTaskMagicComponent} from "../magic/src/ui/app.baseMagicComponent";
 import {FormControl, FormGroup} from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
@@ -60,8 +60,9 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
 
   constructor(ref: ChangeDetectorRef,
               task: TaskMagicService,
+              elem: ElementRef,
               public app: ApplicationRef) {
-    super(ref, task);
+    super(ref, task, elem);
     this.orgValueCallback = this.getvalueCallback;
     this.getvalueCallback = (controlKey: string) => {
       let val = this.orgValueCallback(controlKey);

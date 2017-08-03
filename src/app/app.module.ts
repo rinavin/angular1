@@ -28,6 +28,7 @@ import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
 import {ShoppingCartComponent} from "./POS/shoppingCart.component";
 import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MyModalComponent} from "./demos/myModal.component";
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
      DemoImageButtonControlComponent,
      DemoHyperTextButtonControlComponent,
      MainOnlineScreenComponent,
-     ShoppingCartComponent
+     ShoppingCartComponent,
+     MyModalComponent
    ],
    imports: [
       BrowserModule,

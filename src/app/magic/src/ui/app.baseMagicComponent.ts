@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef, Input, Injectable} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, Input, Injectable, ElementRef} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
@@ -18,6 +18,7 @@ export abstract class BaseTaskMagicComponent implements OnInit {
   @Input() taskDescription: string;
 
   public focusedControl: string;
+  private element: any;
 
   get controlProperties(): any {
     return this._controlProperties;
@@ -61,9 +62,11 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
   constructor(protected ref: ChangeDetectorRef,
               protected task: TaskMagicService,
+              private elem: ElementRef
               //protected magic:MagicEngine
 
   ) {
+    this.element = elem.nativeElement;
     // debugger;
   }
 
@@ -128,6 +131,9 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
     // this.task.startMagic();
 
+    this.task.registerCloseFormCallback(() => {
+      this.element.remove();
+    });
 
   }
 

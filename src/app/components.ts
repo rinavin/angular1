@@ -15,6 +15,7 @@ import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.co
 import {DemoHyperTextButtonControlComponent} from "./demos/DemoHyperTextButtonControl.component";
 import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
 import {ShoppingCartComponent} from "./POS/shoppingCart.component";
+import {MyModalComponent} from "./demos/myModal.component";
 
 export class ComponentsList {
 
@@ -32,7 +33,8 @@ export class ComponentsList {
      ["DemoImageButtonControlForm"]: DemoImageButtonControlComponent,
      ["DemoHyperTextButtonControlForm"]: DemoHyperTextButtonControlComponent,
      ["3_Main Online Screen"]: MainOnlineScreenComponent,
-     ["ShoppingCart"]: ShoppingCartComponent
+     ["ShoppingCart"]: ShoppingCartComponent,
+     ["modal"]: MyModalComponent
   };
 
   // getComponents()

@@ -99,6 +99,10 @@ export class TaskMagicService {
     this.magic.registerSetFocusCallback(this.taskId, cb);
   }
 
+  registerCloseFormCallback(cb) {
+    this.magic.registerCloseFormCallback(this.taskId, cb);
+  }
+
   getProperty(controlId: string, prop: PropType, rowId?: string) {
     if (isNullOrUndefined(rowId))
       return this.ScreenControlsData.getProperty(controlId, prop);

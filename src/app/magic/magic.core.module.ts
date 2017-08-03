@@ -30,6 +30,7 @@ import {MagicImageButtonComponent} from "./src/ui/magic-ImageButton.component";
 import {MagicHyperTextButtonComponent} from "app/magic/src/ui/magic-HyperTextButton.component";
 import {DemoHyperTextButtonControlComponent} from "../demos/DemoHyperTextButtonControl.component";
 import {ShoppingCartComponent} from "../POS/shoppingCart.component";
+import {MyModalComponent} from "../demos/myModal.component";
 
 const decs = [
   FocusDirectiveDirective,
@@ -63,7 +64,8 @@ const decs = [
     DemoImageControlComponent,
     DemoHyperTextButtonControlComponent,
     MainOnlineScreenComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    MyModalComponent
   ]
 })
 export class MagicModule{
