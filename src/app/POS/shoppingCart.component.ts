@@ -7,6 +7,7 @@ import {FormGroup} from "@angular/forms";
 import {ComponentsList} from "../components";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
 import {PropType} from "../magic/src/ui/propType";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'shopping-cart',
@@ -60,6 +61,7 @@ import {PropType} from "../magic/src/ui/propType";
             <li *ngFor="let o of task.Records.list">
 
               <!--<div class="row lesspad tmar5">-->
+              <div *ngIf="isDefined(o)">
                 <div class="col-sm-7 col-xs-7 pad0">
                   <span magic="Item_Description" [rowId]="o.rowId">{{o.values['Item_Description']}}</span>
                 </div>
@@ -67,15 +69,15 @@ import {PropType} from "../magic/src/ui/propType";
                   <div class="row lesspad">
                     <div class="col-sm-7 col-xs-7 text-right">
                       <span class="fa fa-plus-circle neo-primary curhand" magic="plus" [rowId]="o.rowId"
-                            [style.visibility]="!(visible('plus',o.rowId)) ? true : null"></span>
+                            [style.visibility]="!(visible('plus',o?.rowId)) ? true : null"></span>
                     </div>
                     <div class="col-sm-3 col-xs-3 text-right">
                       <span magic="itemPrice" [rowId]="o.rowId"
-                            [attr.hidden]="!(visible('itemPrice',o.rowId)) ? true : null">{{o.values['itemPrice']}}</span>
+                            [attr.hidden]="!(visible('itemPrice',o.rowId)) ? true : null">{{o?.values['itemPrice']}}</span>
 
                     </div>
                     <div class="col-sm-2 col-xs-2 text-right pad0">
-                      <span class="fa fa-minus-circle neo-primary curhand" magic="minus" [rowId]="o.rowId" [attr.hidden]="!(visible('minus',o.rowId)) ? true : null">
+                      <span class="fa fa-minus-circle neo-primary curhand" magic="minus" [rowId]="o?.rowId" [attr.hidden]="!(visible('minus',o.rowId)) ? true : null">
                         
                       </span>
                         
@@ -83,6 +85,7 @@ import {PropType} from "../magic/src/ui/propType";
                     </div>
                   </div>
                 </div>
+              </div>
               <!--</div>-->
               <!--</div>-->
               
@@ -115,5 +118,11 @@ export class ShoppingCartComponent extends BaseTaskMagicComponent {
 
   visible(controlId: string, rowId?: string) {
     return this.task.getProperty(controlId, PropType.Visible, rowId) == 1;
+  }
+
+  public isDefined(o) : boolean
+
+  {
+    return !isNullOrUndefined(o);
   }
 }

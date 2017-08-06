@@ -22,7 +22,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
             <div>{{o.values['Index1']}}</div>
             <div>Delivery Hours</div>
             <span magic="STORE1OpenTime">{{o.values['STORE1OpenTime']}}-</span>
-            <span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span>
+            <!--<span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span>-->
         </li>
       </ul>
 
