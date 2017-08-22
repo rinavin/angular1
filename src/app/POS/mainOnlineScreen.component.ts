@@ -14,10 +14,10 @@ import {ComponentsList} from "../components";
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <div class="mainbody">
-      <div class="pull-left col-xs-12 col-sm-12 col-md-8  pad0">
-        <div style="width: 100%; display: table;">
-          <div style="display: table-row">
-            <div style="width: 600px; display: table-cell;">
+      <div class="pull-left  pad0">
+        <!--<div style="width: 100%; display: table;">-->
+          <!--<div style="display: table-row">-->
+            <!--<div style="width: 600px; display: table-cell;">-->
               <form novalidate [formGroup]="user">
                 <br>
                 <m-image controlId="restaurant_name_banner" class="posbannerimg"></m-image>
@@ -28,31 +28,37 @@ import {ComponentsList} from "../components";
                   readonly
                   style="border: 0px"></h2>
                 <br>
-                <ul  style="list-style: none;" class="row" class="col-sm-6" class="bbord tbpad10">
+                <ul style="list-style: none;padding: 0">
                   <li *ngFor="let o of task.Records.list">
-                    <label ><span magic="descriptionTitle" [rowId]="o.rowId">{{o.values['descriptionTitle']}}</span></label>
-                    <br>
-                    <p><span magic="headerItemDescription" [rowId]="o.rowId"
-                                 [hidden]="true">{{o.values['headerItemDescription']}}</span> </p>
-                    <span magic="ItemDescription" [rowId]="o.rowId">{{o.values['ItemDescription']}}</span>
-                    <br>
-                    <button magic="buttonAdd" [rowId]="o.rowId" class="btn btn-primary rmar10">Add</button>
-                    <m-image controlId="bagImageButton1" [rowId]="o.rowId"></m-image>
-                    <span magic="Price wo/ Tax" class="neo-white neo-orange-bg lrpad5"
-                          [rowId]="o.rowId">{{o.values['Price wo/ Tax']}}</span>
+                    <div class="row" class="col-xs-4 col-sm-6">
+                        <div class="bbord tbpad10">
+                          <label><span magic="descriptionTitle"
+                                       [rowId]="o.rowId">{{o.values['descriptionTitle']}}</span></label>
+                          <br>
+                          <p><span magic="headerItemDescription" [rowId]="o.rowId"
+                                   [hidden]="true">{{o.values['headerItemDescription']}}</span></p>
+                          <span magic="ItemDescription" [rowId]="o.rowId">{{o.values['ItemDescription']}}</span>
+                          <br>
+                          <button magic="buttonAdd" [rowId]="o.rowId" class="btn btn-primary rmar10">Add</button>
+                          <m-image controlId="bagImageButton1" [rowId]="o.rowId"></m-image>
+                          <span magic="Price wo/ Tax" class="neo-white neo-orange-bg lrpad5"
+                                [rowId]="o.rowId">{{o.values['Price wo/ Tax']}}</span>
+                        </div>
+                      </div>
                   </li>
                 </ul>
+
               </form>
-            </div>
-          </div>
-        </div>
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
       <!--<div class="pull-right col-xs-12 col-sm-12 col-md-4 rpad0" style="display: table-cell;">-->
-        <ndc-dynamic [ndcDynamicComponent]="SubTree"
-                     [ndcDynamicInputs]="parameters">
-        </ndc-dynamic>
-        <br>
-        <br>
+      <ndc-dynamic [ndcDynamicComponent]="SubTree"
+                   [ndcDynamicInputs]="parameters">
+      </ndc-dynamic>
+      <br>
+      <br>
       <!--</div>-->
     </div>
 

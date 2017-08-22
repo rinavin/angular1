@@ -13,15 +13,16 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   selector: 'order-location',
   providers: [TaskMagicService],
   template: `
+    <link rel="stylesheet" href="https://unpkg.com/neo-assets@1/dist/css/neo.min.css">
     <form novalidate [formGroup]="user">
 
       <!--<m-label controlId="selectlocation"></m-label>-->
       <ul>
-        <li *ngFor="let o of task.Records.list" magic="Index1">
+        <li class="col-xs-6 col-sm-4 col-md-3" *ngFor="let o of task.Records.list" magic="Index1">
             <div>{{o.values['Index1']}}</div>
             <div>Delivery Hours</div>
             <span magic="STORE1OpenTime">{{o.values['STORE1OpenTime']}}-</span>
-            <span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span>
+            <!--<span magic="STORE2OpenTime">{{o.values['STORE1CloseTime']}}</span>-->
         </li>
       </ul>
 
