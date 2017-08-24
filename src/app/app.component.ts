@@ -42,12 +42,13 @@ constructor(protected magic: MagicEngine,
             private viewContainerRef: ViewContainerRef,
             protected ref: ChangeDetectorRef) {
     this.initializeMagic();
-     magic.startMagic();
    }
 
+  ngOnInit() {
+    this.magic.startMagic();
+  }
 
   private InjectComponent(formName:string, taskId: string, taskDescription: string, isModal: boolean) {
-
     if (isModal){
       this.ModalComp = ComponentsList.compHash[formName];
       this.modalParameters = {myTaskId: taskId, taskDescription: taskDescription};
