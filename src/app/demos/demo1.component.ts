@@ -12,12 +12,14 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
       <form novalidate [formGroup]="user">
          <label>
             <!--<span>{{GetProperty('idlabel', propType.Text )}}</span>-->
-            <m-label controlId="idlabel"></m-label>
+           <span magic="idlabel"></span>
+            <!--<m-label controlId="idlabel"></m-label>-->
            <input            
              type="text"
              magic="id"
              formControlName="id">
-           <m-label controlId="text1"></m-label>
+           <span magic="text1"></span>
+          
             <!--<input
                class="jasmine-alert"
                [ngClass]="GetClass('idlabel')"
@@ -33,7 +35,8 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
          </label>
          <br>  
          <label>
-            <span>Name:</span>
+           <span magic="idname"></span>
+           <!--<m-label controlId="idname"></m-label>-->
             <input
                type="text"
                magic="name"

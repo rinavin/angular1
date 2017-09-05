@@ -8,6 +8,6 @@ import {MagicControlBase} from "./magic-control-base.component";
    template:`
       <span [magic]="controlId" [hidden] = !(visible)>{{text}}</span>  
 `})
-export class MagicLabelComponent extends MagicControlBase{
-
+export class MagicLabelComponent extends MagicControlBase {
 }
+

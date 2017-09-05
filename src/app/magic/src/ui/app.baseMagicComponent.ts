@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef, Input, Injectable} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, Input, Injectable, OnDestroy} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
@@ -6,17 +6,34 @@ import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
 import {isNullOrUndefined, isUndefined} from "util";
 import {ControlsMetadata} from "../controls.metadata.model";
+import {isBoolean} from "util";
+import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'task-magic',
   providers: [TaskMagicService]
 })
-export abstract class BaseTaskMagicComponent implements OnInit {
+export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
+
+  ngOnDestroy(): void {
+    this.refreshUI.complete();
+    //this.sub.unsubscribe();
+  }
+
   @Input() subformName: string;
   @Input() parentId: string;
   @Input() myTaskId: string;
   @Input() taskDescription: string;
 
+
+  refreshUI:Subject<any> = new Subject();
+  //sub:Subscription;
 
   get controlProperties(): any {
     return this._controlProperties;
@@ -83,31 +100,42 @@ export abstract class BaseTaskMagicComponent implements OnInit {
 
     this.task.registerGetValueCallback(this.getvalueCallback);
 
-
+    let firstTime: boolean = true;
     this.task.registerRefreshTableUI(data => {
         //alert(data);
+
         this.task.Records.fromJson(data);
-        // this.list = JSON.parse(data);
-        // self.ref.detectChanges();
-        // alert(this.list);
-        // self.id = obj[1].Value;
-        // self.name = obj[3].Value;
-        // (<FormControl>this.user.controls['id'])
-        //   .setValue(obj[1].Value, { onlySelf: true });
-        // (<FormControl>this.user.controls['name'])
-        //   .setValue(obj[3].Value, { onlySelf: true });
         this.ref.detectChanges();
       }
     );
-    this.task.registerRefreshUI(data => {
+
+    this.task.initTask();
+
+
+    /*this.task.registerRefreshUI(data=>{
+      this.refreshUI.next(data);
+    });*/
+
+/*    this.sub = this.task.refreshUInput.subscribe( obj =>{
+          this.ref.detectChanges();
+    });*/
+
+
+  /*    data => {
         //TODO: move this code to taskservice
+
         this.task.ScreenControlsData.fromJson(data);
         // console.dir(obj.ControlsValues);
         this.record.patchValue(this.task.ScreenControlsData.Values);
-        this.ref.detectChanges();
+        // if (firstTime) {
+        //   firstTime = false;
+        //   this.task.ScreenControlsData.ControlsProperties
+        //
+        // }
+
 
       }
-    );
+    );*/
 
 
     // this.task.startMagic();

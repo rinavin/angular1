@@ -4,6 +4,10 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ControlsMetadata, Records} from "../controls.metadata.model";
 import {PropType} from "../ui/propType";
 import {isNullOrUndefined, isUndefined} from "util";
+import {Subject} from "rxjs/Subject";
+import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
+import {GuiCommand} from "./GuiCommand";
 
 let counter = 0;
 
@@ -35,8 +39,16 @@ export class TaskMagicService {
     this._taskId = value;
   }
 
-  // row         : FormGroup;
-  rows: FormGroup[] = [];
+
+
+   // row         : FormGroup;
+   rows        : FormGroup[] = [];
+   //refreshUInput:Subject<any> = new Subject();
+   //refreshUInput:Observable<any>;
+   refreshDom:Subject<GuiCommand> = new Subject();
+  //sub:Subscription;
+
+
 
   constructor(protected magic: MagicEngine) {
     console.log(`task constructor: ${counter++}`);
@@ -69,9 +81,45 @@ export class TaskMagicService {
     this.magic.startMagic();
   }
 
-  getTaskId(parentId, subformName): string {
-    return this.magic.getTaskId(parentId, subformName);
+   initTask(){
+     let list: GuiCommand[];
+     this.magic.refreshDom
+       .filter(command=>command.TaskTag == this.taskId)
+       .subscribe(command=>
+     {
+      this.refreshDom.next(command);
+     });
+     // this.registerRefreshUI(data=>{
+     //   let obj = JSON.parse(data);
+     //   //console.dir(obj);
+     //
+     //   for (let command in list) {
+     //
+     //     this.refreshDom.next(list[command]);
+     //   }
+     //
+     // });
+
+     // subscribe to input updates
+     //this.sub = this.refreshUInput
+       //.subscribe( controlsValues =>{
+         //this.record.patchValue(controlsValues);
+       //});
+
+    /* this.refreshDom = this.refreshUI
+         .map( obj => obj.ControlsMetaData);*/
+
+   }
+   onDestoryTask(){
+     //this.sub.unsubscribe();
+   }
+
+  get record() {
+    return this.rows[0];
   }
+   getTaskId(parentId, subformName) : string{
+        return this.magic.getTaskId(parentId, subformName);
+    }
 
 
   insertEvent(eventName: string, controlIdx: string, lineidx: string) {
@@ -83,9 +131,9 @@ export class TaskMagicService {
     this.magic.registerGetValueCallback(this.taskId, cb);
   }
 
-  registerRefreshUI(cb) {
-    this.magic.registerRefreshUI(this.taskId, cb);
-  }
+   registerRefreshUI( cb) {
+      this.magic.registerRefreshUI(this.taskId, cb);
+   }
 
   registerRefreshTableUI(cb) {
     this.magic.registerRefreshTableUI(this.taskId, cb);
@@ -108,9 +156,10 @@ export class TaskMagicService {
 
   getValue(controlId: string, rowId?: string) {
     if (isNullOrUndefined(rowId))
-      return this.ScreenControlsData.getValue(controlId);
-    else
-      return this.Records.list[rowId].getValue(controlId);
+      rowId = '0';
+      //return this.ScreenControlsData.getValue(controlId);
+   // else
+    return this.Records.list[rowId].getValue(controlId);
   }
 
 }
