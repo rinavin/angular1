@@ -59,7 +59,10 @@ export class MagicDirectiveDirective implements OnInit {
               this.task.record.controls[this.id].setValue(command.str);
               break;
             case CommandType.SET_ATTRIBITE:
-              this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
+              if (command.Operation == "readOnly" && command.str != "true"  )
+                this.renderer.removeAttribute(this.htmlElement, command.Operation);
+              else
+                this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
               break;
 
           }
