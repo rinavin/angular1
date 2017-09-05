@@ -2,6 +2,9 @@
  * Created by rinav on 05/07/2017.
  */
 import {Injectable} from "@angular/core";
+import {TaskMagicService} from "./task.magics.service";
+import {Subject} from "rxjs/Subject";
+import {GuiCommand} from "./GuiCommand";
 
 // export interface MagicCallBack{
 //    ():void;
@@ -11,11 +14,33 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class MagicEngine{
    magic = window['magic1'];
-
+   //TODO - unregister
+   refreshDom:Subject<GuiCommand> = new Subject();
 
    startMagic() {
       // alert('function 4 called');
-      this.magic.start();
+      this.magic.start(data => {
+        let list: GuiCommand[];
+        let obj = JSON.parse(data);
+        list = obj as GuiCommand[];
+        //list = data.json() as GuiCommand[];
+        for (let command in list) {
+          this.refreshDom.next(list[command]);
+        }
+      });
+   }
+
+   refreshUI(data) {
+
+     data => {
+       let list: GuiCommand[];
+       let obj = JSON.parse(data);
+       list = obj as GuiCommand[];
+       //list = data.json() as GuiCommand[];
+       for (let command in list) {
+         this.refreshDom.next(list[command]);
+       }
+     }
    }
 
    getTaskId(parentId, subformName):string
@@ -52,5 +77,7 @@ export class MagicEngine{
   registerOpenSubformCallback(taskId, cb) {
     this.magic.registerOpenSubformCallback(taskId, cb);
   }
+
+
 
 }
