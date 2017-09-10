@@ -14,6 +14,9 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 
 import {Subscription} from "rxjs/Subscription";
+import {CommandType} from "./enums";
+import {GuiCommand} from "../services/GuiCommand";
+import {ComponentsList} from "../../../components";
 
 @Component({
   selector: 'task-magic',
@@ -30,6 +33,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   @Input() parentId: string;
   @Input() myTaskId: string;
   @Input() taskDescription: string;
+  //subformsDict: { [x: string]: SubformDefinition } = {};
 
 
   refreshUI:Subject<any> = new Subject();
@@ -82,6 +86,26 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   ) {
     // debugger;
   }
+  // getComp(subformName: string ): Component
+  // {
+  //   if (subformName in this.subformsDict) {
+  //     let formName: string = this.subformsDict[subformName].formName;
+  //     return ComponentsList.compHash[formName];
+  //   }
+  //   else
+  //     return "";
+  //
+  // }
+  //
+  // getParameters(subformName: string ): any
+  // {
+  //   if (subformName in this.subformsDict) {
+  //     return this.subformsDict[subformName].parameters;
+  //   }
+  //   else
+  //     return "";
+  //
+  // }
 
   ngOnInit() {
     let obj: any;
@@ -100,6 +124,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
 
     this.task.registerGetValueCallback(this.getvalueCallback);
 
+
     let firstTime: boolean = true;
     this.task.registerRefreshTableUI(data => {
         //alert(data);
@@ -109,8 +134,9 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
       }
     );
 
-    this.task.initTask();
 
+    this.task.initTask();
+    this.regUpdatesUI();
 
     /*this.task.registerRefreshUI(data=>{
       this.refreshUI.next(data);
@@ -155,4 +181,49 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   GetValueCallback(taskId: number, controlId: string, rowId: number = 0): any {
     return
   }
+
+  regUpdatesUI(){
+    this.task
+      .refreshDom
+      //.filter(updates => updates.TaskTag == this.taskId)
+      //.map(updates => updates.properties.Properties)
+      .subscribe( a=> {
+
+
+        let command: GuiCommand = a;
+        console.dir(a);
+         switch (command.CommandType) {
+           case CommandType.CREATE_SUB_FORM:
+             console.log("CREATE_SUB_FORM");
+             // this.subformsDict[subformControlName] = {formName,
+             //   parameters:{myTaskId: taskId, taskDescription: taskDescription}};
+
+             alert('good!');
+
+             this.ref.detectChanges();
+             break;
+         }
+        //     this.renderer.setProperty(
+        //       this.htmlElement,
+        //       command.Operation,
+        //       command.str
+        //     );
+        //     break;
+        //   case  CommandType.SET_VALUE:
+        //     this.task.record.controls[this.id].setValue(command.str);
+        //     break;
+        //   case CommandType.SET_ATTRIBITE:
+        //     if (command.Operation == "readOnly" && command.str != "true"  )
+        //       this.renderer.removeAttribute(this.htmlElement, command.Operation);
+        //     else
+        //       this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
+        //     break;
+        //
+        // }
+      });
+  }
 }
+// interface SubformDefinition {
+//   formName:string;
+//   parameters:any;
+// }

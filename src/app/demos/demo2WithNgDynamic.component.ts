@@ -39,31 +39,60 @@ import {ComponentsList} from "../components";
       </form>
       
       <div style="border: 3px solid black;margin: 15px">
-        <ndc-dynamic [ndcDynamicComponent]="mysubform1"
-                     [ndcDynamicInputs]="parameters">
+        <ndc-dynamic [ndcDynamicComponent]="getComp('mysubform1')"
+                     [ndcDynamicInputs]="getParameters('mysubform1')">
         </ndc-dynamic>
       </div>
    `
 })
 export class  Demo2WithNgDynamicComponent extends BaseTaskMagicComponent implements OnInit{
   // subform1Name: string = "mysubform1";
-  mysubform1: Component;
-  parameters: any;
+  subformsDict: { [x: string]: SubformDefinition } = {};
 
-   get user(): FormGroup{
-      return this.record;
-   }
 
-   ngOnInit(){
-     super.ngOnInit();
-     this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription:string) => {
-       console.log('registerOpenSubformCallback', subformControlName, taskId);
-       if (subformControlName === 'mysubform1') {
-         this.mysubform1 = ComponentsList.compHash[formName];
-         this.parameters = {myTaskId: taskId, taskDescription: taskDescription};
-         this.ref.detectChanges();
-       }
-     });
-   }
+  emptycomp: Component;
+
+
+  get user(): FormGroup{
+    return this.record;
+  }
+
+  ngOnInit(){
+    super.ngOnInit();
+    this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription:string) => {
+      console.log('registerOpenSubformCallback', subformControlName, taskId);
+      this.subformsDict[subformControlName] = {formName,
+        parameters:{myTaskId: taskId, taskDescription: taskDescription}};
+
+      alert('good!');
+      this.ref.detectChanges();
+      //}
+    });
+  }
+  getComp(subformName: string ): Component
+  {
+    if (subformName in this.subformsDict) {
+      let formName: string = this.subformsDict[subformName].formName;
+      return ComponentsList.compHash[formName];
+    }
+    else
+      return this.emptycomp;
+
+  }
+
+  getParameters(subformName: string ): any
+  {
+    if (subformName in this.subformsDict) {
+      return this.subformsDict[subformName].parameters;
+    }
+    else
+      return "";
+
+  }
+}
+
+interface SubformDefinition {
+  formName:string;
+  parameters:any;
 }
 

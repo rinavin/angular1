@@ -87,6 +87,7 @@ export class TaskMagicService {
        .filter(command=>command.TaskTag == this.taskId)
        .subscribe(command=>
      {
+       console.log("Task " + command.TaskTag + "command " + command.CommandType);
       this.refreshDom.next(command);
      });
      // this.registerRefreshUI(data=>{
