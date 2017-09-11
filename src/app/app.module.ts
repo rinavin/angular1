@@ -28,6 +28,7 @@ import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
 import {ShoppingCartComponent} from "./POS/shoppingCart.component";
 import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {Subform} from "./magic/src/ui/subform-component";
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
        RunmeComponent,
        OrderLocation,
        SelectDateAndTime,
+     Subform,
      DemoImageButtonControlComponent,
      DemoHyperTextButtonControlComponent,
      MainOnlineScreenComponent,

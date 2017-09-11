@@ -17,6 +17,7 @@ import {Subscription} from "rxjs/Subscription";
 import {CommandType} from "./enums";
 import {GuiCommand} from "../services/GuiCommand";
 import {ComponentsList} from "../../../components";
+import {ComponentsListBase} from "../../../ComponentsListBase";
 
 @Component({
   selector: 'task-magic',
@@ -33,8 +34,9 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   @Input() parentId: string;
   @Input() myTaskId: string;
   @Input() taskDescription: string;
-  //subformsDict: { [x: string]: SubformDefinition } = {};
-
+  subformsDict: { [x: string]: SubformDefinition } = {};
+  public static  componentsListBase : ComponentsListBase;
+  emptyComp:Component;
 
   refreshUI:Subject<any> = new Subject();
   //sub:Subscription;
@@ -86,26 +88,37 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   ) {
     // debugger;
   }
-  // getComp(subformName: string ): Component
-  // {
-  //   if (subformName in this.subformsDict) {
-  //     let formName: string = this.subformsDict[subformName].formName;
-  //     return ComponentsList.compHash[formName];
-  //   }
-  //   else
-  //     return "";
-  //
-  // }
-  //
-  // getParameters(subformName: string ): any
-  // {
-  //   if (subformName in this.subformsDict) {
-  //     return this.subformsDict[subformName].parameters;
-  //   }
-  //   else
-  //     return "";
-  //
-  // }
+  getComp(subformName: string ): Component
+  {
+    if (subformName in this.subformsDict) {
+      let formName: string = this.subformsDict[subformName].formName;
+
+      return BaseTaskMagicComponent.componentsListBase.getComponents(formName);
+
+    }
+    else
+      return this.emptyComp;
+
+  }
+
+  getParameters(subformName: string ): any
+  {
+    if (subformName in this.subformsDict) {
+      return this.subformsDict[subformName].parameters;
+    }
+    else
+      return "";
+
+  }
+  addSubformComp(subformControlName: string, formName: string, taskId: string, taskDescription: string)
+  {
+    this.subformsDict[subformControlName] = {formName,
+           parameters:{myTaskId: taskId, taskDescription: taskDescription}};
+    this.ref.detectChanges();
+  }
+
+
+
 
   ngOnInit() {
     let obj: any;
@@ -182,6 +195,8 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return
   }
 
+
+
   regUpdatesUI(){
     this.task
       .refreshDom
@@ -195,12 +210,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
          switch (command.CommandType) {
            case CommandType.CREATE_SUB_FORM:
              console.log("CREATE_SUB_FORM");
-             // this.subformsDict[subformControlName] = {formName,
-             //   parameters:{myTaskId: taskId, taskDescription: taskDescription}};
 
-             alert('good!');
-
-             this.ref.detectChanges();
              break;
          }
         //     this.renderer.setProperty(
@@ -223,7 +233,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
       });
   }
 }
-// interface SubformDefinition {
-//   formName:string;
-//   parameters:any;
-// }
+interface SubformDefinition {
+  formName:string;
+  parameters:any;
+}

@@ -1,8 +1,11 @@
-import {Directive, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
+import {Component, Directive, ElementRef, Input, OnInit, Renderer2, ViewContainerRef} from '@angular/core';
+import { Host, Self, Optional } from '@angular/core';
 import {TaskMagicService} from "../services/task.magics.service";
 import {FormControl, FormControlName} from "@angular/forms";
 import {GuiCommand} from "../services/GuiCommand";
 import {CommandType} from "./enums";
+import {Subform} from "./subform-component";
+import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 
 @Directive({
   selector: '[magic]'
@@ -14,6 +17,7 @@ export class MagicDirectiveDirective implements OnInit {
   @Input() rowId: string;
   @Input() events: any[] = [];
   htmlElement: HTMLElement;
+  component:BaseTaskMagicComponent;
 
   get task() {
     return this._task;
@@ -22,8 +26,13 @@ export class MagicDirectiveDirective implements OnInit {
 
   constructor(private element: ElementRef,
               private renderer: Renderer2,
-              private _task: TaskMagicService) {
+              private _task: TaskMagicService,
+              private vcRef: ViewContainerRef,
+
+  ) {
+
     this.htmlElement = this.element.nativeElement;
+    this.component = (<any>this.vcRef)._view.component as BaseTaskMagicComponent;
   }
 
   regEvents(){
@@ -64,61 +73,15 @@ export class MagicDirectiveDirective implements OnInit {
               else
                 this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
               break;
+            case CommandType.CREATE_SUB_FORM:
+              console.log("CREATE_SUB_FORM!!!");
+              console.dir(command)
+              this.component.addSubformComp(command.CtrlName, command.userDropFormat.toString(), command.str, command.fileName.toString());
+              ;
+              break;
 
           }
-          //for(let prop in properties){
-          //   if( command.CommandType == CommandType.PROP_SET_TEXT ){
-          //
-          //     //console.log(`set text to ${this.id} value:${command.str}`);
-          //     //this.task.record.controls[this.id].setValue(command.str);
-          //     //.controls['a'].setValue('a');//         //(thiscontrols[this.id].setValue(command.str);
-          //     //this.renderer.setAttribute(this.htmlElement, 'value', command.str.toString());
-          //
-          //     // this.renderer.setValue(
-          //     //   this.htmlElement,
-          //     //   command.str.toString()
-          //     // );
-          //   }
-          //}
           });
-
-
-
-
-          //htmlElement[propId] = value;
-         /* switch (msg.propType){
-            case 'property':
-              this.renderer.setProperty(
-                this.htmlElement,
-                msg.propId,
-                msg.value
-              );
-              break;
-
-            case 'style':
-              this.renderer.setStyle(
-                this.htmlElement,
-                msg.propId,
-                msg.value
-              );
-              break;
-
-            case 'content':
-              this.renderer.setValue(
-                this.htmlElement,
-                msg.value
-              );
-              break;
-
-            case 'attr':
-              this.renderer.setAttribute(
-                this.htmlElement,
-                msg.propId,
-                msg.value
-              );
-              break;
-
-          }*/
 
     }
 
@@ -129,17 +92,6 @@ export class MagicDirectiveDirective implements OnInit {
 
     this.regEvents();
     this.regUpdatesUI();
-
-
-
-
-
-    /*this.task.updateDomProperties$.subscribe(p=>{
-      htmlElement[p.key] = p.value;
-    })*/
-
-
-
 
     //console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
 
