@@ -10,6 +10,7 @@ import {Demo2WithNgContainerComponent} from "./demos/demo2WithNgContainer.compon
 import {Demo2WithNgDynamicComponent} from "./demos/demo2WithNgDynamic.component";
 import {TableTestComponent} from "./demos/table.test.component";
 import {ComponentsList} from "./components";
+import {BaseTaskMagicComponent} from "./magic/src/ui/app.baseMagicComponent";
 
 declare var myExtObject: any;
 @Component({
@@ -24,6 +25,7 @@ constructor(protected magic: MagicEngine,
             private componentFactoryResolver: ComponentFactoryResolver,
             private viewContainerRef: ViewContainerRef) {
     this.initializeMagic();
+    BaseTaskMagicComponent.componentsListBase = new ComponentsList();
      magic.startMagic();
    }
 

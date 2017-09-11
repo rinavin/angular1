@@ -39,60 +39,25 @@ import {ComponentsList} from "../components";
       </form>
       
       <div style="border: 3px solid black;margin: 15px">
-        <ndc-dynamic [ndcDynamicComponent]="getComp('mysubform1')"
+        <!--<m-subform controlId="mysubform1"></m-subform>-->
+        <ndc-dynamic magic="mysubform1"[ndcDynamicComponent]="getComp('mysubform1')"
                      [ndcDynamicInputs]="getParameters('mysubform1')">
         </ndc-dynamic>
       </div>
    `
 })
-export class  Demo2WithNgDynamicComponent extends BaseTaskMagicComponent implements OnInit{
-  // subform1Name: string = "mysubform1";
-  subformsDict: { [x: string]: SubformDefinition } = {};
+export class  Demo2WithNgDynamicComponent extends BaseTaskMagicComponent implements OnInit {
 
 
-  emptycomp: Component;
-
-
-  get user(): FormGroup{
+  get user(): FormGroup {
     return this.record;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     super.ngOnInit();
-    this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription:string) => {
-      console.log('registerOpenSubformCallback', subformControlName, taskId);
-      this.subformsDict[subformControlName] = {formName,
-        parameters:{myTaskId: taskId, taskDescription: taskDescription}};
-
-      alert('good!');
-      this.ref.detectChanges();
-      //}
-    });
-  }
-  getComp(subformName: string ): Component
-  {
-    if (subformName in this.subformsDict) {
-      let formName: string = this.subformsDict[subformName].formName;
-      return ComponentsList.compHash[formName];
-    }
-    else
-      return this.emptycomp;
-
-  }
-
-  getParameters(subformName: string ): any
-  {
-    if (subformName in this.subformsDict) {
-      return this.subformsDict[subformName].parameters;
-    }
-    else
-      return "";
 
   }
 }
 
-interface SubformDefinition {
-  formName:string;
-  parameters:any;
-}
+
 

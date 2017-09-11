@@ -15,14 +15,17 @@ import {DemoImageButtonControlComponent} from "./demos/DemoImageButtonControl.co
 import {DemoHyperTextButtonControlComponent} from "./demos/DemoHyperTextButtonControl.component";
 import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
 import {ShoppingCartComponent} from "./POS/shoppingCart.component";
+import {Component} from "@angular/core";
+import {ComponentsListBase} from "./ComponentsListBase";
 
-export class ComponentsList {
+
+export class ComponentsList extends ComponentsListBase{
 
    static  compHash: { [x: string]: any } = {
     ["demo1"]: Demo1Component,
     ["demo2"]: Demo2WithNgDynamicComponent,
     ["table"]: TableTestComponent,
-      ["called1"]: Called1Component,
+     ["called1"]: Called1Component,
      ["called2"]: Called2Component,
      ["runme"]: RunmeComponent,
      ["Rich Client - aa"]:EnableVisibleTestComponent,
@@ -35,8 +38,8 @@ export class ComponentsList {
      ["ShoppingCart"]: ShoppingCartComponent
   };
 
-  // getComponents()
-  // {
-  //   return components;
-  // }
+  public getComponents(name: string) : Component
+  {
+    return ComponentsList.compHash[name];
+  }
 }
