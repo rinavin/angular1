@@ -12,9 +12,12 @@ import {ComponentsList} from "../components";
   template: `
     <form novalidate [formGroup]="user">
       <nav>
-        <m-image controlId="logo"></m-image>
+        rumne
+        <img magic="logo"/>
+       
         <div class="dropdown">
           <m-label controlId="welcome"></m-label>
+          <span magic="welcome"></span>
           <i class="fa fa-caret-down"></i>
           <div class="buttons">
             <button>Profile</button>
@@ -24,8 +27,11 @@ import {ComponentsList} from "../components";
         </div>
       </nav>
       <div>
-        <ndc-dynamic [ndcDynamicComponent]="MainCanvas"
-                     [ndcDynamicInputs]="parameters">
+        <!--<ndc-dynamic [ndcDynamicComponent]="MainCanvas"-->
+                     <!--[ndcDynamicInputs]="parameters">-->
+        <!--</ndc-dynamic>-->
+        <ndc-dynamic magic="MainCanvas"[ndcDynamicComponent]="getComp('MainCanvas')"
+                     [ndcDynamicInputs]="getParameters('MainCanvas')">
         </ndc-dynamic>
       </div>
 
@@ -43,14 +49,14 @@ export class RunmeComponent extends BaseTaskMagicComponent {
 
   ngOnInit() {
     super.ngOnInit();
-    this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription: string) => {
-      console.log('registerOpenSubformCallback', subformControlName, taskId);
-      if (subformControlName === 'MainCanvas') {
-        this.MainCanvas = ComponentsList.compHash[formName];
-        this.parameters = {myTaskId: taskId, taskDescription: taskDescription};
-        this.ref.detectChanges();
-      }
-    });
+    // this.task.registerOpenSubformCallback((subformControlName: string, formName: string, taskId: string, taskDescription: string) => {
+    //   console.log('registerOpenSubformCallback', subformControlName, taskId);
+    //   if (subformControlName === 'MainCanvas') {
+    //     this.MainCanvas = ComponentsList.compHash[formName];
+    //     this.parameters = {myTaskId: taskId, taskDescription: taskDescription};
+    //     this.ref.detectChanges();
+    //   }
+    // });
   }
 
 

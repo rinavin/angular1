@@ -16,8 +16,14 @@ enum ButtonState
 @Component({
   selector: 'm-imageButton',
   template: `    
-    <button [disabled]="!(enable)" [ngStyle]="GetStyle()" (mouseenter)="OnMouseEnter()" (mouseleave)="OnMouseLeave()"
-            (mouseup)="OnMouseUp()" (mousedown)="OnMouseDown()" (focus)="OnFocus()">
+    <button 
+      [disabled]="!(enable)" 
+      [ngStyle]="GetStyle()" 
+      (mouseenter)="OnMouseEnter()" 
+      (mouseleave)="OnMouseLeave()"
+      (mouseup)="OnMouseUp()" 
+      (mousedown)="OnMouseDown()" 
+      (focus)="OnFocus()">
       {{ getFormat }}
     </button>
   `

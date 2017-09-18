@@ -75,7 +75,8 @@ import {PropType} from "../magic/src/ui/propType";
 
                     </div>
                     <div class="col-sm-2 col-xs-2 text-right pad0">
-                      <span class="fa fa-minus-circle neo-primary curhand" magic="minus" [rowId]="o.rowId" [attr.hidden]="!(visible('minus',o.rowId)) ? true : null">
+                      <span class="fa fa-minus-circle neo-primary curhand" magic="minus" [rowId]="o.rowId" 
+                            [attr.hidden]="!(visible('minus',o.rowId)) ? true : null">
                         
                       </span>
                         

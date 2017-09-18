@@ -50,10 +50,8 @@ export class MagicDirectiveDirective implements OnInit {
     this.task
         .refreshDom
         .filter(updates => updates.CtrlName == this.id)
-        //.map(updates => updates.properties.Properties)
+      //move to method using bind
         .subscribe( a=>{
-
-
           let command:GuiCommand = a;
           switch (command.CommandType)
           {
@@ -75,7 +73,7 @@ export class MagicDirectiveDirective implements OnInit {
               break;
             case CommandType.CREATE_SUB_FORM:
               console.log("CREATE_SUB_FORM!!!");
-              console.dir(command)
+              console.dir(command);
               this.component.addSubformComp(command.CtrlName, command.userDropFormat.toString(), command.str, command.fileName.toString());
               ;
               break;

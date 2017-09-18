@@ -15,7 +15,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   template: `
     <link rel="stylesheet" href="https://unpkg.com/neo-assets@1/dist/css/neo.min.css">
     <form novalidate [formGroup]="user">
-
+      orderlocation
       <!--<m-label controlId="selectlocation"></m-label>-->
       <ul>
         <li class="col-xs-6 col-sm-4 col-md-3" *ngFor="let o of task.Records.list" magic="Index1">
