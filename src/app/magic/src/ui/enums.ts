@@ -512,7 +512,8 @@ export enum CommandType {
 
   SET_VALUE,
   SET_ATTRIBITE,
-  SET_PROPERTY
+  SET_PROPERTY,
+  REFRESH_TASK
 }
 export enum WindowType {
   Default = 1,

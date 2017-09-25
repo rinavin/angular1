@@ -1,4 +1,7 @@
-import {Component, OnInit, ChangeDetectorRef, Input, Injectable, OnDestroy} from '@angular/core';
+import {
+  Component, OnInit, ChangeDetectorRef, Input, Injectable, OnDestroy, QueryList,
+  ViewChildren
+} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
@@ -18,6 +21,7 @@ import {CommandType} from "./enums";
 import {GuiCommand} from "../services/GuiCommand";
 import {ComponentsList} from "../../../components";
 import {ComponentsListBase} from "../../../ComponentsListBase";
+import {MagicDirectiveDirective} from "./magic-directive.directive";
 
 @Component({
   selector: 'task-magic',
@@ -34,6 +38,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   @Input() parentId: string;
   @Input() myTaskId: string;
   @Input() taskDescription: string;
+  @ViewChildren(MagicDirectiveDirective) inFinder1: QueryList<MagicDirectiveDirective>
   subformsDict: { [x: string]: SubformDefinition } = {};
   public static  componentsListBase : ComponentsListBase;
   emptyComp:Component;
@@ -53,6 +58,11 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return PropType;
   }
 
+  ngAfterViewInit() {
+    console.log("Before!!!!!!!!!!!!!");
+    this.inFinder1.forEach(alertInstance => console.log(alertInstance));
+    console.log("After!!!!!!!!!!!!!");
+  }
   private _controlProperties: any;
   //persons: { [id: string]: string; };
   protected props: { [id: string]: { [id: string]: string; } };
@@ -200,7 +210,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   regUpdatesUI(){
     this.task
       .refreshDom
-      //.filter(updates => updates.TaskTag == this.taskId)
+      .filter(updates => updates.TaskTag == this.taskId)
       //.map(updates => updates.properties.Properties)
       .subscribe( a=> {
 
@@ -210,6 +220,14 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
          switch (command.CommandType) {
            case CommandType.CREATE_SUB_FORM:
              console.log("CREATE_SUB_FORM");
+
+             break;
+           case CommandType.REFRESH_TASK:
+             console.log("REFRESH_TASK");
+             this.task.ScreenControlsData.fromJson(a.str);
+             // console.dir(obj.ControlsValues);
+             this.record.patchValue(this.task.ScreenControlsData.Values);
+             this.ref.detectChanges();
 
              break;
          }
@@ -231,6 +249,27 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
         //
         // }
       });
+  }
+
+  gettext(controlId, rowId?){
+    return this.task.getProperty(controlId,PropType.Text, rowId );
+  }
+
+  getvisible(controlId, rowId?) {
+    return this.task.getProperty(controlId,PropType.Visible, rowId) == 1;
+  }
+
+  getenable(controlId, rowId?) {
+    return this.task.getProperty(controlId,PropType.Enable, rowId) == 1;
+  }
+
+  getgetFormat(controlId, rowId?)
+  {
+    return  this.task.getProperty(controlId, PropType.Format, rowId);
+  }
+
+  GetValue(controlId){
+    return this.task.getValue(controlId);
   }
 }
 interface SubformDefinition {

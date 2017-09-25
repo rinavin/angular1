@@ -10,7 +10,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
     <h3>Called1 - TaskId: {{taskId}}</h3>
     <form novalidate [formGroup]="user">
       <label>
-        <span>Called1 Id111:</span>
+        <span magic="idlabel" >{{gettext('idlabel')}}</span>
         <input
           type="text"
           magic="id"
