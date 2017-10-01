@@ -115,6 +115,6 @@ export class ShoppingCartComponent extends BaseTaskMagicComponent {
   }
 
   visible(controlId: string, rowId?: string) {
-    return this.task.getProperty(controlId, PropType.Visible, rowId) == 1;
+    return this.getvisible(controlId, rowId);
   }
 }

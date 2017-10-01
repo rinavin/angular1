@@ -8,7 +8,7 @@ import {TaskMagicService} from "../services/task.magics.service";
 import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
 import {isNullOrUndefined, isUndefined} from "util";
-import {ControlsMetadata} from "../controls.metadata.model";
+import {ControlsMetadata, HtmlProperties} from "../controls.metadata.model";
 import {isBoolean} from "util";
 import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs/Subject";
@@ -54,9 +54,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     this._controlProperties = value;
   }
 
-  get propType() {
-    return PropType;
-  }
+
 
   ngAfterViewInit() {
     console.log("Before!!!!!!!!!!!!!");
@@ -77,7 +75,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   }
 
   get record() {
-    return this.task.rows[0];
+    return this.task.ScreenModeControls;
   }
 
   //items: FormGroup;
@@ -96,19 +94,16 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
               //protected magic:MagicEngine
 
   ) {
+    this.task.Records.createFirst();
     // debugger;
   }
-  getComp(subformName: string ): Component
-  {
+  getComp(subformName: string ): Component {
     if (subformName in this.subformsDict) {
       let formName: string = this.subformsDict[subformName].formName;
-
       return BaseTaskMagicComponent.componentsListBase.getComponents(formName);
-
     }
     else
       return this.emptyComp;
-
   }
 
   getParameters(subformName: string ): any
@@ -142,17 +137,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
       obj = JSON.parse(this.taskDescription);
       this.task.settemplate(obj);
     }
-
-    this.task.buildRecords();
-
+    this.task.buildScreenModeControls();
     this.task.registerGetValueCallback(this.getvalueCallback);
-
-
-    let firstTime: boolean = true;
     this.task.registerRefreshTableUI(data => {
-        //alert(data);
-
-        this.task.Records.fromJson(data);
+           this.task.Records.fromJson(data);
         this.ref.detectChanges();
       }
     );
@@ -161,45 +149,9 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     this.task.initTask();
     this.regUpdatesUI();
 
-    /*this.task.registerRefreshUI(data=>{
-      this.refreshUI.next(data);
-    });*/
-
-/*    this.sub = this.task.refreshUInput.subscribe( obj =>{
-          this.ref.detectChanges();
-    });*/
-
-
-  /*    data => {
-        //TODO: move this code to taskservice
-
-        this.task.ScreenControlsData.fromJson(data);
-        // console.dir(obj.ControlsValues);
-        this.record.patchValue(this.task.ScreenControlsData.Values);
-        // if (firstTime) {
-        //   firstTime = false;
-        //   this.task.ScreenControlsData.ControlsProperties
-        //
-        // }
-
-
-      }
-    );*/
-
-
-    // this.task.startMagic();
-
-
-  }
-
-  getRecords(): ControlsMetadata[] {
-    return this.task.Records.list;
   }
 
 
-  initializeMagic() {
-    //myExtObject.registerGetValueCallback(this.GetValueCallback.bind(this));
-  }
 
   GetValueCallback(taskId: number, controlId: string, rowId: number = 0): any {
     return
@@ -216,57 +168,57 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
 
 
         let command: GuiCommand = a;
-        console.dir(a);
+        //console.dir(a);
          switch (command.CommandType) {
-           case CommandType.CREATE_SUB_FORM:
-             console.log("CREATE_SUB_FORM");
-
-             break;
            case CommandType.REFRESH_TASK:
              console.log("REFRESH_TASK");
-             this.task.ScreenControlsData.fromJson(a.str);
+             //this.task.ScreenControlsData.fromJson(a.str);
              // console.dir(obj.ControlsValues);
-             this.record.patchValue(this.task.ScreenControlsData.Values);
+             this.task.ScreenModeControls.patchValue(this.task.ScreenControlsData.Values);
              this.ref.detectChanges();
-
+             break;
+           case CommandType.SET_TABLE_ITEMS_COUNT:
+             console.log("SET_TABLE_ITEMS_COUNT " + command.number);
+             if (!isUndefined(command.number))
+               this.task.updateTableSize(command.number);
              break;
          }
-        //     this.renderer.setProperty(
-        //       this.htmlElement,
-        //       command.Operation,
-        //       command.str
-        //     );
-        //     break;
-        //   case  CommandType.SET_VALUE:
-        //     this.task.record.controls[this.id].setValue(command.str);
-        //     break;
-        //   case CommandType.SET_ATTRIBITE:
-        //     if (command.Operation == "readOnly" && command.str != "true"  )
-        //       this.renderer.removeAttribute(this.htmlElement, command.Operation);
-        //     else
-        //       this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
-        //     break;
-        //
-        // }
+
       });
   }
 
   gettext(controlId, rowId?){
-    return this.task.getProperty(controlId,PropType.Text, rowId );
+    return this.task.getProperty(controlId,HtmlProperties.Text, rowId );
   }
+  // getStyle(controlId, rowId?) {
+  //   let styles = {
+  //     'background-color': 'red' ,
+  //     'visibility': this.getvisible(controlId) ? 'visible' : 'hidden',
+  //
+  //   };
+  //   return styles;}
 
   getvisible(controlId, rowId?) {
-    return this.task.getProperty(controlId,PropType.Visible, rowId) == 1;
+    let vis: Boolean = this.getProperty(controlId,HtmlProperties.Visible, rowId) == true;
+    return vis;
   }
 
   getenable(controlId, rowId?) {
-    return this.task.getProperty(controlId,PropType.Enable, rowId) == 1;
+    let result = this.getProperty(controlId,HtmlProperties.Enabled, rowId) == true;
+    return result;
+  }
+  isDisabled(controlId, rowId?) {
+    let result = this.getProperty(controlId, HtmlProperties.Enabled, rowId);
+    return result == 1 ? null : true;
+  }
+  getProperty(controlId: string, prop: HtmlProperties, rowId?: string) {
+    return this.task.getProperty(controlId, prop, rowId);
   }
 
-  getgetFormat(controlId, rowId?)
-  {
-    return  this.task.getProperty(controlId, PropType.Format, rowId);
-  }
+  // getgetFormat(controlId, rowId?)
+  // {
+  //   return  this.task.getProperty(controlId, PropType.Format, rowId);
+  // }
 
   GetValue(controlId){
     return this.task.getValue(controlId);

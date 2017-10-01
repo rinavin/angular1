@@ -17,6 +17,7 @@ import {MainOnlineScreenComponent} from "./POS/mainOnlineScreen.component";
 import {ShoppingCartComponent} from "./POS/shoppingCart.component";
 import {Component} from "@angular/core";
 import {ComponentsListBase} from "./ComponentsListBase";
+import {CallSubformwithTableComponent} from "./demos/call.subfrom.with.table.component";
 
 
 export class ComponentsList extends ComponentsListBase{
@@ -35,7 +36,8 @@ export class ComponentsList extends ComponentsListBase{
      ["DemoImageButtonControlForm"]: DemoImageButtonControlComponent,
      ["DemoHyperTextButtonControlForm"]: DemoHyperTextButtonControlComponent,
      ["3_Main Online Screen"]: MainOnlineScreenComponent,
-     ["ShoppingCart"]: ShoppingCartComponent
+     ["ShoppingCart"]: ShoppingCartComponent,
+     ["CallSubformwithTable"]:CallSubformwithTableComponent
   };
 
   public getComponents(name: string) : Component

@@ -3,7 +3,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 
 export class ControlMetadata{
   controlType : string;
-  properties : Map<PropType,string>  = new Map();
+  properties : Map<HtmlProperties,string>  = new Map();
 
 }
 
@@ -17,6 +17,12 @@ export class ControlsMetadata {
   rowId: string;
   get Values(){
     return this.values;
+  }
+
+  getControlMetadata(controlId: string) {
+    if (!(controlId in this.ControlsProperties))
+      this.ControlsProperties[controlId] = new ControlMetadata();
+    return this.ControlsProperties[controlId];
   }
 
 
@@ -42,10 +48,10 @@ export class ControlsMetadata {
     }
   }
 
-  getProperty(controlId: string, prop: PropType) {
+  getProperty(controlId: string, prop: HtmlProperties) {
     if ( controlId in this.ControlsProperties) {
-      if (prop in this.ControlsProperties[controlId]) {
-        return this.ControlsProperties[controlId][prop];
+      if (prop in this.ControlsProperties[controlId].properties) {
+        return this.ControlsProperties[controlId].properties[prop];
       }
     }
     return "";
@@ -61,7 +67,7 @@ export class ControlsMetadata {
 
 export class Records {
   data: Map<string, ControlsMetadata> = new Map();
-  list:ControlsMetadata[]=[] ;
+  list:ControlsMetadata[]=[] ; //used for sequential access in table
 
   update(obj) {
 
@@ -82,9 +88,44 @@ export class Records {
     }
 
   }
+  updateSize(len:number) {
+    if (this.list.length != len) {
+      if (len < this.list.length) {
+        //remove rows
+        for (let i = len; i < this.list.length; i++) {
+          this.data.delete(i.toString());
+        }
+        this.list.length = len;
+      }
+      else {
+        //addRows
+        for (let i = this.list.length; i < len; i++) {
+          this.addRow(i.toString());
+        }
+      }
+    }
+  }
+
+  addRow(rowId: string ) {
+    this.data[rowId] = new ControlsMetadata();
+    this.data[rowId].rowId = rowId;
+    this.list[rowId] = this.data[rowId];
+  }
+  createFirst()
+  {
+    this.addRow("0");
+  }
+
   fromJson(data: string) {
     var obj = JSON.parse(data);
     this.update(obj);
   }
+
+}
+
+export enum HtmlProperties {
+  Visible = "visible",
+  Enabled = "enabled",
+  Text = "text"
 
 }

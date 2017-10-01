@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {MagicEngine} from "./magic.engine";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ControlsMetadata, Records} from "../controls.metadata.model";
+import {ControlsMetadata, HtmlProperties, Records} from "../controls.metadata.model";
 import {PropType} from "../ui/propType";
 import {isNullOrUndefined, isUndefined} from "util";
 import {Subject} from "rxjs/Subject";
@@ -16,7 +16,7 @@ export class TaskMagicService {
 
   _taskId: string;
 
-  ScreenControlsData: ControlsMetadata = new ControlsMetadata();
+
   Records: Records = new Records();
   selectedRow: number = 0;
   protected template: { [id: string]: string; };
@@ -25,6 +25,9 @@ export class TaskMagicService {
     this.template = value;
   }
 
+  get ScreenControlsData() {
+    return this.Records.list["0"];
+  }
 
   get ControlsMetadata() {
     return this.ScreenControlsData;
@@ -40,40 +43,61 @@ export class TaskMagicService {
   }
 
 
+  // row         : FormGroup;
+  rows: Array<FormGroup> = [];
+  ScreenModeControls: FormGroup;
+  //refreshUInput:Subject<any> = new Subject();
+  //refreshUInput:Observable<any>;
+  refreshDom: Subject<GuiCommand> = new Subject();
 
-   // row         : FormGroup;
-   rows        : FormGroup[] = [];
-   //refreshUInput:Subject<any> = new Subject();
-   //refreshUInput:Observable<any>;
-   refreshDom:Subject<GuiCommand> = new Subject();
   //sub:Subscription;
-
 
 
   constructor(protected magic: MagicEngine) {
     console.log(`task constructor: ${counter++}`);
   }
 
-  buildRecords() {
-    const group: FormGroup = new FormGroup({});//  this.rows[0];
+  buildScreenModeControls() {
+    const group: FormGroup = new FormGroup({});
     for (const key in this.template) {
 
       if (this.template[key] == '0')
-        group.addControl(key, new FormControl('')); // instead of this.obj[key]
+        group.addControl(key, new FormControl(''));
+    }
+
+    this.ScreenModeControls = group;
+  }
+
+
+  buildTableRowControls() {
+    const group: FormGroup = new FormGroup({});
+
+    for (const key in this.template) {
+
+      if (this.template[key] == '1')
+        group.addControl(key, new FormControl(''));
     }
 
     this.rows.push(group);
   }
 
-  buildTableRecords() {
-    const group: FormGroup = new FormGroup({});//  this.rows[0];
-    for (const key in this.template) {
+  updateTableSize(size: number)
+  {
 
-      if (this.template[key] == '1')
-        group.addControl(key, new FormControl('')); // instead of this.obj[key]
+    if (size == 0) //never remove row 0 for now
+      size = 1;
+    if (size < this.rows.length)
+      this.rows.length = size;
+    else
+    {
+      for (let i = this.rows.length;  i < size; i++)
+        this.buildTableRowControls();
     }
 
-    this.rows.push(group);
+    this.Records.updateSize(size);
+    console.log("in updateTableSize task = " + this.taskId);
+    console.log("this.rows.length = " + this.rows.length);
+    console.log("this.Records.list.length = " + this.Records.list.length);
   }
 
 
@@ -87,37 +111,16 @@ export class TaskMagicService {
        .filter(command=>command.TaskTag == this.taskId)
        .subscribe(command=>
      {
-       console.log("Task " + command.TaskTag + "command " + command.CommandType);
+       // console.log("Task " + command.TaskTag + "command " + command.CommandType);
       this.refreshDom.next(command);
      });
-     // this.registerRefreshUI(data=>{
-     //   let obj = JSON.parse(data);
-     //   //console.dir(obj);
-     //
-     //   for (let command in list) {
-     //
-     //     this.refreshDom.next(list[command]);
-     //   }
-     //
-     // });
-
-     // subscribe to input updates
-     //this.sub = this.refreshUInput
-       //.subscribe( controlsValues =>{
-         //this.record.patchValue(controlsValues);
-       //});
-
-    /* this.refreshDom = this.refreshUI
-         .map( obj => obj.ControlsMetaData);*/
 
    }
    onDestoryTask(){
      //this.sub.unsubscribe();
    }
 
-  get record() {
-    return this.rows[0];
-  }
+
    getTaskId(parentId, subformName) : string{
         return this.magic.getTaskId(parentId, subformName);
     }
@@ -144,11 +147,10 @@ export class TaskMagicService {
     this.magic.registerOpenSubformCallback(this.taskId, cb);
   }
 
-  getProperty(controlId: string, prop: PropType, rowId?: string) {
+  getProperty(controlId: string, prop: HtmlProperties, rowId?: string) {
     if (isNullOrUndefined(rowId))
-      return this.ScreenControlsData.getProperty(controlId, prop);
-    else
-      return this.Records.list[rowId].getProperty(controlId, prop);
+      rowId = "0";
+    return this.Records.list[rowId].getProperty(controlId, prop);
   }
 
   getRecords() {

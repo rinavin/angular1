@@ -3,6 +3,7 @@ import { BaseTaskMagicComponent } from "../magic/src/ui/app.baseMagicComponent";
 import { FormGroup } from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
 import {PropType} from "../magic/src/ui/propType";
+import {HtmlProperties} from "../magic/src/controls.metadata.model";
 
 
 @Component({
@@ -51,7 +52,7 @@ export class EnableVisibleTestComponent extends BaseTaskMagicComponent {
   }
 
   enabled(controlId: string) {
-    return this.task.getProperty(controlId,PropType.Enable) == 1;
+    return this.getProperty(controlId,HtmlProperties.Enabled) == 1;
   }
 
 

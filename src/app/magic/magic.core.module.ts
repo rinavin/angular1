@@ -29,6 +29,7 @@ import {MagicImageButtonComponent} from "./src/ui/magic-ImageButton.component";
 import {MagicHyperTextButtonComponent} from "app/magic/src/ui/magic-HyperTextButton.component";
 import {DemoHyperTextButtonControlComponent} from "../demos/DemoHyperTextButtonControl.component";
 import {ShoppingCartComponent} from "../POS/shoppingCart.component";
+import {CallSubformwithTableComponent} from "../demos/call.subfrom.with.table.component";
 
 const decs = [
   MagicDirectiveDirective,
@@ -61,7 +62,8 @@ const decs = [
     DemoImageControlComponent,
     DemoHyperTextButtonControlComponent,
     MainOnlineScreenComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    CallSubformwithTableComponent
   ]
 })
 export class MagicModule{

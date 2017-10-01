@@ -10,11 +10,14 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
     <h3>Called1 - TaskId: {{taskId}}</h3>
     <form novalidate [formGroup]="user">
       <label>
-        <span magic="idlabel" >{{gettext('idlabel')}}</span>
-        <input
+        <!--<span magic="idlabel" [ngStyle]="getStyle('idlabel')">{{gettext('idlabel')}}</span>-->
+        <span magic="idlabel" [style.visibility]="getvisible('idlabel') ? 'visible' : 'hidden'">{{gettext('idlabel')}}</span>
+
+        <input  [attr.disabled]="isDisabled('id')"
           type="text"
           magic="id"
           formControlName="id"
+          
         >
       </label>
       <br>

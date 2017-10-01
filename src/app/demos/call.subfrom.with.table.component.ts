@@ -24,9 +24,8 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
             <span>Name:</span>
             <input
                type="text"
-               magic="name"
-               [rowId]="1"
-               formControlName="name"
+               magic="name222"
+               formControlName="name222"
             >
          </label>
          <button magic="nextb" >Next</button>
