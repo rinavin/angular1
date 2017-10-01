@@ -2,6 +2,7 @@ import { Component  } from '@angular/core';
 import {BaseTaskMagicComponent} from "../magic/src/ui/app.baseMagicComponent";
 import {FormGroup} from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
+import {HtmlProperties} from "../magic/src/controls.metadata.model";
 
 @Component({
   selector: 'app-called1',
@@ -31,12 +32,35 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
       </label>
       <button magic="nextb" >Next</button>
       <button magic="prevb" >Prev</button>
+<br>
+      <br>
+      {{getListboxValues("c")}}
+      <br>
+      <!--<select [(ngModel)]="passenger.Title">-->
+        <!--<option *ngFor="#title of titleArray" [value]="title.Value">-->
+          <!--{{title.Text}}-->
+        <!--</option>-->
+      <!--</select>-->
+      <div magic="c">
+      <select     multiple>
+      
+        <option *ngFor="let o of getListboxValues('c')">{{o}}</option>
+        <!--<option value="volvo">Volvo</option>-->
+        <!--<option value="saab">Saab</option>-->
+        <!--<option value="opel">Opel</option>-->
+        <!--<option value="audi">Audi</option>-->
+      </select>
+      </div>
     </form>
   `
 })
 export class Called1Component extends BaseTaskMagicComponent {
 
-  get user(): FormGroup{
+  get user(): FormGroup {
     return this.record;
+  }
+
+  getListboxValues(id) {
+    return this.getProperty(id, HtmlProperties.ITEMS_LIST);
   }
 }

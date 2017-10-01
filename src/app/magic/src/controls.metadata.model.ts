@@ -3,7 +3,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 
 export class ControlMetadata{
   controlType : string;
-  properties : Map<HtmlProperties,string>  = new Map();
+  properties : Map<HtmlProperties,any>  = new Map();
 
 }
 
@@ -126,6 +126,7 @@ export class Records {
 export enum HtmlProperties {
   Visible = "visible",
   Enabled = "enabled",
-  Text = "text"
+  Text = "text",
+  ITEMS_LIST ="itemslist",
 
 }

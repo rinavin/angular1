@@ -6,7 +6,7 @@ import {GuiCommand} from "../services/GuiCommand";
 import {CommandType} from "./enums";
 import {Subform} from "./subform-component";
 import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
-import {ControlMetadata} from "../controls.metadata.model";
+import {ControlMetadata, HtmlProperties} from "../controls.metadata.model";
 import {isNullOrUndefined} from "util";
 
 @Directive({
@@ -41,6 +41,7 @@ export class MagicDirectiveDirective implements OnInit {
   regEvents(){
     //let htmlElement: HTMLElement = this.element.nativeElement;
     let events:string[]  = ['focus', 'click'];
+    console.log(" regEvents " + this.id)
 
     events.forEach(event => {
       this.htmlElement.addEventListener(event, (e) => {
@@ -76,8 +77,15 @@ export class MagicDirectiveDirective implements OnInit {
                   console.dir(this.task.Records);
                   debugger;
                   properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
-                  properties.properties[command.Operation] = command.str;
+                  if (command.Operation == HtmlProperties.ITEMS_LIST)
+                  {
+                    var obj = JSON.parse(command.str);
+                    properties.properties[command.Operation] = obj;
+                  }
+                  else
+                    properties.properties[command.Operation] = command.str;
                   console.log("after1");
+                  console.log("Operation="+command.Operation+" Value="+ command.str);
                   break;
                 case  CommandType.SET_VALUE:
                   console.log("before2 rowid =" + this.rowId + " taskid = " + this.task.taskId);
