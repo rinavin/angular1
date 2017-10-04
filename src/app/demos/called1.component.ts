@@ -21,6 +21,12 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           
         >
       </label>
+      <!--<span class="mgborder1 mgcolor1 alignmentright"-->
+        <!--magicId           ="idlabel"-->
+        <!--[ngStyle]         = "getStyle()" -->
+        <!--[ngClass]         = "getClass()"-->
+        <!--[dom-properties]  = ""-->
+        <!--&gt;</span>-->
       <br>
       <label>
         <span>Called1 Name111:</span>
@@ -42,13 +48,8 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
         <!--</option>-->
       <!--</select>-->
       <div magic="c">
-      <select     multiple>
-      
+      <select  multiple>
         <option *ngFor="let o of getListboxValues('c')">{{o}}</option>
-        <!--<option value="volvo">Volvo</option>-->
-        <!--<option value="saab">Saab</option>-->
-        <!--<option value="opel">Opel</option>-->
-        <!--<option value="audi">Audi</option>-->
       </select>
       </div>
     </form>
