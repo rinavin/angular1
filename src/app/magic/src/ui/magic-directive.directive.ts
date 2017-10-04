@@ -57,66 +57,12 @@ export class MagicDirectiveDirective implements OnInit {
           (((!isNullOrUndefined(updates.line))
           && updates.line.toString() == this.rowId) ||
             ( isNullOrUndefined(updates.line) && (this.rowId == "0" ||isNullOrUndefined(this.rowId) ))))
-      //move to method using bind
-        .subscribe( a=> {
+          .subscribe( a=> {
             let command: GuiCommand = a;
             if (isNullOrUndefined(this.rowId))
               this.rowId = '0';
              try {
-              switch (command.CommandType) {
-                case CommandType.SET_PROPERTY:
-                  // this.renderer.setProperty(
-                  //   this.htmlElement,
-                  //   command.Operation,
-                  //   command.str
-                  // );
-                  let properties: ControlMetadata;
-                  console.log("before1");
-                  console.log("this.rowId = " + this.rowId);
-                  console.log("this.id = " + this.id);
-                  console.dir(this.task.Records);
-                  debugger;
-                  properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
-                  if (command.Operation == HtmlProperties.ITEMS_LIST)
-                  {
-                    var obj = JSON.parse(command.str);
-                    properties.properties[command.Operation] = obj;
-                  }
-                  else
-                    properties.properties[command.Operation] = command.str;
-                  console.log("after1");
-                  console.log("Operation="+command.Operation+" Value="+ command.str);
-                  break;
-                case  CommandType.SET_VALUE:
-                  console.log("before2 rowid =" + this.rowId + " taskid = " + this.task.taskId);
-
-                  console.log("length = " + this.task.rows.length);
-                  console.dir(this.task.rows[this.rowId]);
-                  if (this.rowId in this.task.rows)
-                  {
-                    let group = this.task.rows[this.rowId];
-                    if (this.id in group.controls)
-                      group.controls.controls[this.id].setValue(command.str);
-                  }
-
-                  else
-                    this.task.ScreenModeControls.controls[this.id].setValue(command.str);
-                  console.log("after2");
-                  break;
-                case CommandType.SET_ATTRIBITE:
-                  if (command.Operation == "readOnly" && command.str != "true")
-                    this.renderer.removeAttribute(this.htmlElement, command.Operation);
-                  else
-                    this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
-                  break;
-                case CommandType.CREATE_SUB_FORM:
-                  console.log("CREATE_SUB_FORM!!!");
-                  console.dir(command);
-                  this.component.addSubformComp(command.CtrlName, command.userDropFormat.toString(), command.str, command.fileName.toString());
-                  ;
-                  break;
-
-              }
+               this.handleCommand(command);
             }
             catch (ex)
             {
@@ -129,6 +75,61 @@ export class MagicDirectiveDirective implements OnInit {
 
     }
 
+
+  private handleCommand(command: GuiCommand) {
+    switch (command.CommandType) {
+      case CommandType.SET_PROPERTY:
+        // this.renderer.setProperty(
+        //   this.htmlElement,
+        //   command.Operation,
+        //   command.str
+        // );
+        let properties: ControlMetadata;
+        console.log("before1");
+        console.log("this.rowId = " + this.rowId);
+        console.log("this.id = " + this.id);
+        console.dir(this.task.Records);
+        debugger;
+        properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
+        if (command.Operation == HtmlProperties.ITEMS_LIST) {
+          var obj = JSON.parse(command.str);
+          properties.properties[command.Operation] = obj;
+        }
+        else
+          properties.properties[command.Operation] = command.str;
+        console.log("after1");
+        console.log("Operation=" + command.Operation + " Value=" + command.str);
+        break;
+      case  CommandType.SET_VALUE:
+        console.log("before2 rowid =" + this.rowId + " taskid = " + this.task.taskId);
+
+        console.log("length = " + this.task.rows.length);
+        console.dir(this.task.rows[this.rowId]);
+        if (this.rowId in this.task.rows) {
+          let group = this.task.rows[this.rowId];
+          if (this.id in group.controls)
+            group.controls.controls[this.id].setValue(command.str);
+        }
+
+        else
+          this.task.ScreenModeControls.controls[this.id].setValue(command.str);
+        console.log("after2");
+        break;
+      case CommandType.SET_ATTRIBITE:
+        if (command.Operation == "readOnly" && command.str != "true")
+          this.renderer.removeAttribute(this.htmlElement, command.Operation);
+        else
+          this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
+        break;
+      case CommandType.CREATE_SUB_FORM:
+        console.log("CREATE_SUB_FORM!!!");
+        console.dir(command);
+        this.component.addSubformComp(command.CtrlName, command.userDropFormat.toString(), command.str, command.fileName.toString());
+        ;
+        break;
+
+    }
+  }
 
   ngOnInit(): void {
     /*console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
