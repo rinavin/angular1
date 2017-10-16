@@ -198,6 +198,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   //   };
   //   return styles;}
 
+  getClasses(controlId, rowId?) {
+    //return 'one two ';
+    return this.task.getClasses(controlId, rowId);
+  }
   getvisible(controlId, rowId?) {
     let vis: Boolean = this.getProperty(controlId,HtmlProperties.Visible, rowId) == true;
     return vis;

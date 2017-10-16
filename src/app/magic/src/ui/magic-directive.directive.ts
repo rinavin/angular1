@@ -9,6 +9,7 @@ import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 import {ControlMetadata, HtmlProperties} from "../controls.metadata.model";
 import {isNullOrUndefined} from "util";
 
+
 @Directive({
   selector: '[magic]'
 })
@@ -66,7 +67,6 @@ export class MagicDirectiveDirective implements OnInit {
             }
             catch (ex)
             {
-              console.log ("!!!!!!!!!!")
               console.dir(ex);
             }
           }
@@ -85,9 +85,7 @@ export class MagicDirectiveDirective implements OnInit {
         //   command.str
         // );
         let properties: ControlMetadata;
-        console.log("before1");
-        console.log("this.rowId = " + this.rowId);
-        console.log("this.id = " + this.id);
+
         console.dir(this.task.Records);
         debugger;
         properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
@@ -97,9 +95,9 @@ export class MagicDirectiveDirective implements OnInit {
         }
         else
           properties.properties[command.Operation] = command.str;
-        console.log("after1");
-        console.log("Operation=" + command.Operation + " Value=" + command.str);
+
         break;
+
       case  CommandType.SET_VALUE:
         console.log("before2 rowid =" + this.rowId + " taskid = " + this.task.taskId);
 
@@ -120,6 +118,12 @@ export class MagicDirectiveDirective implements OnInit {
           this.renderer.removeAttribute(this.htmlElement, command.Operation);
         else
           this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
+        break;
+      case CommandType.SET_CLASS:
+        console.log("Classes");
+        properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
+        properties.setClass(command.Operation,command.str);
+
         break;
       case CommandType.CREATE_SUB_FORM:
         console.log("CREATE_SUB_FORM!!!");

@@ -1,9 +1,24 @@
 import {PropType} from "./ui/propType";
 import {forEach} from "@angular/router/src/utils/collection";
 
-export class ControlMetadata{
-  controlType : string;
-  properties : Map<HtmlProperties,any>  = new Map();
+export class ControlMetadata {
+  controlType: string;
+  properties: Map<HtmlProperties, any> = new Map();
+  classesMap: Map<HtmlClasses, any> = new Map();
+  classes: string  ;
+
+  setClass(key, value) {
+    this.classesMap[key] = value;
+    let result = '';
+
+    for (let key in this.classesMap) {
+      result+= this.classesMap[key] + ' ';
+    }
+    this.classes = result;
+
+
+
+  }
 
 }
 
@@ -128,5 +143,12 @@ export enum HtmlProperties {
   Enabled = "enabled",
   Text = "text",
   ITEMS_LIST ="itemslist",
+
+
+}
+
+export enum HtmlClasses {
+  Color = "color",
+  font = "font"
 
 }

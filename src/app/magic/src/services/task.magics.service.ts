@@ -153,6 +153,13 @@ export class TaskMagicService {
     return this.Records.list[rowId].getProperty(controlId, prop);
   }
 
+  getClasses(controlId: string, rowId?: string): string {
+     if (isNullOrUndefined(rowId))
+       rowId = "0";
+    return this.Records.list[rowId].getControlMetadata(controlId).classes;
+
+  }
+
   getRecords() {
     return this.Records.data;
   }

@@ -12,7 +12,9 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
     <form novalidate [formGroup]="user">
       <label>
         <!--<span magic="idlabel" [ngStyle]="getStyle('idlabel')">{{gettext('idlabel')}}</span>-->
-        <span magic="idlabel" [style.visibility]="getvisible('idlabel') ? 'visible' : 'hidden'">{{gettext('idlabel')}}</span>
+        <span magic="idlabel"
+              [ngClass] = "getClasses('idlabel')"
+              [style.visibility]="getvisible('idlabel') ? 'visible' : 'hidden'">{{gettext('idlabel')}}</span>
 
         <input  [attr.disabled]="isDisabled('id')"
           type="text"
@@ -28,7 +30,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
         <!--[dom-properties]  = ""-->
         <!--&gt;</span>-->
       <br>
-      <label>
+      <label class="mgcolor3 ">
         <span>Called1 Name111:</span>
         <input
           type="text"
@@ -49,7 +51,9 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
       <!--</select>-->
       <div magic="c">
       <select  multiple>
-        <option *ngFor="let o of getListboxValues('c')">{{o}}</option>
+        <option *ngFor="let o of getListboxValues('c')">
+          {{o}}
+        </option>
       </select>
       </div>
     </form>

@@ -469,6 +469,122 @@ select:invalid { color: gray; }
 .tbmar5 { margin-top:5px; margin-bottom:5px; }
 .tbmar10 { margin-top:10px!important; margin-bottom:10px !important; }
 .tbmar20 { margin-top:20px !important; margin-bottom:20px !important ; }
+
+body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  font-family: "Open Sans",Arial,sans-serif;
+}
+.mgcolor1 {
+  background-color: rgb(255, 68, 118);
+}
+
+.mgFgColor1 {
+  color: rgba(0,0,0,255);
+}
+
+.mgcolor {
+  background-color: rgba(255,255,255,255);
+}
+
+.mgFgColor2 {
+  color: rgba(0,0,0,255);
+}
+
+.mgcolor3 {
+  background-color: rgba(171,171,171,255);
+}
+
+.mgFgColor3 {
+  color: rgba(0,128,255,255);
+}
+
+.mgfont1 {
+  font-family:Microsoft Sans Serif;
+  font-size:32px;
+  font-style:normal;
+  font-weight:normal;
+}
+
+.mgfont2 {
+  font-family:Aharoni;
+  font-size:24px;
+  font-style:italic;
+  font-weight:normal;
+}
+
+.mgfont3 {
+  font-family:"Open Sans", Arial, sans-serif;
+  font-size: 24px;
+  font-style:normal;
+  font-weight:normal;
+}
+
+.mgfont4 {
+  font-family:Microsoft Sans Serif;
+  font-size:8px;
+  font-style:normal;
+  font-weight:bold;
+}
+
+.mgfont5 {
+  font-family:Microsoft Sans Serif;
+  font-size:14px;
+  font-style:normal;
+  font-weight:normal;
+}
+
+.mgfont6 {
+  font-family:Microsoft Sans Serif;
+  font-size:8px;
+  font-style:normal;
+  font-weight:normal;
+}
+
+.mgfont7 {
+  font-family:Courier New;
+  font-size:12px;
+  font-style:normal;
+  font-weight:normal;
+}
+
+.mgfont8 {
+  font-family:Microsoft Sans Serif;
+  font-size:32px;
+  font-style:normal;
+  font-weight:normal;
+}
+
+.mgfont9 {
+  font-family:Microsoft Sans Serif;
+  font-size:8px;
+  font-style:normal;
+  font-weight:normal;
+}
+
+.mgfont10 {
+  font-family:Microsoft Sans Serif;
+  font-size:8px;
+  font-style:normal;
+  font-weight:normal;
+}
+.one {
+  color: green;
+}
+.two {
+  font-size: 20px;
+}
+.three {
+  color: red;
+}
+.four {
+  font-size: 15px;
+}
+
+
 /***** General override styles end *****/
 
 
