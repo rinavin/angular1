@@ -15,7 +15,7 @@ import {ControlsMetadata} from "../magic/src/controls.metadata.model";
   template: `
     <div>
       <h1>TableTest</h1>
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
       <!--<label>-->
         <!--&lt;!&ndash;<span>{{GetProperty('idlabel', propType.Text )}}</span>&ndash;&gt;-->
         <!---->
@@ -57,9 +57,7 @@ export class TableTestComponent extends BaseTaskMagicComponent {
 
 
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
   getmyform(id:string):FormGroup {
     console.log("getmyform" + id );
     console.dir(this.task.rows);

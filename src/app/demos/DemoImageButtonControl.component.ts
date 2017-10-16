@@ -8,7 +8,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   selector: 'SeeButtonControl',
   providers: [TaskMagicService],
   template: `
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
       <label>
         <m-label controlId="idlabel"></m-label>
         <input
@@ -34,9 +34,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 })
 export class DemoImageButtonControlComponent extends BaseTaskMagicComponent {
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
 
 }
 

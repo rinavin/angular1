@@ -10,7 +10,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   //language=Angular2HTML
   template: `
       <h3>Call Table Test {{taskId}}</h3>
-      <form novalidate [formGroup]="user">
+      <form novalidate [formGroup]="screenFormGroup">
          <label>
             <span>Id:</span>
             <input
@@ -41,9 +41,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 })
 export class  CallSubformwithTableComponent extends BaseTaskMagicComponent{
    subform1Name: string = "mysubform1";
-   get user(): FormGroup{
-      return this.record;
-   }
+
 
 }
 

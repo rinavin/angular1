@@ -16,7 +16,7 @@ import {PropType} from "../magic/src/ui/propType";
       <link rel="stylesheet" href="https://unpkg.com/neo-assets@1/dist/css/neo.min.css">
       <link rel="stylesheet" href="https://unpkg.com/neo-assets@1.3.0/dist/css/neo-checkbox-radio.min.css">
       <script src="https://unpkg.com/neo-assets@1/dist/js/neo.min.js"></script>
-      <form novalidate [formGroup]="user">
+      <form novalidate [formGroup]="screenFormGroup">
          <br> <br>
         <div class="pull-right col-xs-12 col-sm-12 col-md-4 rpad0">
 

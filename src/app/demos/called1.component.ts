@@ -9,7 +9,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
   providers: [TaskMagicService],
   template: `
     <h3>Called1 - TaskId: {{taskId}}</h3>
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
       <label>
         <!--<span magic="idlabel" [ngStyle]="getStyle('idlabel')">{{gettext('idlabel')}}</span>-->
         <span magic="idlabel"
@@ -61,9 +61,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
 })
 export class Called1Component extends BaseTaskMagicComponent {
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
 
   getListboxValues(id) {
     return this.getProperty(id, HtmlProperties.ITEMS_LIST);

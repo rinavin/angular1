@@ -11,7 +11,7 @@ import {ComponentsList} from "../components";
    providers: [TaskMagicService],
    template: `
       <h3>Demo 2 With NgContainer - TaskId: {{taskId}}</h3>
-      <form novalidate [formGroup]="user">
+      <form novalidate [formGroup]="screenFormGroup">
          <label>
             <span>Id:</span>
             <input
@@ -48,9 +48,7 @@ export class  Demo2WithNgContainerComponent extends BaseTaskMagicComponent imple
 
   subForms:any = {}
 
-   get user(): FormGroup{
-      return this.record;
-   }
+
 
    ngOnInit(){
      super.ngOnInit();

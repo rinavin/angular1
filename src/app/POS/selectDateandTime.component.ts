@@ -19,7 +19,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
     <link rel="stylesheet" href="https://unpkg.com/neo-assets@1/dist/css/neo.min.css">
     <link rel="stylesheet" href="https://unpkg.com/neo-assets@1.3.0/dist/css/neo-checkbox-radio.min.css">
 
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
 
       <div class="mainbody">
         <div class="row">
@@ -94,9 +94,7 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
 
   orgValueCallback: any;
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
 
   constructor(ref: ChangeDetectorRef,
               task: TaskMagicService,

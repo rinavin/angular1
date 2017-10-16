@@ -8,7 +8,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   providers: [TaskMagicService],
   template: `
     <h3>Called2 - TaskId: {{taskId}}</h3>
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
       <label>
         <span>Called2 Id111:</span>
         <input
@@ -33,7 +33,5 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 })
 export class Called2Component extends BaseTaskMagicComponent {
 
-  get user(): FormGroup{
-    return this.record;
-  }
+
 }

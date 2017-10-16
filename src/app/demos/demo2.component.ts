@@ -9,7 +9,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
    providers: [TaskMagicService],
    template: `
       <h3>Demo 2 - TaskId: {{taskId}}</h3>
-      <form novalidate [formGroup]="user">
+      <form novalidate [formGroup]="screenFormGroup">
          <label>
             <span>Id:</span>
             <input
@@ -41,9 +41,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 })
 export class  Demo2Component extends BaseTaskMagicComponent{
    subform1Name: string = "mysubform1";
-   get user(): FormGroup{
-      return this.record;
-   }
+
 
 }
 

@@ -15,7 +15,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
    providers: [TaskMagicService],
    template: `
       <h3>Demo 2.1 - TaskId: {{taskId}}</h3>
-      <form novalidate [formGroup]="user">
+      <form novalidate [formGroup]="screenFormGroup">
          <label>
             <span>Id111:</span>
             <input
@@ -48,7 +48,5 @@ export class InnerComponent extends BaseTaskMagicComponent{
    @Input() parentId: string;
 //extends BaseTaskMagicComponent{
 
-    get user(): FormGroup{
-       return this.record;
-    }
+
 }

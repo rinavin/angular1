@@ -14,7 +14,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   providers: [TaskMagicService],
   template: `
     <link rel="stylesheet" href="https://unpkg.com/neo-assets@1/dist/css/neo.min.css">
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
       orderlocation
       <!--<m-label controlId="selectlocation"></m-label>-->
       <ul>
@@ -32,7 +32,5 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 export class OrderLocation extends BaseTaskMagicComponent {
 
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
 }

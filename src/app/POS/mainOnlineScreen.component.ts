@@ -18,7 +18,7 @@ import {ComponentsList} from "../components";
         <!--<div style="width: 100%; display: table;">-->
           <!--<div style="display: table-row">-->
             <!--<div style="width: 600px; display: table-cell;">-->
-              <form novalidate [formGroup]="user">
+              <form novalidate [formGroup]="screenFormGroup">
                 <br>
                 <m-image controlId="restaurant_name_banner" class="posbannerimg"></m-image>
                 <h2><input
@@ -70,9 +70,7 @@ export class MainOnlineScreenComponent extends BaseTaskMagicComponent {
   SubTree: Component;
   parameters: any;
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
 
   ngOnInit() {
     super.ngOnInit();

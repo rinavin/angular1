@@ -10,7 +10,7 @@ import {ComponentsList} from "../components";
   selector: 'runme',
   providers: [TaskMagicService],
   template: `
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
       <nav>
         rumne
         <img magic="logo"/>
@@ -43,9 +43,6 @@ export class RunmeComponent extends BaseTaskMagicComponent {
   parameters: any;
 
 
-  get user(): FormGroup {
-    return this.record;
-  }
 
   ngOnInit() {
     super.ngOnInit();

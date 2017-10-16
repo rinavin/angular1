@@ -89,6 +89,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     }
   }
 
+  get screenFormGroup(): FormGroup {
+    return this.record;
+  }
+
   constructor(protected ref: ChangeDetectorRef,
               protected task: TaskMagicService,
               //protected magic:MagicEngine

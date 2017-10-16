@@ -10,7 +10,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
   selector: 'enable-visible',
   providers: [TaskMagicService],
   template: `
-    <form novalidate [formGroup]="user">
+    <form novalidate [formGroup]="screenFormGroup">
       <label>
         <m-label controlId="idlabel"></m-label>
         <input
@@ -47,9 +47,7 @@ export class EnableVisibleTestComponent extends BaseTaskMagicComponent {
 
   disabled1:boolean = false;
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
 
   enabled(controlId: string) {
     return this.getProperty(controlId,HtmlProperties.Enabled) == 1;

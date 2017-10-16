@@ -9,7 +9,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
    selector: 'demo1',
    providers: [TaskMagicService],
    template: `
-      <form novalidate [formGroup]="user">
+      <form novalidate [formGroup]="screenFormGroup">
          <label>
             <!--<span>{{GetProperty('idlabel', propType.Text )}}</span>-->
            <span magic="idlabel"></span>
@@ -51,10 +51,6 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 export class Demo1Component extends BaseTaskMagicComponent {
 
 
-
-      get user(): FormGroup {
-            return this.record;
-      }
 
 
 
