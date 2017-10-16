@@ -194,6 +194,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   gettext(controlId, rowId?){
     return this.task.getProperty(controlId,HtmlProperties.Text, rowId );
   }
+
+  getImage(controlId, rowId?){
+    return this.task.getProperty(controlId, HtmlProperties.Image, rowId );
+  }
   // getStyle(controlId, rowId?) {
   //   let styles = {
   //     'background-color': 'red' ,
@@ -229,7 +233,9 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   // }
 
   GetValue(controlId){
-    return this.task.getValue(controlId);
+    let val = this.task.getValue(controlId);
+    console.log("Value = " + val);
+    return val;
   }
 }
 interface SubformDefinition {

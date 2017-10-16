@@ -143,6 +143,7 @@ export enum HtmlProperties {
   Enabled = "enabled",
   Text = "text",
   ITEMS_LIST ="itemslist",
+  Image = "image"
 
 
 }
