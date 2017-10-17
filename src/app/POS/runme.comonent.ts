@@ -12,12 +12,11 @@ import {ComponentsList} from "../components";
   template: `
     <form novalidate [formGroup]="screenFormGroup">
       <nav>
-        rumne
-        <img magic="logo"/>
        
+        <img magic="logo" [src]="getImage('logo')"/>
         <div class="dropdown">
-          <m-label controlId="welcome"></m-label>
-          <span magic="welcome"></span>
+          <span controlId="welcome"></span>
+          <span magic="welcome"> {{gettext('welcome')}}</span>
           <i class="fa fa-caret-down"></i>
           <div class="buttons">
             <button>Profile</button>
@@ -27,9 +26,7 @@ import {ComponentsList} from "../components";
         </div>
       </nav>
       <div>
-        <!--<ndc-dynamic [ndcDynamicComponent]="MainCanvas"-->
-                     <!--[ndcDynamicInputs]="parameters">-->
-        <!--</ndc-dynamic>-->
+       
         <ndc-dynamic magic="MainCanvas"[ndcDynamicComponent]="getComp('MainCanvas')"
                      [ndcDynamicInputs]="getParameters('MainCanvas')">
         </ndc-dynamic>

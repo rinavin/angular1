@@ -161,7 +161,14 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return
   }
 
+  getFormGroupByRow(id: string): FormGroup {
+    return this.task.rows[id];
+  }
 
+  ifRowCreated(id: string):boolean{
+    let result = this.getFormGroupByRow(id);
+    return  !isNullOrUndefined(result);
+  }
 
   regUpdatesUI(){
     this.task

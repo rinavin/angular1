@@ -99,19 +99,9 @@ export class MagicDirectiveDirective implements OnInit {
         break;
 
       case  CommandType.SET_VALUE:
-        console.log("before2 rowid =" + this.rowId + " taskid = " + this.task.taskId);
+        let group = this.rowId in this.task.rows ? this.task.rows[this.rowId] : this.task.ScreenModeControls;
+        group.controls[this.id].setValue(command.str);
 
-        console.log("length = " + this.task.rows.length);
-        console.dir(this.task.rows[this.rowId]);
-        if (this.rowId in this.task.rows) {
-          let group = this.task.rows[this.rowId];
-          if (this.id in group.controls)
-            group.controls.controls[this.id].setValue(command.str);
-        }
-
-        else
-          this.task.ScreenModeControls.controls[this.id].setValue(command.str);
-        console.log("after2");
         break;
       case CommandType.SET_ATTRIBITE:
         if (command.Operation == "readOnly" && command.str != "true")
@@ -141,8 +131,7 @@ export class MagicDirectiveDirective implements OnInit {
 
     this.regEvents();
     this.regUpdatesUI();
-
-    //console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
+   //console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
 
     //if (htmlElement instanceof  HTMLInputElement  ){
     //   (<HTMLInputElement >htmlElement).property
