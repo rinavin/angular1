@@ -28,11 +28,11 @@ import {isNullOrUndefined} from "util";
         <!--</label>-->
         <!--<br>-->
 
-        <ul>
+        <ul style="list-style: none;padding: 0">
           <li *ngFor="let o of task.Records.list">
             <!--[formGroupName]="o.rowId"-->
             <div *ngIf="ifRowCreated(o.rowId)">
-              <ul style="list-style: none;padding: 0">
+              
               <form [formGroup]="getFormGroupByRow(o.rowId)">
                 <input
                   type="text"
@@ -44,7 +44,7 @@ import {isNullOrUndefined} from "util";
                 <button magic="clickme" [rowId]="o.rowId"> ClickMe</button>
 
               </form>
-              </ul>
+              
             </div>
 
           </li>
