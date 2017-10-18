@@ -101,8 +101,8 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
               public app: ApplicationRef) {
     super(ref, task);
     this.orgValueCallback = this.getvalueCallback;
-    this.getvalueCallback = (controlKey: string) => {
-      let val = this.orgValueCallback(controlKey);
+    this.getvalueCallback = (rowId:string, controlKey: string) => {
+      let val = this.orgValueCallback(rowId, controlKey);
       if (controlKey == 'vTime') {
         debugger;
         let date: Date = val;

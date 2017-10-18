@@ -83,10 +83,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return this.task.taskId;
   }
 
-  protected getvalueCallback = (controlKey: string) => {
-    if (this.record.contains(controlKey)) {
-      return this.record.get(controlKey).value;
-    }
+  protected getvalueCallback = (rowId: string, controlKey: string) => {
+    let result = this.task.getFormControl(rowId,controlKey);
+    if (!isNullOrUndefined(result))
+      return result.value;
   }
 
   get screenFormGroup(): FormGroup {
