@@ -110,9 +110,7 @@ import {PropType} from "../magic/src/ui/propType";
 
 export class ShoppingCartComponent extends BaseTaskMagicComponent {
 
-  get user(): FormGroup {
-    return this.record;
-  }
+
 
   visible(controlId: string, rowId?: string) {
     return this.getvisible(controlId, rowId);

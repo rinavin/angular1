@@ -18,15 +18,15 @@ import {isNullOrUndefined} from "util";
     <div>
       <h1>TableTest</h1>
       <form novalidate [formGroup]="screenFormGroup">
-        <!--<label>-->
-        <!--&lt;!&ndash;<span>{{GetProperty('idlabel', propType.Text )}}</span>&ndash;&gt;-->
-        <!---->
-        <!--<input-->
-        <!--type="text"-->
-        <!--magic="seeId"-->
-        <!--formControlName="seeId">-->
-        <!--</label>-->
-        <!--<br>-->
+        <label>
+        <span>{{gettext('idlabel')}}</span>
+        
+        <input
+        type="text"
+        magic="seeId"
+        formControlName="seeId">
+        </label>
+        <br>
 
         <ul style="list-style: none;padding: 0">
           <li *ngFor="let o of task.Records.list">

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {MagicEngine} from "./magic.engine";
-import {FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {ControlsMetadata, HtmlProperties, Records} from "../controls.metadata.model";
 import {PropType} from "../ui/propType";
 import {isNullOrUndefined, isUndefined} from "util";
@@ -66,6 +66,16 @@ export class TaskMagicService {
     }
 
     this.ScreenModeControls = group;
+  }
+  isTableControl(id:string):boolean{
+    return this.template[id] == '1';
+  }
+
+  getFormControl(rowId:string,id:string):AbstractControl
+  {
+    let group:FormGroup = this.isTableControl(id)? this.rows[rowId] :this.ScreenModeControls;
+    let c: AbstractControl = group.controls[id];
+    return c;
   }
 
 

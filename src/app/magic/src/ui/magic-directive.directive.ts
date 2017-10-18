@@ -99,8 +99,9 @@ export class MagicDirectiveDirective implements OnInit {
         break;
 
       case  CommandType.SET_VALUE:
-        let group = this.rowId in this.task.rows ? this.task.rows[this.rowId] : this.task.ScreenModeControls;
-        group.controls[this.id].setValue(command.str);
+        console.log(`SET_VALUE: ${this.task.taskId}, property:${this.id}`);
+        let c = this.task.getFormControl( this.rowId, this.id);
+        c.setValue(command.str);
 
         break;
       case CommandType.SET_ATTRIBITE:
