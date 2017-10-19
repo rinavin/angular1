@@ -99,9 +99,15 @@ export class MagicDirectiveDirective implements OnInit {
         break;
 
       case  CommandType.SET_VALUE:
-        console.log(`SET_VALUE: ${this.task.taskId}, property:${this.id}`);
+        console.log(`SET_VALUE: ${this.task.taskId},rowId = ${this.rowId} property:${this.id} value ${command.str}`);
+        this.task.Records.list[this.rowId].values[this.id] = command.str
+        console.dir(this.task.Records.list[this.rowId].Values);
+
         let c = this.task.getFormControl( this.rowId, this.id);
-        c.setValue(command.str);
+        if (!isNullOrUndefined(c))
+          c.setValue(command.str);
+        else
+          console.log("Not found control for " + this.id);
 
         break;
       case CommandType.SET_ATTRIBITE:
