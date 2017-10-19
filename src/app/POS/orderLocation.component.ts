@@ -12,17 +12,40 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 @Component({
   selector: 'order-location',
   providers: [TaskMagicService],
+  styles: [
+    'input {\n' +
+    '  border: none;\n' +
+    '  background: transparent;\n' +
+    '  width: 60px;\n' +
+    '  \n' +
+    '}'
+  ],
   template: `
     <link rel="stylesheet" href="https://unpkg.com/neo-assets@1/dist/css/neo.min.css">
     <form novalidate [formGroup]="screenFormGroup">
-      orderlocation
       <!--<m-label controlId="selectlocation"></m-label>-->
       <ul>
-        <li class="col-xs-6 col-sm-4 col-md-3" *ngFor="let o of task.Records.list" magic="Index1">
-            <div>{{o.values['Index1']}}</div>
-            <div>Delivery Hours</div> 
-            <span magic="STORE1OpenTime">{{o.values['STORE1OpenTime']}}-</span>
-            <span magic="STORE1CloseTime">{{o.values['STORE1CloseTime']}}</span>
+        <li class="col-xs-6 col-sm-4 col-md-3" *ngFor="let o of task.Records.list" >
+          
+          <div *ngIf="ifRowCreated(o.rowId)">
+            
+            <form [formGroup]="getFormGroupByRow(o.rowId)">
+              <span magic="Index1" [rowId]="o.rowId">{{o.values['Index1']}}</span>
+              <p magic="deliverylabel" [rowId]="o.rowId">{{gettext('deliverylabel', o.rowId)}}</p>
+              <input
+                type="text"
+                magic="STORE1OpenTime"
+                [rowId]="o.rowId"
+                formControlName="STORE1OpenTime">
+              -
+              <input
+                type="text"
+                magic="STORE1CloseTime"
+                [rowId]="o.rowId"
+                formControlName="STORE1CloseTime">
+            </form>
+
+          </div>
         </li>
       </ul>
 
@@ -30,7 +53,6 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
   `
 })
 export class OrderLocation extends BaseTaskMagicComponent {
-
 
 
 }

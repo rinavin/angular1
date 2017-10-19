@@ -192,6 +192,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
              console.log("SET_TABLE_ITEMS_COUNT " + command.number);
              if (!isUndefined(command.number))
                this.task.updateTableSize(command.number);
+             this.ref.detectChanges();
+             break;
+           case CommandType.SET_VALUE:
+             console.log(`BASE SET_VALUE: ${command.TaskTag},rowId = ${command.line} property:${command.CtrlName} value ${command.str}`);
              break;
          }
 
