@@ -238,6 +238,9 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return this.task.getProperty(controlId, prop, rowId);
   }
 
+  gettitle(controlId, rowId?) {
+    return this.task.getProperty(controlId, HtmlProperties.Tooltip, rowId );
+  }
   // getgetFormat(controlId, rowId?)
   // {
   //   return  this.task.getProperty(controlId, PropType.Format, rowId);

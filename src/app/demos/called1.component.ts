@@ -14,11 +14,13 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
         <!--<span magic="idlabel" [ngStyle]="getStyle('idlabel')">{{gettext('idlabel')}}</span>-->
         <span magic="idlabel"
               [ngClass] = "getClasses('idlabel')"
-              [style.visibility]="getvisible('idlabel') ? 'visible' : 'hidden'">{{gettext('idlabel')}}</span>
+              [style.visibility]="getvisible('idlabel') ? 'visible' : 'hidden'"
+        >{{gettext('idlabel')}}</span>
 
         <input  [attr.disabled]="isDisabled('id')"
           type="text"
           magic="id"
+          [title]="gettitle('id')"
         >
       </label>
       <!--<span class="mgborder1 mgcolor1 alignmentright"-->
