@@ -89,7 +89,7 @@ export class MagicDirectiveDirective implements OnInit {
         console.dir(this.task.Records);
         debugger;
         properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
-        if (command.Operation == HtmlProperties.ITEMS_LIST) {
+        if (command.Operation == HtmlProperties.ItemsList) {
           var obj = JSON.parse(command.str);
           properties.properties[command.Operation] = obj;
         }

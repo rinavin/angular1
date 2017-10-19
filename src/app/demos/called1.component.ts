@@ -64,6 +64,6 @@ export class Called1Component extends BaseTaskMagicComponent {
   }
 
   getListboxValues(id) {
-    return this.getProperty(id, HtmlProperties.ITEMS_LIST);
+    return this.getProperty(id, HtmlProperties.ItemsList);
   }
 }
