@@ -30,6 +30,7 @@ import {MagicHyperTextButtonComponent} from "app/magic/src/ui/magic-HyperTextBut
 import {DemoHyperTextButtonControlComponent} from "../demos/DemoHyperTextButtonControl.component";
 import {ShoppingCartComponent} from "../POS/shoppingCart.component";
 import {CallSubformwithTableComponent} from "../demos/call.subfrom.with.table.component";
+import {MagicDefaultValueAccessor, MagicFormControlNameDirective} from "./src/ui/magic.form-control-name.directive";
 
 const decs = [
   MagicDirectiveDirective,
@@ -37,7 +38,10 @@ const decs = [
   MagicCheckboxComponent,
   MagicImageComponent,
   MagicImageButtonComponent,
-  MagicHyperTextButtonComponent
+  MagicHyperTextButtonComponent,
+  MagicDefaultValueAccessor,
+  MagicFormControlNameDirective,
+
 ];
 
 @NgModule({

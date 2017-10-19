@@ -19,8 +19,6 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
         <input  [attr.disabled]="isDisabled('id')"
           type="text"
           magic="id"
-          formControlName="id"
-          
         >
       </label>
       <!--<span class="mgborder1 mgcolor1 alignmentright"-->
@@ -61,7 +59,9 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
 })
 export class Called1Component extends BaseTaskMagicComponent {
 
-
+  get user(): FormGroup {
+    return this.record;
+  }
 
   getListboxValues(id) {
     return this.getProperty(id, HtmlProperties.ITEMS_LIST);
