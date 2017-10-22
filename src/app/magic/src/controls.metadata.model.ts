@@ -142,8 +142,9 @@ export enum HtmlProperties {
   Visible = "visible",
   Enabled = "enabled",
   Text = "text",
-  ITEMS_LIST ="itemslist",
-  Image = "image"
+  ItemsList ="itemslist",
+  Image = "image",
+  Tooltip = "tooltip"
 
 
 }
