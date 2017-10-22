@@ -84,31 +84,10 @@ export class MagicDirectiveDirective implements OnInit {
         //   command.Operation,
         //   command.str
         // );
-        let properties: ControlMetadata;
 
-        console.dir(this.task.Records);
-        debugger;
-        properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
-        if (command.Operation == HtmlProperties.ItemsList) {
-          var obj = JSON.parse(command.str);
-          properties.properties[command.Operation] = obj;
-        }
-        else
-          properties.properties[command.Operation] = command.str;
-
-        break;
 
       case  CommandType.SET_VALUE:
         console.log(`SET_VALUE: ${this.task.taskId},rowId = ${this.rowId} property:${this.id} value ${command.str}`);
-        this.task.Records.list[this.rowId].values[this.id] = command.str
-        console.dir(this.task.Records.list[this.rowId].Values);
-
-        let c = this.task.getFormControl( this.rowId, this.id);
-        if (!isNullOrUndefined(c))
-          c.setValue(command.str);
-        else
-          console.log("Not found control for " + this.id);
-
         break;
       case CommandType.SET_ATTRIBITE:
         if (command.Operation == "readOnly" && command.str != "true")
@@ -116,17 +95,11 @@ export class MagicDirectiveDirective implements OnInit {
         else
           this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
         break;
-      case CommandType.SET_CLASS:
-        console.log("Classes");
-        properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
-        properties.setClass(command.Operation,command.str);
 
-        break;
       case CommandType.CREATE_SUB_FORM:
         console.log("CREATE_SUB_FORM!!!");
         console.dir(command);
         this.component.addSubformComp(command.CtrlName, command.userDropFormat.toString(), command.str, command.fileName.toString());
-        ;
         break;
 
     }

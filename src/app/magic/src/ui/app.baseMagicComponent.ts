@@ -8,7 +8,7 @@ import {TaskMagicService} from "../services/task.magics.service";
 import {MagicEngine} from "../services/magic.engine";
 import {PropType} from "./propType";
 import {isNullOrUndefined, isUndefined} from "util";
-import {ControlsMetadata, HtmlProperties} from "../controls.metadata.model";
+import {ControlMetadata, ControlsMetadata, HtmlProperties} from "../controls.metadata.model";
 import {isBoolean} from "util";
 import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs/Subject";
@@ -179,6 +179,8 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
 
 
         let command: GuiCommand = a;
+        let rowId: string = (command.line || 0).toString();
+        let controlId = command.CtrlName;
         //console.dir(a);
          switch (command.CommandType) {
            case CommandType.REFRESH_TASK:
@@ -194,8 +196,32 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
                this.task.updateTableSize(command.number);
              this.ref.detectChanges();
              break;
-           case CommandType.SET_VALUE:
+
+           case CommandType.SET_PROPERTY:
+
+             let properties: ControlMetadata;
+             properties = this.task.Records.list[rowId].getControlMetadata(controlId);
+             if (command.Operation == HtmlProperties.ItemsList) {
+               var obj = JSON.parse(command.str);
+               properties.properties[command.Operation] = obj;
+             }
+             else
+               properties.properties[command.Operation] = command.str;
+             break;
+           case CommandType.SET_CLASS:
+             console.log("Classes");
+             properties = this.task.Records.list[rowId].getControlMetadata(controlId);
+             properties.setClass(command.Operation,command.str);
+             break;
+
+           case  CommandType.SET_VALUE:
              console.log(`BASE SET_VALUE: ${command.TaskTag},rowId = ${command.line} property:${command.CtrlName} value ${command.str}`);
+             this.task.Records.list[rowId].values[controlId] = command.str
+             let c = this.task.getFormControl( rowId, controlId);
+             if (!isNullOrUndefined(c))
+               c.setValue(command.str);
+             else
+               console.log("Not found control for " + controlId);
              break;
          }
 
