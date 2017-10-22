@@ -28,8 +28,8 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
             <m-image controlId="Delivery"></m-image>
           </div>
           <div class="vspacer15 visible-xs"></div>
-          <div class="col-sm-4">
-            <m-image controlId="ToGo"></m-image>
+          <div class="col-sm-4" *ngIf="isImageExists('ToGo')">
+            <img magic="ToGo" [src]="getImage('ToGo')"/>
           </div>
           <div class="vspacer15 visible-xs"></div>
           <div class="col-sm-4">

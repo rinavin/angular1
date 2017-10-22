@@ -207,7 +207,15 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   }
 
   getImage(controlId, rowId?){
-    return this.task.getProperty(controlId, HtmlProperties.Image, rowId );
+    let result = this.task.getProperty(controlId, HtmlProperties.Image, rowId);
+    console.log("getImage = " + result);
+    return result;
+
+  }
+  isImageExists(controlId, rowId?): boolean{
+    let result = this.task.getProperty(controlId, HtmlProperties.Image, rowId);
+    return !isNullOrUndefined(result);
+
   }
   // getStyle(controlId, rowId?) {
   //   let styles = {

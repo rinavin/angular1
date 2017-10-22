@@ -20,7 +20,8 @@ import {ComponentsList} from "../components";
             <!--<div style="width: 600px; display: table-cell;">-->
               <form novalidate [formGroup]="screenFormGroup">
                 <br>
-                <m-image controlId="restaurant_name_banner" class="posbannerimg"></m-image>
+                <img [src]="getImage('restaurant_name_banner')" magic="restaurant_name_banner" class="posbannerimg">
+                <!--<m-image controlId="restaurant_name_banner" class="posbannerimg"></m-image>-->
                 <h2><input
                   type="text"
                   magic="pi_Store_Description_0001"
@@ -40,7 +41,8 @@ import {ComponentsList} from "../components";
                           <span magic="ItemDescription" [rowId]="o.rowId">{{o.values['ItemDescription']}}</span>
                           <br>
                           <button magic="buttonAdd" [rowId]="o.rowId" class="btn btn-primary rmar10">Add</button>
-                          <m-image controlId="bagImageButton1" [rowId]="o.rowId"></m-image>
+                          <img [src]="getImage('bagImageButton1', o.rowId)" magic="bagImageButton1" rowId="o.rowId">
+                          <!--<m-image controlId="bagImageButton1" [rowId]="o.rowId"></m-image>-->
                           <span magic="Price wo/ Tax" class="neo-white neo-orange-bg lrpad5"
                                 [rowId]="o.rowId">{{o.values['Price wo/ Tax']}}</span>
                         </div>
