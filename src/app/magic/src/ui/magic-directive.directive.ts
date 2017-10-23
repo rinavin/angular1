@@ -93,6 +93,9 @@ export class MagicDirectiveDirective implements OnInit {
           var obj = JSON.parse(command.str);
           properties.properties[command.Operation] = obj;
         }
+        else if(command.Operation == HtmlProperties.SelectedValue) {
+          properties.properties[command.Operation] = command.number;
+        }
         else
           properties.properties[command.Operation] = command.str;
 

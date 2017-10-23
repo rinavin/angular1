@@ -144,7 +144,8 @@ export enum HtmlProperties {
   Text = "text",
   ItemsList ="itemslist",
   Image = "image",
-  Tooltip = "tooltip"
+  Tooltip = "tooltip",
+  SelectedValue = "selectedvalue"
 
 
 }

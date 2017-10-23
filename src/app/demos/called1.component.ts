@@ -51,7 +51,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
       <!--</select>-->
       <div magic="c">
       <select  multiple>
-        <option *ngFor="let o of getListboxValues('c')">
+        <option *ngFor="let o of getListboxValues('c'); let i = index"  [selected]="i == getselectedvalue('c')">
           {{o}}
         </option>
       </select>
