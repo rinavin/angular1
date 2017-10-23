@@ -23,7 +23,6 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
 
       <div class="mainbody">
         <div class="row">
-          <!--::berore-->
           <div class="col-sm-4">
             <m-image controlId="Delivery"></m-image>
           </div>
@@ -61,30 +60,6 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
           </div>
         </div>
 
-        <!--&lt;!&ndash;::after&ndash;&gt;-->
-        <!--<div class="row fr tmar20">-->
-        <!--<div class="row fr tmar12">  &lt;!&ndash; class = "buttons" &ndash;&gt;-->
-        <!--&lt;!&ndash;<button magic="Continue" class="btn btn-primary">Continue</button>&ndash;&gt;-->
-        <!--&lt;!&ndash;<input type="text" magic="vDate" formControlName="vDate"/>  [showSeconds]="true"&ndash;&gt;-->
-        <!--&lt;!&ndash;<input type="text" magic="vHour" formControlName="vHour"/> :&ndash;&gt;-->
-        <!--&lt;!&ndash;<input type="text" magic="vMinute" formControlName="vMinute"/>&ndash;&gt;-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!--<div>-->
-        <!--debug:{{task.getValue('vDate')}}-->
-        <!--debug:{{task.getValue('vTime')}}-->
-        <!--</div>-->
-
-
-        <!-- date: <input type="text" formControlName="vDate"/><br>-->
-
-        <!--<input type="time" magic="vMinute" formControlName="vMinute"/><br>-->
-        <!--{{counter}}-->
-        <!--<pre>-->
-        <!--{{ user.value | json }}-->
-        <!--</pre>-->
-
       </div>  <!--</div  mainBody> -->
 
     </form>
@@ -111,7 +86,7 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
 
       return val;
     }
-    //
+
 
 
     // setInterval(()=>{
