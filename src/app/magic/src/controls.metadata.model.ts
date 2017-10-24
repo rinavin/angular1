@@ -145,9 +145,8 @@ export enum HtmlProperties {
   ItemsList ="itemslist",
   Image = "image",
   Tooltip = "tooltip",
-  SelectedValue = "selectedvalue"
-
-
+  SelectedValue = "selectedvalue",
+  ShowBorder="showborder",
 }
 
 export enum HtmlClasses {

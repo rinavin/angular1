@@ -21,6 +21,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           type="text"
           magic="id"
           [title]="gettitle('id')"
+          [ngClass] = "getClasses('id')"
         >
       </label>
       <!--<span class="mgborder1 mgcolor1 alignmentright"-->

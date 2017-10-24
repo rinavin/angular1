@@ -584,7 +584,13 @@ body {
   font-size: 15px;
 }
 
+.has_border {
+  border: 2px solid;
+}
 
+.hidden_border {
+  border-style: hidden;
+}
 /***** General override styles end *****/
 
 
