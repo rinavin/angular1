@@ -154,5 +154,5 @@ export enum HtmlClasses {
   Color = "color",
   font = "font",
   FocusColor="focuscolor",
-
+  HintColor="hintcolor",
 }

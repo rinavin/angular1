@@ -38,6 +38,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           magic="name"
           formControlName="name"
           [placeholder]="getplaceholder('name')"
+          [ngClass] = "getClasses('name')"
         >
       </label>
       <button magic="nextb" >Next</button>
