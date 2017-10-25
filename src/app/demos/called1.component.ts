@@ -37,6 +37,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           type="text"
           magic="name"
           formControlName="name"
+          [placeholder]="getplaceholder('name')"
         >
       </label>
       <button magic="nextb" >Next</button>

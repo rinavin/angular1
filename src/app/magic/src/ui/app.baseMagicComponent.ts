@@ -280,6 +280,9 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return this.task.getProperty(controlId, HtmlProperties.SelectedValue, rowId );
   }
 
+  getplaceholder(controlId, rowId?) {
+    return this.task.getProperty(controlId, HtmlProperties.PlaceHolder, rowId );
+  }
 
   // getgetFormat(controlId, rowId?)
   // {

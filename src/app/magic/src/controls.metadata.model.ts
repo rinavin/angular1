@@ -147,6 +147,7 @@ export enum HtmlProperties {
   Tooltip = "tooltip",
   SelectedValue = "selectedvalue",
   ShowBorder="showborder",
+  PlaceHolder="placeholder",
 }
 
 export enum HtmlClasses {
