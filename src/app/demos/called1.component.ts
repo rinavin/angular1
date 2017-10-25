@@ -34,7 +34,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
       <label class="mgcolor3 ">
         <span>Called1 Name111:</span>
         <input
-          type="text"
+          [type]="gettype('name')"
           magic="name"
           formControlName="name"
           [placeholder]="getplaceholder('name')"

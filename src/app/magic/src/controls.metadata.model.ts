@@ -148,6 +148,7 @@ export enum HtmlProperties {
   SelectedValue = "selectedvalue",
   ShowBorder="showborder",
   PlaceHolder="placeholder",
+  Password="password",
 }
 
 export enum HtmlClasses {

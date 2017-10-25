@@ -96,6 +96,9 @@ export class MagicDirectiveDirective implements OnInit {
         else if(command.Operation == HtmlProperties.SelectedValue) {
           properties.properties[command.Operation] = command.number;
         }
+        else if(command.Operation == HtmlProperties.Password) {
+          properties.properties[command.Operation] = command.Bool1;
+        }
         else
           properties.properties[command.Operation] = command.str;
 
