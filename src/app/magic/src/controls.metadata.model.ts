@@ -151,6 +151,7 @@ export enum HtmlProperties {
 
 export enum HtmlClasses {
   Color = "color",
-  font = "font"
+  font = "font",
+  FocusColor="focuscolor",
 
 }
