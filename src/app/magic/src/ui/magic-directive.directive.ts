@@ -117,10 +117,11 @@ export class MagicDirectiveDirective implements OnInit {
 
         break;
       case CommandType.SET_ATTRIBITE:
-        if (command.Operation == "readOnly" && command.str != "true")
+        if( command.str != "true")
           this.renderer.removeAttribute(this.htmlElement, command.Operation);
         else
           this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
+
         break;
       case CommandType.SET_CLASS:
         console.log("Classes");
