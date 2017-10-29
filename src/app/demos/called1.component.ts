@@ -22,6 +22,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           magic="id"
           [title]="gettitle('id')"
           [ngClass] = "getClasses('id')"
+          [tabindex]="gettabindex('id')"
         >
       </label>
       <!--<span class="mgborder1 mgcolor1 alignmentright"-->
@@ -39,6 +40,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           formControlName="name"
           [placeholder]="getplaceholder('name')"
           [ngClass] = "getClasses('name')"
+          [tabindex]="gettabindex('name')"
         >
       </label>
       <button magic="nextb" >Next</button>

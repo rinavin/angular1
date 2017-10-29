@@ -93,12 +93,6 @@ export class MagicDirectiveDirective implements OnInit {
           var obj = JSON.parse(command.str);
           properties.properties[command.Operation] = obj;
         }
-        else if(command.Operation == HtmlProperties.SelectedValue) {
-          properties.properties[command.Operation] = command.number;
-        }
-        else if(command.Operation == HtmlProperties.Password) {
-          properties.properties[command.Operation] = command.Bool1;
-        }
         else
           properties.properties[command.Operation] = command.str;
 
@@ -133,7 +127,6 @@ export class MagicDirectiveDirective implements OnInit {
         console.log("CREATE_SUB_FORM!!!");
         console.dir(command);
         this.component.addSubformComp(command.CtrlName, command.userDropFormat.toString(), command.str, command.fileName.toString());
-        ;
         break;
 
     }

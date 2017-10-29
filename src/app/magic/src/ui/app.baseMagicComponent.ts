@@ -287,6 +287,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   gettype(controlId, rowId?) {
     return this.task.getProperty(controlId, HtmlProperties.Password, rowId ) ? "password" : "text";
   }
+
+  gettabindex(controlId, rowId?) {
+    return this.task.getProperty(controlId, HtmlProperties.TabIndex, rowId );
+  }
   // getgetFormat(controlId, rowId?)
   // {
   //   return  this.task.getProperty(controlId, PropType.Format, rowId);
