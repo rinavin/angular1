@@ -144,13 +144,16 @@ export enum HtmlProperties {
   Text = "text",
   ItemsList ="itemslist",
   Image = "image",
-  Tooltip = "tooltip"
-
-
+  Tooltip = "tooltip",
+  SelectedValue = "selectedvalue",
+  ShowBorder="showborder",
+  PlaceHolder="placeholder",
+  Password="password",
 }
 
 export enum HtmlClasses {
   Color = "color",
-  font = "font"
-
+  font = "font",
+  FocusColor="focuscolor",
+  HintColor="hintcolor",
 }

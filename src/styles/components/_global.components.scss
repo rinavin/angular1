@@ -584,7 +584,23 @@ body {
   font-size: 15px;
 }
 
+.has_border {
+  border: 2px solid;
+}
 
+.hidden_border {
+  border-style: hidden;
+}
+
+.mgFocusColor3:focus {
+  color: red;
+  background-color: #3472F7;
+}
+
+.mgHintColor3::placeholder {
+  color: yellow;
+  background-color: #3472F7;
+}
 /***** General override styles end *****/
 
 

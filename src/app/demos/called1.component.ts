@@ -21,6 +21,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           type="text"
           magic="id"
           [title]="gettitle('id')"
+          [ngClass] = "getClasses('id')"
         >
       </label>
       <!--<span class="mgborder1 mgcolor1 alignmentright"-->
@@ -33,9 +34,11 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
       <label class="mgcolor3 ">
         <span>Called1 Name111:</span>
         <input
-          type="text"
+          [type]="gettype('name')"
           magic="name"
           formControlName="name"
+          [placeholder]="getplaceholder('name')"
+          [ngClass] = "getClasses('name')"
         >
       </label>
       <button magic="nextb" >Next</button>
@@ -51,7 +54,7 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
       <!--</select>-->
       <div magic="c">
       <select  multiple>
-        <option *ngFor="let o of getListboxValues('c')">
+        <option *ngFor="let o of getListboxValues('c'); let i = index"  [selected]="i == getselectedvalue('c')">
           {{o}}
         </option>
       </select>
