@@ -24,7 +24,9 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
       <div class="mainbody">
         <div class="row">
           <div class="col-sm-4">
-            <m-image controlId="Delivery"></m-image>
+            <div class="col-sm-4" *ngIf="isImageExists('Delivery')">
+              <img magic="Delivery" [src]="getImage('Delivery')"/>
+            </div>
           </div>
           <div class="vspacer15 visible-xs"></div>
           <div class="col-sm-4" *ngIf="isImageExists('ToGo')">
@@ -70,40 +72,44 @@ export class SelectDateAndTime extends BaseTaskMagicComponent {
   orgValueCallback: any;
 
 
-
   constructor(ref: ChangeDetectorRef,
               task: TaskMagicService,
               public app: ApplicationRef) {
     super(ref, task);
     this.orgValueCallback = this.getvalueCallback;
-    this.getvalueCallback = (rowId:string, controlKey: string) => {
+    this.getvalueCallback = (rowId: string, controlKey: string) => {
       let val = this.orgValueCallback(rowId, controlKey);
       if (controlKey == 'vTime') {
         debugger;
         let date: Date = val;
         val = `${this.pad(val.getHours())}:${this.pad(val.getMinutes())}`;
       }
+      // else if (controlKey == 'vDate') {
+      //   debugger;
+      //   let date: Date = new Date(val);
+      //   val = this.pad(date.getDate() + 1 ) + '/' + this.pad(date.getMonth() + 1) + '/' + this.pad(date.getFullYear());
+      // }
 
       return val;
     }
-
-
-
-    // setInterval(()=>{
-    //   this.counter++;
-    //   app.tick();
-    // },1000);
   }
 
   private pad(n) {
     return n < 10 ? "0" + n : n;
   }
 
-  counter = 0;
-
-  /*  user = new FormGroup({
-   vDate : new FormControl(),
-   vMinute : new FormControl()
-   })*/
+  // setInterval(()=>{
+  //   this.counter++;
+  //   app.tick();
+  // },1000);
 }
+
+
+//counter = 0;
+
+/*  user = new FormGroup({
+ vDate : new FormControl(),
+ vMinute : new FormControl()
+ })*/
+//}
 
