@@ -54,13 +54,18 @@ import {HtmlProperties} from "../magic/src/controls.metadata.model";
           <!--{{title.Text}}-->
         <!--</option>-->
       <!--</select>-->
-      <div magic="c">
-      <select  multiple>
+      <div >
+      <select  multiple magic="c" (change)="onselectionchanged($event,'c')" >
         <option *ngFor="let o of getListboxValues('c'); let i = index"  [selected]="i == getselectedvalue('c')">
           {{o}}
         </option>
       </select>
       </div>
+      <button magic="gotoBtn" >goto</button>
+      
+      <input magic="chkbx" type="checkbox" (change)="oncheckchanged($event,'chkbx')">
+      <span magic="result">{{gettext('result')}}</span>
+      
     </form>
   `
 })

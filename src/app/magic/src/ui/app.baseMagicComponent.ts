@@ -301,6 +301,16 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     console.log("Value = " + val);
     return val;
   }
+
+  onselectionchanged(event:Event, idx : string )
+  {
+    this.task.insertEvent('selectionchanged', idx, (<any>(event.target)).selectedIndex.toString());
+  }
+
+  oncheckchanged(event:Event, idx : string )
+  {
+    this.task.insertEvent('selectionchanged', idx, (<any>(event.target)).checked ? "1" : "0");
+  }
 }
 interface SubformDefinition {
   formName:string;
