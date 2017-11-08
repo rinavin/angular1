@@ -1,6 +1,6 @@
 import {Directive, ElementRef, Input, OnInit, Renderer2, ViewContainerRef} from '@angular/core';
 import {TaskMagicService} from "../services/task.magics.service";
-import {GuiCommand} from "./GuiCommand";
+import {GuiCommand} from "./gui.command";
 import {CommandType} from "./enums";
 import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 import {isNullOrUndefined} from "util";

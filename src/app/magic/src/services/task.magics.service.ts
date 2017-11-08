@@ -4,7 +4,7 @@ import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {HtmlProperties, Records} from "../controls.metadata.model";
 import {isNullOrUndefined} from "util";
 import {Subject} from "rxjs/Subject";
-import {GuiCommand} from "../ui/GuiCommand";
+import {GuiCommand} from "../ui/gui.command";
 
 let counter = 0;
 

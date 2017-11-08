@@ -9,8 +9,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 
 import {CommandType} from "./enums";
-import {GuiCommand} from "./GuiCommand";
-import {ComponentsListBase} from "../../../ComponentsListBase";
+import {GuiCommand} from "./gui.command";
+import {ComponentsListBase} from "../../../components.list.base";
 import {MagicDirectiveDirective} from "./magic-directive.directive";
 
 @Component({

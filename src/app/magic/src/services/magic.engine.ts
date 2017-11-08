@@ -3,7 +3,7 @@
  */
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/Subject";
-import {GuiCommand} from "../ui/GuiCommand";
+import {GuiCommand} from "../ui/gui.command";
 
 // export interface MagicCallBack{
 //    ():void;
