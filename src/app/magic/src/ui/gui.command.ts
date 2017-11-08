@@ -1,6 +1,6 @@
 import {CommandType, WindowType} from "./enums";
 
-export class GuiCommand  {
+export class GuiCommand {
   public CommandType: CommandType;
   public TaskTag: string; // should we use window id?
   public Operation: string;
@@ -44,6 +44,8 @@ export class GuiCommand  {
   public runtimeDesignerXDiff: number;
   public runtimeDesignerYDiff: number;
   public createInternalFormForMDI: boolean;
-}/**
+}
+
+/**
  * Created by rinav on 03/09/2017.
  */

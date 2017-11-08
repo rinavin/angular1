@@ -5,7 +5,6 @@ import {CommandType} from "./enums";
 import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 import {isNullOrUndefined} from "util";
 
-
 @Directive({
   selector: '[magic]'
 })
@@ -17,11 +16,7 @@ export class MagicDirectiveDirective implements OnInit {
   @Input() events: any[] = [];
   htmlElement: HTMLElement;
   component: BaseTaskMagicComponent;
-
-  get task() {
-    return this._task;
-  }
-
+  eventHandlers: { [key: string]: () => void; } = {};
 
   constructor(private element: ElementRef,
               private renderer: Renderer2,
@@ -32,9 +27,11 @@ export class MagicDirectiveDirective implements OnInit {
     this.component = (<any>this.vcRef)._view.component as BaseTaskMagicComponent;
   }
 
-  eventHandlers: { [key: string]: () => void; } = {};
+  get task() {
+    return this._task;
+  }
 
-  regEvents(){
+  regEvents() {
     // Handle events for which event handler may be removed and restored
     this.eventHandlers['focus'] = this.OnFocus.bind(this);
 
@@ -44,7 +41,7 @@ export class MagicDirectiveDirective implements OnInit {
 
 
     // Handle events with anonymous  event handlers
-    let events: string[] = ['click', 'mouseenter', 'mouseleave', 'dblclick',];//'resize', 'load', 'unload',
+    let events: string[] = ['click', 'dblclick',];// 'mouseenter', 'mouseleave','resize', 'load', 'unload',
     events.forEach(event => {
       this.htmlElement.addEventListener(event, (e) => {
         this.task.insertEvent(event, this.id, this.rowId);
@@ -63,16 +60,15 @@ export class MagicDirectiveDirective implements OnInit {
       .filter(updates => updates.CtrlName == this.id &&
         (((!isNullOrUndefined(updates.line))
           && updates.line.toString() == this.rowId) ||
-          ( isNullOrUndefined(updates.line) && (this.rowId == "0" ||isNullOrUndefined(this.rowId) ))))
-      .subscribe(a=> {
+          ( isNullOrUndefined(updates.line) && (this.rowId == "0" || isNullOrUndefined(this.rowId) ))))
+      .subscribe(a => {
           let command: GuiCommand = a;
           if (isNullOrUndefined(this.rowId))
             this.rowId = '0';
           try {
             this.handleCommand(command);
           }
-          catch (ex)
-          {
+          catch (ex) {
             console.dir(ex);
           }
         }
@@ -80,6 +76,10 @@ export class MagicDirectiveDirective implements OnInit {
 
   }
 
+  ngOnInit(): void {
+    this.regEvents();
+    this.regUpdatesUI();
+  }
 
   private handleCommand(command: GuiCommand) {
     switch (command.CommandType) {
@@ -105,11 +105,6 @@ export class MagicDirectiveDirective implements OnInit {
         this.htmlElement.addEventListener('focus', this.eventHandlers['focus']);
         break;
     }
-  }
-
-  ngOnInit(): void {
-    this.regEvents();
-    this.regUpdatesUI();
   }
 
 }

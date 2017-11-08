@@ -17,8 +17,6 @@ export class MagicDefaultValueAccessor extends DefaultValueAccessor {
 }
 
 
-
-
 @Directive({
   selector: 'input[magic]:not([formControlName]):not([formControl])'
 })

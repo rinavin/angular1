@@ -15,8 +15,6 @@ export class ControlMetadata {
     }
     this.classes = result;
 
-
-
   }
 
 }
@@ -40,10 +38,6 @@ export class ControlsMetadata {
   }
 
 
-  fromJson(data: string) {
-    var obj = JSON.parse(data);
-    this.update(obj);
-  }
 
   update(obj:any) {
     //should we keep the values here ?

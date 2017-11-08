@@ -6,28 +6,20 @@ import {isNullOrUndefined} from "util";
 import {Subject} from "rxjs/Subject";
 import {GuiCommand} from "../ui/gui.command";
 
-let counter = 0;
-
 @Injectable()
 export class TaskMagicService {
 
-  _taskId: string;
-
-
   Records: Records = new Records();
+  rows: Array<FormGroup> = [];
+  ScreenModeControls: FormGroup;
+  refreshDom: Subject<GuiCommand> = new Subject();
   protected template: { [id: string]: string; };
 
-  settemplate(value: any) {
-    this.template = value;
+  constructor(protected magic: MagicEngine) {
+
   }
 
-  get ScreenControlsData() {
-    return this.Records.list["0"];
-  }
-
-  get ControlsMetadata() {
-    return this.ScreenControlsData;
-  }
+  _taskId: string;
 
   get taskId() {
     return this._taskId;
@@ -38,16 +30,13 @@ export class TaskMagicService {
     this._taskId = value;
   }
 
+  get ScreenControlsData() {
+    return this.Records.list["0"];
+  }
 
 
-  rows: Array<FormGroup> = [];
-  ScreenModeControls: FormGroup;
-  refreshDom: Subject<GuiCommand> = new Subject();
-
-
-
-  constructor(protected magic: MagicEngine) {
-
+  settemplate(value: any) {
+    this.template = value;
   }
 
   buildScreenModeControls() {
@@ -60,16 +49,16 @@ export class TaskMagicService {
 
     this.ScreenModeControls = group;
   }
-  isTableControl(id:string):boolean{
+
+  isTableControl(id: string): boolean {
     return this.template[id] == '1';
   }
 
-  getFormControl(rowId:string,id:string):AbstractControl
-  {
+  getFormControl(rowId: string, id: string): AbstractControl {
     let c: AbstractControl;
-    let group:FormGroup = this.isTableControl(id)? this.rows[rowId] :this.ScreenModeControls;
+    let group: FormGroup = this.isTableControl(id) ? this.rows[rowId] : this.ScreenModeControls;
     if (group.contains(id))
-       c = group.controls[id];
+      c = group.controls[id];
     return c;
   }
 
@@ -86,46 +75,33 @@ export class TaskMagicService {
     this.rows.push(group);
   }
 
-  updateTableSize(size: number)
-  {
+  updateTableSize(size: number) {
 
     if (size == 0) //never remove row 0 for now
       size = 1;
     if (size < this.rows.length)
       this.rows.length = size;
-    else
-    {
-      for (let i = this.rows.length;  i < size; i++)
+    else {
+      for (let i = this.rows.length; i < size; i++)
         this.buildTableRowControls();
     }
 
     this.Records.updateSize(size);
   }
 
+  initTask() {
+    this.magic.refreshDom
+      .filter(command => command.TaskTag == this.taskId)
+      .subscribe(command => {
+        // console.log("Task " + command.TaskTag + "command " + command.CommandType);
+        this.refreshDom.next(command);
+      });
 
-  startMagic() {
-    this.magic.startMagic();
   }
 
-   initTask(){
-     let list: GuiCommand[];
-     this.magic.refreshDom
-       .filter(command=>command.TaskTag == this.taskId)
-       .subscribe(command=>
-     {
-       // console.log("Task " + command.TaskTag + "command " + command.CommandType);
-      this.refreshDom.next(command);
-     });
-
-   }
-   onDestoryTask(){
-     //this.sub.unsubscribe();
-   }
-
-
-   getTaskId(parentId, subformName) : string{
-        return this.magic.getTaskId(parentId, subformName);
-    }
+  getTaskId(parentId, subformName): string {
+    return this.magic.getTaskId(parentId, subformName);
+  }
 
 
   insertEvent(eventName: string, controlIdx: string, lineidx: string) {
@@ -137,17 +113,6 @@ export class TaskMagicService {
     this.magic.registerGetValueCallback(this.taskId, cb);
   }
 
-   registerRefreshUI( cb) {
-      this.magic.registerRefreshUI(this.taskId, cb);
-   }
-
-  registerRefreshTableUI(cb) {
-    this.magic.registerRefreshTableUI(this.taskId, cb);
-  }
-
-  registerOpenSubformCallback(cb) {
-    this.magic.registerOpenSubformCallback(this.taskId, cb);
-  }
 
   getProperty(controlId: string, prop: HtmlProperties, rowId?: string) {
     if (isNullOrUndefined(rowId))
@@ -156,20 +121,15 @@ export class TaskMagicService {
   }
 
   getClasses(controlId: string, rowId?: string): string {
-     if (isNullOrUndefined(rowId))
-       rowId = "0";
+    if (isNullOrUndefined(rowId))
+      rowId = "0";
     return this.Records.list[rowId].getControlMetadata(controlId).classes;
 
-  }
-
-  getRecords() {
-    return this.Records.data;
   }
 
   getValue(controlId: string, rowId?: string) {
     if (isNullOrUndefined(rowId))
       rowId = '0';
-
     return this.Records.list[rowId].getValue(controlId);
   }
 

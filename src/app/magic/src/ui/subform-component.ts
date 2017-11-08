@@ -14,6 +14,7 @@ import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 `
 })
 
+//not working for now
 export class Subform {
 
   @Input() controlId: string;

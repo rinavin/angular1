@@ -25,12 +25,10 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
           formControlName="name"
         >
       </label>
-      <button magic="nextb" >Next</button>
-      <button magic="prevb" >Prev</button>
+      <button magic="nextb">Next</button>
+      <button magic="prevb">Prev</button>
     </form>
   `
 })
 export class SampleComponent extends BaseTaskMagicComponent {
-
-
 }

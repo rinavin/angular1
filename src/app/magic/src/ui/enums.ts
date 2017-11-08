@@ -3,7 +3,6 @@
  */
 export enum CommandType {
   CREATE_FORM = 1,
-
   INITIAL_FORM_LAYOUT,
 
   SHOW_FORM,
@@ -516,6 +515,7 @@ export enum CommandType {
   SET_CLASS,
   REFRESH_TASK
 }
+
 export enum WindowType {
   Default = 1,
 
