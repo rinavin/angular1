@@ -18,8 +18,7 @@ import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 export class Subform {
 
   @Input() controlId: string;
-  // subformComp: Component ;
-  // parameters : any;
+
   component: BaseTaskMagicComponent;
 
   constructor(private vcRef: ViewContainerRef) {
