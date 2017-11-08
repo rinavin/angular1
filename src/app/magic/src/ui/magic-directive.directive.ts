@@ -3,7 +3,6 @@ import {TaskMagicService} from "../services/task.magics.service";
 import {GuiCommand} from "./GuiCommand";
 import {CommandType} from "./enums";
 import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
-import {ControlMetadata, HtmlProperties} from "../controls.metadata.model";
 import {isNullOrUndefined} from "util";
 
 
@@ -46,15 +45,12 @@ export class MagicDirectiveDirective implements OnInit {
 
     // Handle events with anonymous  event handlers
     let events: string[] = ['click', 'mouseenter', 'mouseleave', 'dblclick',];//'resize', 'load', 'unload',
-    console.log(" regEvents " + this.id);
-
     events.forEach(event => {
       this.htmlElement.addEventListener(event, (e) => {
         this.task.insertEvent(event, this.id, this.rowId);
       });
     });
   }
-
 
   OnFocus() {
     this.task.insertEvent('focus', this.id, this.rowId);
@@ -87,34 +83,10 @@ export class MagicDirectiveDirective implements OnInit {
 
   private handleCommand(command: GuiCommand) {
     switch (command.CommandType) {
-      case CommandType.SET_PROPERTY:
-
-        let properties: ControlMetadata;
-
-        console.dir(this.task.Records);
-        debugger;
-        properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
-        if (command.Operation == HtmlProperties.ItemsList) {
-          var obj = JSON.parse(command.str);
-          properties.properties[command.Operation] = obj;
-        }
-        else
-          properties.properties[command.Operation] = command.str;
-
-        break;
-
-      case  CommandType.SET_VALUE:
-        console.log(`SET_VALUE: ${this.task.taskId},rowId = ${this.rowId} property:${this.id} value ${command.str}`);
-        this.task.Records.list[this.rowId].values[this.id] = command.str
-        console.dir(this.task.Records.list[this.rowId].Values);
-
-        let c = this.task.getFormControl(this.rowId, this.id);
-        if (!isNullOrUndefined(c))
-          c.setValue(command.str);
-        else
-          console.log("Not found control for " + this.id);
-
-        break;
+      // case CommandType.SET_PROPERTY:
+      // case  CommandType.SET_VALUE:
+      // case CommandType.SET_CLASS:
+      //   break;
       case CommandType.SET_ATTRIBITE:
         if (command.str != "true")
           this.renderer.removeAttribute(this.htmlElement, command.Operation);
@@ -122,15 +94,8 @@ export class MagicDirectiveDirective implements OnInit {
           this.renderer.setAttribute(this.htmlElement, command.Operation, command.str);
 
         break;
-      case CommandType.SET_CLASS:
-        console.log("Classes");
-        properties = this.task.Records.list[this.rowId].getControlMetadata(this.id);
-        properties.setClass(command.Operation, command.str);
 
-        break;
       case CommandType.CREATE_SUB_FORM:
-        console.log("CREATE_SUB_FORM!!!");
-        console.dir(command);
         this.component.addSubformComp(command.CtrlName, command.userDropFormat.toString(), command.str, command.fileName.toString());
         break;
 

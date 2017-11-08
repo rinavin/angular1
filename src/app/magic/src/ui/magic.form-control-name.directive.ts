@@ -26,7 +26,6 @@ export class MagicFormControlNameDirective extends FormControlName {
   @Input()
   set magic(val: string) {
     this.name = val;
-    console.log(`MagicFormControlNameDirective : ${val}`);
     debugger;
   }
 }

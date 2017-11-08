@@ -19,21 +19,19 @@ import {MagicDirectiveDirective} from "./magic-directive.directive";
 })
 export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
 
-  ngOnDestroy(): void {
-    this.refreshUI.complete();
-  }
+
 
   @Input() subformName: string;
   @Input() parentId: string;
   @Input() myTaskId: string;
   @Input() taskDescription: string;
-  @ViewChildren(MagicDirectiveDirective) inFinder1: QueryList<MagicDirectiveDirective>
+  @ViewChildren(MagicDirectiveDirective) inFinder1: QueryList<MagicDirectiveDirective>;
   subformsDict: { [x: string]: SubformDefinition } = {};
   public static  componentsListBase : ComponentsListBase;
   emptyComp:Component;
 
   refreshUI:Subject<any> = new Subject();
-  //sub:Subscription;
+
 
   get controlProperties(): any {
     return this._controlProperties;
@@ -44,20 +42,14 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   }
 
 
-
-  ngAfterViewInit() {
-    console.log("Before!!!!!!!!!!!!!");
-    this.inFinder1.forEach(alertInstance => console.log(alertInstance));
-    console.log("After!!!!!!!!!!!!!");
-  }
   private _controlProperties: any;
 
   protected props: { [id: string]: { [id: string]: string; } };
 
+  ngOnDestroy(): void {
+    this.refreshUI.complete();
+  }
 
-  /*get rowId(){
-   return this.task.rowId;
-   }*/
 
   get table() {
     return this.task.rows;
@@ -76,7 +68,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     let result = this.task.getFormControl(rowId,controlKey);
     if (!isNullOrUndefined(result))
       return result.value;
-  }
+  };
 
   get screenFormGroup(): FormGroup {
     return this.record;
@@ -170,17 +162,14 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
         let command: GuiCommand = a;
         let rowId: string = (command.line || 0).toString();
         let controlId = command.CtrlName;
-        //console.dir(a);
-         switch (command.CommandType) {
+
+        switch (command.CommandType) {
            case CommandType.REFRESH_TASK:
-             console.log("REFRESH_TASK");
-             //this.task.ScreenControlsData.fromJson(a.str);
-             // console.dir(obj.ControlsValues);
+
              this.task.ScreenModeControls.patchValue(this.task.ScreenControlsData.Values);
              this.ref.detectChanges();
              break;
            case CommandType.SET_TABLE_ITEMS_COUNT:
-             console.log("SET_TABLE_ITEMS_COUNT " + command.number);
              if (!isUndefined(command.number))
                this.task.updateTableSize(command.number);
              this.ref.detectChanges();
@@ -191,21 +180,20 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
              let properties: ControlMetadata;
              properties = this.task.Records.list[rowId].getControlMetadata(controlId);
              if (command.Operation == HtmlProperties.ItemsList) {
-               var obj = JSON.parse(command.str);
+               // noinspection UnnecessaryLocalVariableJS
+               const obj = JSON.parse(command.str);
                properties.properties[command.Operation] = obj;
              }
              else
                properties.properties[command.Operation] = command.str;
              break;
            case CommandType.SET_CLASS:
-             console.log("Classes");
              properties = this.task.Records.list[rowId].getControlMetadata(controlId);
              properties.setClass(command.Operation,command.str);
              break;
 
            case  CommandType.SET_VALUE:
-             console.log(`BASE SET_VALUE: ${command.TaskTag},rowId = ${command.line} property:${command.CtrlName} value ${command.str}`);
-             this.task.Records.list[rowId].values[controlId] = command.str
+             this.task.Records.list[rowId].values[controlId] = command.str;
              let c = this.task.getFormControl( rowId, controlId);
              if (!isNullOrUndefined(c))
                c.setValue(command.str);
@@ -223,7 +211,6 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
 
   getImage(controlId, rowId?){
     let result = this.task.getProperty(controlId, HtmlProperties.Image, rowId);
-    console.log("getImage = " + result);
     return result;
 
   }
@@ -232,13 +219,6 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return !isNullOrUndefined(result);
 
   }
-  // getStyle(controlId, rowId?) {
-  //   let styles = {
-  //     'background-color': 'red' ,
-  //     'visibility': this.getvisible(controlId) ? 'visible' : 'hidden',
-  //
-  //   };
-  //   return styles;}
 
   getClasses(controlId, rowId?) {
     //return 'one two ';
@@ -280,14 +260,10 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
   gettabindex(controlId, rowId?) {
     return this.task.getProperty(controlId, HtmlProperties.TabIndex, rowId );
   }
-  // getgetFormat(controlId, rowId?)
-  // {
-  //   return  this.task.getProperty(controlId, PropType.Format, rowId);
-  // }
+
 
   GetValue(controlId){
     let val = this.task.getValue(controlId);
-    console.log("Value = " + val);
     return val;
   }
 

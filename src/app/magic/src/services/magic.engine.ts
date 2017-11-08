@@ -48,7 +48,6 @@ export class MagicEngine{
    }
 
    insertEvent(taskId, eventName, controlIdx, lineidx) {
-      console.log(eventName,controlIdx, lineidx);
       this.magic.insertEvent(taskId, eventName, controlIdx, lineidx);
 
    }

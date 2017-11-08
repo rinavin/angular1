@@ -8,8 +8,8 @@ import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 @Component({
   selector: 'm-subform',
   providers: [TaskMagicService],
-  template:    `   
-    <ndc-dynamic magic='mysubform1' [ndcDynamicComponent]="Component" [ndcDynamicInputs]="Parameters">
+  template:    `
+    <ndc-dynamic [magic]='mysubform1' [ndcDynamicComponent]="Component" [ndcDynamicInputs]="Parameters">
   </ndc-dynamic>
 `
 })

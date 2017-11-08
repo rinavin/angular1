@@ -32,7 +32,7 @@ export class GuiCommand  {
   public parentObject: Object;
   public obj1: Object;
   public str: string;
-  public stringList: String[]
+  public stringList: String[];
   public style: number;
   public width: number;
   public windowType: WindowType;
