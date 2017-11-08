@@ -3,8 +3,6 @@
  */
 import {Component, Input, ViewContainerRef} from "@angular/core";
 import {TaskMagicService} from "../services/task.magics.service";
-import {PropType} from "./propType";
-import {ComponentsList} from "../../../components";
 import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 
 @Component({

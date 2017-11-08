@@ -1,23 +1,21 @@
-
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule}         from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 
 import {MagicModule} from "./magic/magic.core.module";
 import {AppComponent} from './app.component';
 
-import { Called2Component } from './demos/called2.component';
+import {SampleComponent} from './demos/sample.component';
 import {DynamicModule} from "ng-dynamic-component";
 import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
-
 @NgModule({
    declarations: [
       AppComponent,
-       Called2Component,
+     SampleComponent,
    ],
    imports: [
       BrowserModule,
@@ -32,7 +30,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     // Add the subform components
     DynamicModule.withComponents(
       [
-        Called2Component,
+        SampleComponent,
 
       ]),
 

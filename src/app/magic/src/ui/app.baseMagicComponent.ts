@@ -1,25 +1,15 @@
-import {
-  Component, OnInit, ChangeDetectorRef, Input, Injectable, OnDestroy, QueryList,
-  ViewChildren
-} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {FormGroup} from '@angular/forms';
 import {TaskMagicService} from "../services/task.magics.service";
-import {MagicEngine} from "../services/magic.engine";
-import {PropType} from "./propType";
 import {isNullOrUndefined, isUndefined} from "util";
-import {ControlMetadata, ControlsMetadata, HtmlProperties} from "../controls.metadata.model";
-import {isBoolean} from "util";
-import {Observable} from "rxjs/Observable";
+import {ControlMetadata, HtmlProperties} from "../controls.metadata.model";
 import {Subject} from "rxjs/Subject";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
 
-import {Subscription} from "rxjs/Subscription";
 import {CommandType} from "./enums";
-import {GuiCommand} from "../services/GuiCommand";
-import {ComponentsList} from "../../../components";
+import {GuiCommand} from "./GuiCommand";
 import {ComponentsListBase} from "../../../ComponentsListBase";
 import {MagicDirectiveDirective} from "./magic-directive.directive";
 
@@ -31,7 +21,6 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
 
   ngOnDestroy(): void {
     this.refreshUI.complete();
-    //this.sub.unsubscribe();
   }
 
   @Input() subformName: string;
@@ -62,7 +51,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     console.log("After!!!!!!!!!!!!!");
   }
   private _controlProperties: any;
-  //persons: { [id: string]: string; };
+
   protected props: { [id: string]: { [id: string]: string; } };
 
 
@@ -302,7 +291,7 @@ export abstract class BaseTaskMagicComponent implements OnInit ,OnDestroy{
     return val;
   }
 
-  onselectionchanged(event:Event, idx : string )
+  public onselectionchanged(event: Event, idx: string)
   {
     this.task.insertEvent('selectionchanged', idx, (<any>(event.target)).selectedIndex.toString());
   }

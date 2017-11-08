@@ -2,9 +2,9 @@ import {Injectable} from "@angular/core";
 import {MagicEngine} from "./magic.engine";
 import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
 import {HtmlProperties, Records} from "../controls.metadata.model";
-import {isNullOrUndefined, isUndefined} from "util";
+import {isNullOrUndefined} from "util";
 import {Subject} from "rxjs/Subject";
-import {GuiCommand} from "./GuiCommand";
+import {GuiCommand} from "../ui/GuiCommand";
 
 let counter = 0;
 

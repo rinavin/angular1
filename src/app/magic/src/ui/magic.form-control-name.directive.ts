@@ -13,7 +13,7 @@ export const MAGIC_DEFAULT_VALUE_ACCESSOR: any = {
   providers: [MAGIC_DEFAULT_VALUE_ACCESSOR]
 })
 export class MagicDefaultValueAccessor extends DefaultValueAccessor {
-  // get eyal(){return 1;}
+
 }
 
 

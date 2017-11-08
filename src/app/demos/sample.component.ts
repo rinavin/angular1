@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {BaseTaskMagicComponent} from "../magic/src/ui/app.baseMagicComponent";
-import {FormGroup} from "@angular/forms";
 import {TaskMagicService} from "../magic/src/services/task.magics.service";
 
 @Component({
@@ -31,7 +30,7 @@ import {TaskMagicService} from "../magic/src/services/task.magics.service";
     </form>
   `
 })
-export class Called2Component extends BaseTaskMagicComponent {
+export class SampleComponent extends BaseTaskMagicComponent {
 
 
 }

@@ -1,4 +1,5 @@
-import {CommandType, WindowType} from "../ui/enums";
+import {CommandType, WindowType} from "./enums";
+
 export class GuiCommand  {
   public CommandType: CommandType;
   public TaskTag: string; // should we use window id?

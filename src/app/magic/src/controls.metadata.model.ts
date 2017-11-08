@@ -1,5 +1,4 @@
-import {PropType} from "./ui/propType";
-import {forEach} from "@angular/router/src/utils/collection";
+
 
 export class ControlMetadata {
   controlType: string;

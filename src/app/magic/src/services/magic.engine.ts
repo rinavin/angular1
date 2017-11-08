@@ -2,9 +2,8 @@
  * Created by rinav on 05/07/2017.
  */
 import {Injectable} from "@angular/core";
-import {TaskMagicService} from "./task.magics.service";
 import {Subject} from "rxjs/Subject";
-import {GuiCommand} from "./GuiCommand";
+import {GuiCommand} from "../ui/GuiCommand";
 
 // export interface MagicCallBack{
 //    ():void;

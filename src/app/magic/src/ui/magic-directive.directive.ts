@@ -1,10 +1,7 @@
-import {Component, Directive, ElementRef, Input, OnInit, Renderer2, ViewContainerRef} from '@angular/core';
-import {Host, Self, Optional} from '@angular/core';
+import {Directive, ElementRef, Input, OnInit, Renderer2, ViewContainerRef} from '@angular/core';
 import {TaskMagicService} from "../services/task.magics.service";
-import {FormControl, FormControlName} from "@angular/forms";
-import {GuiCommand} from "../services/GuiCommand";
+import {GuiCommand} from "./GuiCommand";
 import {CommandType} from "./enums";
-import {Subform} from "./subform-component";
 import {BaseTaskMagicComponent} from "./app.baseMagicComponent";
 import {ControlMetadata, HtmlProperties} from "../controls.metadata.model";
 import {isNullOrUndefined} from "util";
@@ -46,7 +43,6 @@ export class MagicDirectiveDirective implements OnInit {
       this.htmlElement.addEventListener(key, this.eventHandlers[key]);
     });
 
-    console.log(" regEvents " + this.id);
 
     // Handle events with anonymous  event handlers
     let events: string[] = ['click', 'mouseenter', 'mouseleave', 'dblclick',];//'resize', 'load', 'unload',
@@ -92,11 +88,7 @@ export class MagicDirectiveDirective implements OnInit {
   private handleCommand(command: GuiCommand) {
     switch (command.CommandType) {
       case CommandType.SET_PROPERTY:
-        // this.renderer.setProperty(
-        //   this.htmlElement,
-        //   command.Operation,
-        //   command.str
-        // );
+
         let properties: ControlMetadata;
 
         console.dir(this.task.Records);
@@ -151,27 +143,8 @@ export class MagicDirectiveDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    /*console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
-    console.log('this.element.nativeElement', this.element.nativeElement);*/
-
     this.regEvents();
     this.regUpdatesUI();
-    //console.log(`magic-task-id: ${this.task.taskId}, property:${this.id}`);
-
-    //if (htmlElement instanceof  HTMLInputElement  ){
-    //   (<HTMLInputElement >htmlElement).property
-
-    // switch(htmlElement.tagName){
-    //   case 'button':
-    //     //this.task.insertEvent('click', this.id, this.rowId);
-    //     break;
-    // }
-  }
-
-  ngDoCheck() {
-    // if(this.rowId != 0){
-    //    console.log(`DoCheck => magic-task-id: ${this.task.taskId}, property:${this.id}`);
-    // }
   }
 
 }
