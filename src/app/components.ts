@@ -2,7 +2,7 @@
  * Created by rinav on 19/07/2017.
  */
 
-import {SampleComponent} from "./generated/sample.component";
+import {SampleComponent} from "./generated/sample/sample.component";
 import {ComponentsListBase} from "./components.list.base";
 import {Component} from "@angular/core";
 

@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import {MagicModule} from "./magic/magic.core.module";
 import {AppComponent} from './app.component';
-import {SampleComponent} from './generated/sample.component';
+import {SampleComponent} from './generated/sample/sample.component';
 import {DynamicModule} from "ng-dynamic-component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
