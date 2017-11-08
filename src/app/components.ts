@@ -7,17 +7,15 @@ import {ComponentsListBase} from "./ComponentsListBase";
 import {Component} from "@angular/core";
 
 
+export class ComponentsList extends ComponentsListBase {
 
-export class ComponentsList extends ComponentsListBase{
+  static compHash: { [x: string]: any } = {
 
-   static  compHash: { [x: string]: any } = {
-
-     ["called2"]: Called2Component
+    ["called2"]: Called2Component
 
   };
 
-  public getComponents(name: string) : Component
-  {
+  public getComponents(name: string): Component {
     return ComponentsList.compHash[name];
   }
 }

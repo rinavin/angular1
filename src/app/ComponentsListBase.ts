@@ -5,5 +5,4 @@ import {Component} from "@angular/core";
 export abstract class ComponentsListBase
 {
   public  abstract getComponents(name: string) : Component;
-
 }

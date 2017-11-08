@@ -1,12 +1,9 @@
 import {Injectable} from "@angular/core";
 import {MagicEngine} from "./magic.engine";
 import {AbstractControl, FormControl, FormGroup} from "@angular/forms";
-import {ControlsMetadata, HtmlProperties, Records} from "../controls.metadata.model";
-import {PropType} from "../ui/propType";
+import {HtmlProperties, Records} from "../controls.metadata.model";
 import {isNullOrUndefined, isUndefined} from "util";
 import {Subject} from "rxjs/Subject";
-import {Observable} from "rxjs/Observable";
-import {Subscription} from "rxjs/Subscription";
 import {GuiCommand} from "./GuiCommand";
 
 let counter = 0;
@@ -18,7 +15,6 @@ export class TaskMagicService {
 
 
   Records: Records = new Records();
-  selectedRow: number = 0;
   protected template: { [id: string]: string; };
 
   settemplate(value: any) {
@@ -43,18 +39,15 @@ export class TaskMagicService {
   }
 
 
-  // row         : FormGroup;
+
   rows: Array<FormGroup> = [];
   ScreenModeControls: FormGroup;
-  //refreshUInput:Subject<any> = new Subject();
-  //refreshUInput:Observable<any>;
   refreshDom: Subject<GuiCommand> = new Subject();
 
-  //sub:Subscription;
 
 
   constructor(protected magic: MagicEngine) {
-    console.log(`task constructor: ${counter++}`);
+
   }
 
   buildScreenModeControls() {
@@ -107,9 +100,6 @@ export class TaskMagicService {
     }
 
     this.Records.updateSize(size);
-    console.log("in updateTableSize task = " + this.taskId);
-    console.log("this.rows.length = " + this.rows.length);
-    console.log("this.Records.list.length = " + this.Records.list.length);
   }
 
 
@@ -179,8 +169,7 @@ export class TaskMagicService {
   getValue(controlId: string, rowId?: string) {
     if (isNullOrUndefined(rowId))
       rowId = '0';
-      //return this.ScreenControlsData.getValue(controlId);
-   // else
+
     return this.Records.list[rowId].getValue(controlId);
   }
 
