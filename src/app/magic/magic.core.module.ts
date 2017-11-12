@@ -7,6 +7,7 @@ import {MagicEngine} from "./src/services/magic.engine";
 import {MagicDirectiveDirective} from "./src/ui/magic-directive.directive";
 import {SampleComponent} from "../generated/sample/sample.component";
 import {MagicDefaultValueAccessor, MagicFormControlNameDirective} from "./src/ui/magic.form-control-name.directive";
+import {Called1Component} from "../generated/called1/called1.component";
 
 const decs = [
   MagicDirectiveDirective,
@@ -23,6 +24,7 @@ const decs = [
   ],
   entryComponents: [
     SampleComponent,
+    Called1Component
   ]
 })
 export class MagicModule{
