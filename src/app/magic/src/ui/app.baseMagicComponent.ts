@@ -43,6 +43,7 @@ export abstract class BaseTaskMagicComponent implements OnInit, OnDestroy {
 
   ) {
     this.task.Records.createFirst();
+    //this.ngOnInit() ;
     // debugger;
   }
 
@@ -72,6 +73,7 @@ export abstract class BaseTaskMagicComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.refreshUI.complete();
+    this.task.refreshDom.complete();
   }
 
   getComp(subformName: string): Component {
@@ -99,7 +101,6 @@ export abstract class BaseTaskMagicComponent implements OnInit, OnDestroy {
     };
     this.ref.detectChanges();
   }
-
 
   ngOnInit() {
     let obj: any;
@@ -180,6 +181,7 @@ export abstract class BaseTaskMagicComponent implements OnInit, OnDestroy {
       });
   }
 
+  // ngOnInit() {}
 
   gettext(controlId, rowId?) {
     return this.task.getProperty(controlId, HtmlProperties.Text, rowId);
