@@ -5,8 +5,8 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {MagicEngine} from "./src/services/magic.engine";
 import {MagicDirectiveDirective} from "./src/ui/magic-directive.directive";
-import {SampleComponent} from "../generated/sample/sample.component";
 import {MagicDefaultValueAccessor, MagicFormControlNameDirective} from "./src/ui/magic.form-control-name.directive";
+import {MagicComponents} from "../generated/magic.components";
 
 const decs = [
   MagicDirectiveDirective,
@@ -22,7 +22,7 @@ const decs = [
     CommonModule
   ],
   entryComponents: [
-    SampleComponent,
+    MagicComponents,
   ]
 })
 export class MagicModule{
