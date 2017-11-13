@@ -18,4 +18,8 @@ export class ComponentsList extends ComponentsListBase {
   public getComponents(name: string): Component {
     return ComponentsList.compHash[name];
   }
+
+  public static getAllComponents() {
+    return ComponentsList.compHash.values();
+  }
 }
