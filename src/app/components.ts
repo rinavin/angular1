@@ -11,7 +11,8 @@ export class ComponentsList extends ComponentsListBase {
 
   static compHash: { [x: string]: any } = {
 
-    ["called2"]: SampleComponent
+    ["called2"]: SampleComponent,
+
 
   };
 
@@ -19,7 +20,11 @@ export class ComponentsList extends ComponentsListBase {
     return ComponentsList.compHash[name];
   }
 
-  public static getAllComponents() {
-    return ComponentsList.compHash.values();
+  public static getValue(key) {
+    return ComponentsList.compHash[key];
   }
+  public static getAllComponents() {
+    return Object.keys(ComponentsList.compHash).map(ComponentsList.getValue);
+  }
+
 }
