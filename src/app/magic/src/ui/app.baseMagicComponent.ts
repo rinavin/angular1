@@ -254,6 +254,10 @@ export abstract class BaseTaskMagicComponent implements OnInit, OnDestroy {
   oncheckchanged(event: Event, idx: string) {
     this.task.insertEvent('selectionchanged', idx, (<any>(event.target)).checked ? "1" : "0");
   }
+
+  getListboxValues(id) {
+    return this.getProperty(id, HtmlProperties.ItemsList);
+  }
 }
 
 interface SubformDefinition {
